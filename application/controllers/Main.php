@@ -45,6 +45,8 @@ public function family_histories(){
     $crud -> set_subject('Antecedente familiar');
     $crud->set_language('spanish');
     $crud->set_table('family_histories');
+    $crud->set_relation('id_student', 'students', '{name_student}');
+    $crud->set_relation('id_relative', 'relatives', '{name}');
     
     $output = $crud->render();
     $this->_view_output($output); 
@@ -76,6 +78,12 @@ public function students(){
     $crud -> set_subject('estudiante');
     $crud->set_language('spanish');
     $crud->set_table('students');
+    
+    $crud->set_relation_n_n('acudiente',
+                'family_histories','relatives',
+                'id_relative','id_student','name');
+    
+    
     $crud -> fields('n_identification','name_student',
                     'hometown','date_birth','current_course',
                     'repet_course','email');
@@ -89,6 +97,7 @@ public function students(){
     $crud->required_fields('n_identification','name_student',
                     'hometown','date_birth','current_course',
                     'repet_course','email');//campo obligatorio
+    
     
     
     

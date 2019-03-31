@@ -38,7 +38,9 @@ a:hover
         <a href='<?php echo site_url('Main/psychologicalHistories')?>'>Antecedentes psicologicos</a> 
         <a href='<?php echo site_url('Main/relatives')?>'>Acudientes</a> 
         <a href='<?php echo site_url('Main/family_histories')?>'>Antecedente Familiar</a> 
-    </div>
+        <a href='<?php echo site_url('Main/family_relationship')?>'>Relacion Familiar</a>
+        <a href='<?php echo site_url('Main/school_histories')?>'>Antecedente escuela</a>
+    </div> 
 <!-- End of header-->
     <div style='height:20px;'></div>  
     <div>
