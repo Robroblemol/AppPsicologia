@@ -19,14 +19,62 @@ public function index()
             <a href='<?php echo site_url('Main/')?>'>Inicio</a> 
             <a href='<?php echo site_url('Main/students')?>'>Estudiantes</a> 
             <a href='<?php echo site_url('Main/psychologicalHistories')?>'>Antecedentes psicologicos</a> 
+            <a href='<?php echo site_url('Main/relatives')?>'>Acudientes</a> 
+            <a href='<?php echo site_url('Main/family_histories')?>'>Antecedente Familiar</a> 
+            <a href='<?php echo site_url('Main/family_relationship')?>'>Relacion Familiar</a>
+            <a href='<?php echo site_url('Main/school_histories')?>'>Antecedente escuela</a>
         </div>
        <?php
-        echo "<h1>Welcome to the world of Codeigniter</h1>";//Just an example to ensure that we get into the function
+        echo "<h1>Aqui va a haber algo de
+                notificaciones creo, espero y aspiro
+            </h1>";//Just an example to ensure that we get into the function
         die();
     }
+public function school_histories(){
+    $crud = new grocery_CRUD();
+    $crud -> set_subject('Antecedente escolar');
+    $crud->set_language('spanish');
+    $crud->set_table('school_histories');
+    
+    $output = $crud->render();
+    $this->_view_output($output); 
+    
+}
+public function family_histories(){
+    $crud = new grocery_CRUD();
+    $crud -> set_subject('Antecedente familiar');
+    $crud->set_language('spanish');
+    $crud->set_table('family_histories');
+    
+    $output = $crud->render();
+    $this->_view_output($output); 
+    
+}
+public function family_relationship(){
+    $crud = new grocery_CRUD();
+    $crud -> set_subject('relación familiar');
+    $crud->set_language('spanish');
+    $crud->set_table('family_relationship');
+    
+    $output = $crud->render();
+    $this->_view_output($output); 
+    
+}
+public function relatives(){
+    $crud = new grocery_CRUD();
+    $crud -> set_subject('acudiente');
+    $crud->set_language('spanish');
+    $crud->set_table('relatives');
+    
+    $output = $crud->render();
+    $this->_view_output($output); 
+    
+}
+    
 public function students(){
     $crud = new grocery_CRUD();
     $crud -> set_subject('estudiante');
+    $crud->set_language('spanish');
     $crud->set_table('students');
     $crud -> fields('n_identification','name_student',
                     'hometown','date_birth','current_course',
@@ -53,7 +101,16 @@ public function students(){
 public function psychologicalHistories(){
         $crud = new grocery_CRUD();
         $crud -> set_subject('registro psicologico');
+        $crud->set_language('spanish');
         $crud->set_table('psychological_histories');
+        $crud -> columns('id_student','n_identification');
+        $crud->set_relation('id_student', 'students', '{name_student}');
+        //$crud->callback_column('n_identification',array($this,'getNIdentificacion'));
+        //$crud->set_relation('n_identification', 'students', '{n_identification}');
+        $crud->display_as('id_student','Nombre Estudiante');
+     
+        
+        
         //$crud -> columns('fullname','last_update');
         //$crud->add_fields('fullname');//campo a agregar 
         //$crud->edit_fields('fullname','last_update');
@@ -68,6 +125,15 @@ public function psychologicalHistories(){
         //die();
         $this->_view_output($output); 
     }
+    
+public function getNIdentificacion($primaty_key,$row){
+    $sql = "SELECT n_identification 
+                FROM students
+                WHERE id_student
+           ";
+    $result = $this->db->query($sql)->row();
+    $n_id = $result->n_identification;
+}
 public function category(){
     
     $crud = new grocery_CRUD();//creamos objeto CRUD

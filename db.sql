@@ -1,3 +1,9 @@
+DROP SCHEMA IF EXISTS c9; 
+CREATE SCHEMA IF NOT EXISTS c9;
+
+use c9;
+
+
 CREATE TABLE IF NOT EXISTS `students` (
     `id_student` smallint(5) unsigned NOT NULL AUTO_INCREMENT,
     `n_identification` varchar(25),
@@ -19,7 +25,7 @@ CREATE TABLE IF NOT EXISTS `relatives` (
     `date_birth` date NOT NULL,
     `grade` varchar(25) NOT NULL,
     `profession` varchar(25),
-    `adress` tinyint(1) NOT NULL,
+    `adress` varchar(25),
     `phone` varchar(25),
     `email` varchar(50),
     PRIMARY KEY (`id_relative`)
@@ -61,6 +67,9 @@ CREATE TABLE IF NOT EXISTS `school_histories` (
 CREATE TABLE IF NOT EXISTS `psychological_histories` (
     `id_psychological` smallint(5) unsigned NOT NULL AUTO_INCREMENT,
     `id_student` smallint(5) unsigned NOT NULL,
+    `id_ant_family`smallint(5) unsigned NOT NULL,
+    `id_school_histories`smallint(5) unsigned NOT NULL,
+    `id_relationship`smallint(5) unsigned NOT NULL,
     `date`timestamp DEFAULT CURRENT_TIMESTAMP,
     PRIMARY KEY (`id_psychological`)
 )  ENGINE=InnoDB  DEFAULT CHARSET=utf8 ;
@@ -68,6 +77,18 @@ CREATE TABLE IF NOT EXISTS `psychological_histories` (
 ALTER TABLE `psychological_histories`
 ADD FOREIGN KEY (`id_student`)
 REFERENCES `students`(`id_student`);
+
+ALTER TABLE `psychological_histories`
+ADD FOREIGN KEY (`id_ant_family`)
+REFERENCES `family_histories`(`id_ant_family`);
+
+ALTER TABLE `psychological_histories`
+ADD FOREIGN KEY (`id_school_histories`)
+REFERENCES `school_histories`(`id_school_histories`);
+
+ALTER TABLE `psychological_histories`
+ADD FOREIGN KEY (`id_relationship`)
+REFERENCES `family_relationship`(`id_relationship`);
 
 
 ALTER TABLE `school_histories`
