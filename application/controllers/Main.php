@@ -81,12 +81,15 @@ public function students(){
     
     $crud->set_relation_n_n('acudiente',
                 'family_histories','relatives',
-                'id_relative','id_student','name');
+                'id_student','id_relative','name');
+    $crud->set_relation_n_n('phone_acu',
+                'family_histories','relatives',
+                'id_student','id_relative','phone');
     
-    
-    $crud -> fields('n_identification','name_student',
-                    'hometown','date_birth','current_course',
-                    'repet_course','email');
+    $crud -> columns('name_student',
+                    'hometown','current_course',
+                    'acudiente'
+                    );
     $crud->display_as('n_identification','N° Documentos de identidad');//muestra alias
     $crud->display_as('name_student','Nombre estudiante');
     $crud->display_as('hometown','Cuidad de origen');
@@ -96,7 +99,7 @@ public function students(){
     
     $crud->required_fields('n_identification','name_student',
                     'hometown','date_birth','current_course',
-                    'repet_course','email');//campo obligatorio
+                    'repet_course');//campo obligatorio
     
     
     
