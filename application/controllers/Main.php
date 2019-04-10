@@ -35,6 +35,8 @@ public function school_histories(){
     $crud -> set_subject('Antecedente escolar');
     $crud->set_language('spanish');
     $crud->set_table('school_histories');
+    $crud->set_relation('id_student', 
+        'students', '{name_student}');
     
     $output = $crud->render();
     $this->_view_output($output); 
@@ -57,6 +59,11 @@ public function family_relationship(){
     $crud -> set_subject('relación familiar');
     $crud->set_language('spanish');
     $crud->set_table('family_relationship');
+    $crud->set_relation('id_student', 
+        'students', '{name_student}');
+
+    
+    
     
     $output = $crud->render();
     $this->_view_output($output); 
@@ -67,6 +74,8 @@ public function relatives(){
     $crud -> set_subject('acudiente');
     $crud->set_language('spanish');
     $crud->set_table('relatives');
+    $crud->set_relation('id_alum', 
+       'students', '{n_identification}');
     
     $output = $crud->render();
     $this->_view_output($output); 
@@ -80,18 +89,15 @@ public function students(){
     $crud->set_table('students');
     
     $crud->set_relation_n_n('acudiente',
-                'family_histories','relatives',
+                'students_relatives','relatives',
                 'id_student','id_relative','name');
-    $crud->set_relation_n_n('phone_acu',
-                'family_histories','relatives',
-                'id_student','id_relative','phone');
     
-    $crud -> columns('name_student',
+    $crud -> columns('n_identification','name',
                     'hometown','current_course',
                     'acudiente'
                     );
     $crud->display_as('n_identification','N° Documentos de identidad');//muestra alias
-    $crud->display_as('name_student','Nombre estudiante');
+    $crud->display_as('name','Nombre estudiante');
     $crud->display_as('hometown','Cuidad de origen');
     $crud->display_as('date_birth','Fecha de nacimiento');
     $crud->display_as('current_course','Curso actual');
@@ -114,9 +120,20 @@ public function psychologicalHistories(){
         $crud = new grocery_CRUD();
         $crud -> set_subject('registro psicologico');
         $crud->set_language('spanish');
-        $crud->set_table('psychological_histories');
+        $crud->set_table('students');
+        
+       // $crud->set_relation_n_n('acudiente',
+       //        'psychological_histories','family_histories',
+       //         'id_student','id_relative','name');
+        //$crud->set_relation_n_n('phone_acu',
+        //        'family_histories','relatives',
+         //       'id_student','id_relative','phone');
+        
+        
+        
         $crud -> columns('id_student','n_identification');
-        $crud->set_relation('id_student', 'students', '{name_student}');
+        $crud->set_relation('id_student', 'students', '{name}');
+        //$crud->set_relation('id_relative', 'relatives', '{name}');
         //$crud->callback_column('n_identification',array($this,'getNIdentificacion'));
         //$crud->set_relation('n_identification', 'students', '{n_identification}');
         $crud->display_as('id_student','Nombre Estudiante');

@@ -7,7 +7,7 @@ use c9;
 CREATE TABLE IF NOT EXISTS `students` (
     `id_student` smallint(5) unsigned NOT NULL AUTO_INCREMENT,
     `n_identification` varchar(25),
-    `name_student` varchar(25),
+    `name` varchar(25),
     `hometown` varchar(50) NOT NULL,
     `date_birth` date NOT NULL,
     `current_course` varchar(25) NOT NULL,
@@ -20,6 +20,7 @@ CREATE TABLE IF NOT EXISTS `students` (
 
 CREATE TABLE IF NOT EXISTS `relatives` (
     `id_relative` smallint(5) unsigned NOT NULL AUTO_INCREMENT,
+    `id_alum` smallint(5) unsigned NOT NULL,
     `type` varchar(25),
     `name` varchar(25),
     `date_birth` date NOT NULL,
@@ -33,12 +34,36 @@ CREATE TABLE IF NOT EXISTS `relatives` (
 
 
 
-CREATE TABLE IF NOT EXISTS `family_histories` (
-    `id_ant_family` smallint(5) unsigned NOT NULL AUTO_INCREMENT,
+CREATE TABLE IF NOT EXISTS `students_relatives` (
+    `id_stu_rel` smallint(5) unsigned NOT NULL AUTO_INCREMENT,
     `id_student` smallint(5) unsigned NOT NULL,
     `id_relative` smallint(5) unsigned NOT NULL,
-    PRIMARY KEY (`id_ant_family`)
+    PRIMARY KEY (`id_stu_rel`)
 )  ENGINE=InnoDB  DEFAULT CHARSET=utf8 ;
+
+
+ALTER TABLE `students_relatives`
+ADD FOREIGN KEY (`id_student`)
+REFERENCES `students`(`id_student`);
+
+ALTER TABLE `students_relatives`
+ADD FOREIGN KEY (`id_relative`)
+REFERENCES `relatives`(`id_relative`);
+
+
+
+CREATE  TRIGGER add_relative_to_student AFTER INSERT ON `relatives`
+FOR EACH ROW
+BEGIN
+    INSERT INTO `students_relatives` SET 
+        students_relatives.id_student = new.id_alum,
+        students_relatives.id_relative = new.id_relative;
+
+END;
+
+
+
+
 
 
 
@@ -99,13 +124,6 @@ ALTER TABLE `family_relationship`
 ADD FOREIGN KEY (`id_student`)
 REFERENCES `students`(`id_student`);
 
-ALTER TABLE `family_histories`
-ADD FOREIGN KEY (`id_student`)
-REFERENCES `students`(`id_student`);
-
-ALTER TABLE `family_histories`
-ADD FOREIGN KEY (`id_reltive`)
-REFERENCES `relatives`(`id_relative`);
 
 
 CREATE TABLE IF NOT EXISTS `psychological_histories` (
