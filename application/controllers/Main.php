@@ -120,13 +120,22 @@ public function students(){
                             <input id = "field-repet_course-flase"
                                 type = "radio" name = "repet_course"
                                 value="0" checked="checked" >
-Si
+                                    Si
                         </label>
                     </div>
                 </div>';
                         
                         
     });
+    
+$crud->callback_read_field('repet_course', function ($value, $primaty_key) {
+        if($value == 1){
+            return '<label> Si</label>';
+        }else{
+            return '<label> No</label>';
+        }
+    });
+    
     
     
     
