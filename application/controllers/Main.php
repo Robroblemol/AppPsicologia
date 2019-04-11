@@ -105,35 +105,14 @@ public function students(){
     
     $crud -> field_type('repet_course','true_false');
     $crud->callback_add_field('repet_course', function () {
-        return 
-         '<div class = "pretty.radio-buttons">
-                    <div class = "radio">
-                        <label>
-                            <input id = "field-repet_course-true"
-                                type = "radio" name = "repet_course"
-                                value="1">
-                                 No
-                        </label>
-                    </div>
-                    <div class = "radio">
-                        <label>
-                            <input id = "field-repet_course-flase"
-                                type = "radio" name = "repet_course"
-                                value="0" checked="checked" >
-                                    Si
-                        </label>
-                    </div>
-                </div>';
-                        
+        $this->load->helper('set_form');
+        return setBoleanDataAdd();
                         
     });
     
 $crud->callback_read_field('repet_course', function ($value, $primaty_key) {
-        if($value == 1){
-            return '<label> Si</label>';
-        }else{
-            return '<label> No</label>';
-        }
+        $this->load->helper('set_form');
+        return fromRepeatView($value);
     });
     
     
@@ -151,10 +130,10 @@ public function psychologicalHistories(){
         $crud->set_language('spanish');
         $crud->set_table('students');
         
-        /*$crud->set_relation_n_n('acudiente',
+        $crud->set_relation_n_n('acudiente',
                 'students_relatives','relatives',
                 'id_student','id_relative','name');
-        */        
+               
         $crud->set_relation_n_n('fecha nacimiento',
                 'students_relatives','relatives',
                 'id_student','id_relative','date_birth');
@@ -172,14 +151,20 @@ public function psychologicalHistories(){
         
         
         
-        $crud -> columns('id_student','n_identification','acudiente');
+        $crud -> columns('id_student','n_identification');
         $crud->set_relation('id_student', 'students', '{name}');
         //$crud->set_relation('id_relative', 'relatives', '{name}');
-        $crud->callback_column('acudiente',array($this,'getRelatives'));
+        $crud->callback_field('acudiente',array($this,'getRelatives'));
         //$crud->set_relation('n_identification', 'students', '{n_identification}');
         $crud->display_as('id_student','Nombre Estudiante');
      
-        
+        $crud->callback_read_field('repet_course', function ($value, $primaty_key) {
+            if($value == 1){
+                return' Si';
+            }else{
+                return ' No';
+            }
+        });
         
         //$crud -> columns('fullname','last_update');
         //$crud->add_fields('fullname');//campo a agregar 
@@ -196,7 +181,7 @@ public function psychologicalHistories(){
         $this->_view_output($output); 
     }
     
-public function getRelatives($primaty_key,$row){
+public function getRelatives($primary_key,$row){
     
     //crete combo
 
