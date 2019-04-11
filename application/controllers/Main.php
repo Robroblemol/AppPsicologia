@@ -88,13 +88,9 @@ public function students(){
     $crud->set_language('spanish');
     $crud->set_table('students');
     
-    $crud->set_relation_n_n('acudiente',
-                'students_relatives','relatives',
-                'id_student','id_relative','name');
     
     $crud -> columns('n_identification','name',
-                    'hometown','current_course',
-                    'acudiente'
+                    'hometown','current_course'
                     );
     $crud->display_as('n_identification','N° Documentos de identidad');//muestra alias
     $crud->display_as('name','Nombre estudiante');
@@ -107,6 +103,30 @@ public function students(){
                     'hometown','date_birth','current_course',
                     'repet_course');//campo obligatorio
     
+    $crud -> field_type('repet_course','true_false');
+    $crud->callback_add_field('repet_course', function () {
+        return 
+         '<div class = "pretty.radio-buttons">
+                    <div class = "radio">
+                        <label>
+                            <input id = "field-repet_course-true"
+                                type = "radio" name = "repet_course"
+                                value="1">
+                                 No
+                        </label>
+                    </div>
+                    <div class = "radio">
+                        <label>
+                            <input id = "field-repet_course-flase"
+                                type = "radio" name = "repet_course"
+                                value="0" checked="checked" >
+                                 Si
+                        </label>
+                    </div>
+                </div>';
+                        
+                        
+    });
     
     
     
@@ -122,6 +142,18 @@ public function psychologicalHistories(){
         $crud->set_language('spanish');
         $crud->set_table('students');
         
+        /*$crud->set_relation_n_n('acudiente',
+                'students_relatives','relatives',
+                'id_student','id_relative','name');
+        */        
+        $crud->set_relation_n_n('fecha nacimiento',
+                'students_relatives','relatives',
+                'id_student','id_relative','date_birth');
+                
+        $crud->set_relation_n_n('direccion',
+                'students_relatives','relatives',
+                'id_student','id_relative','adress');
+        
        // $crud->set_relation_n_n('acudiente',
        //        'psychological_histories','family_histories',
        //         'id_student','id_relative','name');
@@ -131,10 +163,10 @@ public function psychologicalHistories(){
         
         
         
-        $crud -> columns('id_student','n_identification');
+        $crud -> columns('id_student','n_identification','acudiente');
         $crud->set_relation('id_student', 'students', '{name}');
         //$crud->set_relation('id_relative', 'relatives', '{name}');
-        //$crud->callback_column('n_identification',array($this,'getNIdentificacion'));
+        $crud->callback_column('acudiente',array($this,'getRelatives'));
         //$crud->set_relation('n_identification', 'students', '{n_identification}');
         $crud->display_as('id_student','Nombre Estudiante');
      
@@ -155,13 +187,41 @@ public function psychologicalHistories(){
         $this->_view_output($output); 
     }
     
-public function getNIdentificacion($primaty_key,$row){
-    $sql = "SELECT n_identification 
-                FROM students
-                WHERE id_student
-           ";
-    $result = $this->db->query($sql)->row();
-    $n_id = $result->n_identification;
+public function getRelatives($primaty_key,$row){
+    
+    //crete combo
+
+    $combo = '<select name = "id_alum" class = "chosen-select" data-placeholder="Seleccionar acudiente" style="width: 300px; display: none;">';
+    $fincombo = '</select>';
+    
+    // getting id student  by url 
+    
+    $id_studentUrl = $this->uri->segment(4);
+    
+    //verification operation
+    
+    $crud = new grocery_CRUD();
+    
+    if(isset($id_studentUrl) && 
+        $crud -> getState() == 'edit'){
+    //select only relative with id_student        
+            $this -> db -> select('name','date_birth','adress')
+                        -> from ('relatives')
+                        ->where ('id_alum',$id_studentUrl);
+                        
+            //$row = $this -> db -> get() -> row(0);
+            
+            $db = $this -> db -> get();
+            $row = $db -> row(0);
+            
+            return $db;
+            //$name = $row -> name;
+            //$date_birth = $row -> date_birth;
+            //$adress = $row ->adress;
+            
+        }
+        return FALSE;
+
 }
 public function category(){
     
