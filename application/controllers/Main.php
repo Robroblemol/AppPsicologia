@@ -120,7 +120,7 @@ public function students(){
                             <input id = "field-repet_course-flase"
                                 type = "radio" name = "repet_course"
                                 value="0" checked="checked" >
-                                 Si
+Si
                         </label>
                     </div>
                 </div>';
