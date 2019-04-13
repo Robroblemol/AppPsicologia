@@ -9,7 +9,9 @@ function __construct()
         $this->load->database();
         $this->load->helper('url');//este objeto permite cargar las url
 
+        $this->load->model('grocery_crud_model');
         $this->load->library('grocery_CRUD');
+        
  
     }
  
@@ -110,7 +112,7 @@ public function students(){
                         
     });
     
-$crud->callback_read_field('repet_course', function ($value, $primaty_key) {
+    $crud->callback_read_field('repet_course', function ($value, $primaty_key) {
         $this->load->helper('set_form');
         return fromRepeatView($value);
     });
@@ -159,11 +161,8 @@ public function psychologicalHistories(){
         $crud->display_as('id_student','Nombre Estudiante');
      
         $crud->callback_read_field('repet_course', function ($value, $primaty_key) {
-            if($value == 1){
-                return' Si';
-            }else{
-                return ' No';
-            }
+         $this->load->helper('set_form');
+         return fromRepeatView($value);
         });
         
         //$crud -> columns('fullname','last_update');
@@ -185,8 +184,7 @@ public function getRelatives($primary_key,$row){
     
     //crete combo
 
-    $combo = '<select name = "id_alum" class = "chosen-select" data-placeholder="Seleccionar acudiente" style="width: 300px; display: none;">';
-    $fincombo = '</select>';
+    
     
     // getting id student  by url 
     
@@ -199,16 +197,15 @@ public function getRelatives($primary_key,$row){
     if(isset($id_studentUrl) && 
         $crud -> getState() == 'edit'){
     //select only relative with id_student        
-            $this -> db -> select('name','date_birth','adress')
-                        -> from ('relatives')
-                        ->where ('id_alum',$id_studentUrl);
-                        
-            //$row = $this -> db -> get() -> row(0);
+            $this -> db -> select('id_relative,id_alum,name');
+            $this -> db -> from ('relatives');
+            $this -> db -> where ('id_alum',$id_studentUrl);
             
-            $db = $this -> db -> get();
-            $row = $db -> row(0);
+            $query = $this -> db -> get();            
+            $this->load->helper('set_form');
+            return fromSelectAcudiente($query,$id_studentUrl);
             
-            return $db;
+  
             //$name = $row -> name;
             //$date_birth = $row -> date_birth;
             //$adress = $row ->adress;
