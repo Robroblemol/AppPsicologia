@@ -45,7 +45,13 @@ a:hover
     <div style='height:20px;'></div>  
     <div>
 <?php echo $output; ?>
+<?php
  
+if(isset($combo_setup)) {
+$this->load->view('Formulario', $combo_setup);
+ 
+}
+?> 
     </div>
 <!-- Beginning footer -->
 <div>Footer</div>

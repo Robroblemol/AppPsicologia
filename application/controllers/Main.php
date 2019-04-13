@@ -30,7 +30,23 @@ public function index()
         echo "<h1>Aqui va a haber algo de
                 notificaciones creo, espero y aspiro
             </h1>";//Just an example to ensure that we get into the function
-        die();
+        //die();
+        //DEPENDENT DROPDOWN SETUP
+        $crud = new grocery_CRUD();
+$datos = array(
+//GET THE STATE OF THE CURRENT PAGE - E.G LIST | ADD
+'estado' =>  $crud->getState(),
+//SETUP YOUR DROPDOWNS
+//Parent field item always listed first in array, in this case countryID
+//Child field items need to follow in order, e.g idprovincia then idlocalidad
+'combos' => array('id_relative','id_student'),
+//SETUP URL POST FOR EACH CHILD
+//List in order as per above
+'url' => array('', site_url().'/Main/findRelative/'),
+//LOADER THAT GETS DISPLAYED NEXT TO THE PARENT DROPDOWN WHILE THE CHILD LOADS
+'icon_ajax' => base_url().'ajax-loader.gif'
+);
+    $output->combo_setup = $datos;
     }
 public function school_histories(){
     $crud = new grocery_CRUD();
@@ -156,7 +172,8 @@ public function psychologicalHistories(){
         $crud -> columns('id_student','n_identification');
         $crud->set_relation('id_student', 'students', '{name}');
         //$crud->set_relation('id_relative', 'relatives', '{name}');
-        $crud->callback_field('acudiente',array($this,'getRelatives'));
+        //$crud->callback_field('acudiente',array($this,'getRelatives'));
+        $crud->callback_field('acudiente',array($this,'findRelative'));
         //$crud->set_relation('n_identification', 'students', '{n_identification}');
         $crud->display_as('id_student','Nombre Estudiante');
      
@@ -181,11 +198,7 @@ public function psychologicalHistories(){
     }
     
 public function getRelatives($primary_key,$row){
-    
-    //crete combo
 
-    
-    
     // getting id student  by url 
     
     $id_studentUrl = $this->uri->segment(4);
@@ -197,9 +210,9 @@ public function getRelatives($primary_key,$row){
     if(isset($id_studentUrl) && 
         $crud -> getState() == 'edit'){
     //select only relative with id_student        
-            $this -> db -> select('id_relative,id_alum,name');
-            $this -> db -> from ('relatives');
-            $this -> db -> where ('id_alum',$id_studentUrl);
+            $this -> db -> select('id_relative,id_alum,name')
+                        -> from ('relatives')
+                        -> where ('id_alum',$id_studentUrl);
             
             $query = $this -> db -> get();            
             $this->load->helper('set_form');
@@ -214,6 +227,39 @@ public function getRelatives($primary_key,$row){
         return FALSE;
 
 }
+
+function findRelative()
+{
+ 
+     //Tomo el id de provincia que se envió como parámetro por url al seleccionar
+//una provincia del combo idprovincia
+ 
+  $id_studentUrl = $this->uri->segment(3);
+ 
+ 
+//consulto las localidades segun la provincia seleccionada
+  $this->db->select("*")
+ 
+     ->from('relatives')
+     ->where('id_alum', $id_studentUrl);
+ 
+  $db = $this->db->get();
+ 
+ 
+        //Asigno la respuesta sql a un array
+  $array = array();
+ 
+  foreach($db->result() as $row):
+   $array[] = array("value" => $row->id_alum, "property" => $row->name);
+ 
+  endforeach;
+ 
+ 
+  echo json_encode($array);
+  exit;
+ 
+}
+
 public function category(){
     
     $crud = new grocery_CRUD();//creamos objeto CRUD
@@ -227,24 +273,7 @@ public function category(){
     $this->_view_output($output);
     
 }
-public function tarea(){
-    $crud = new grocery_CRUD();//creamos objeto CRUD
-    $crud -> set_subject('Examenes');
-    $crud -> set_table('examens');
-    $crud -> columns('id_student','id_subject','exam_name','score','date');
-    $crud->display_as('exam_name','Nombre prueba');
-    $crud->display_as('date','Fecha');
-    $crud->display_as('id_subject','Materia');
-    $crud->display_as('score','Calificación');
-    $crud->set_relation('id_subject', 'subjects', '{name}');
-    $crud->set_relation('id_student', 'students', '{name}');
-    $crud->display_as('id_student','Estudiante');
-    
-    $output = $crud->render(); // en al variable de salida agregamos 
-    $this->_view_output($output);
-    
-    
-}
+
     function _view_output($output = null){
         
         $this->load->view('FormView.php',$output); 
