@@ -2,10 +2,14 @@
 <html lang="en">
 <head>
     <meta charset="utf-8" />
+        <meta name="viewport" 
+            content="width=device-width, initial-scale=1.0">
  
 <?php 
 foreach($css_files as $file): ?>
-    <link type="text/css" rel="stylesheet" href="<?php echo $file; ?>" />
+    <link type="text/css" 
+        rel="stylesheet"
+        href="<?php echo $file; ?>" />
  
 <?php endforeach; ?>
 <?php foreach($js_files as $file): ?>
@@ -45,12 +49,14 @@ a:hover
     <div style='height:20px;'></div>  
     <div>
 <?php echo $output; ?>
-<?php
+
+    </div>
+    <div>
+        <?php
  
-if(isset($combo_setup)) {
-$this->load->view('Formulario', $combo_setup);
- 
-}
+    //if(isset($combo_setup)) {
+    //$this->load->view('Formulario', $combo_setup);
+    //}
 ?> 
     </div>
 <!-- Beginning footer -->

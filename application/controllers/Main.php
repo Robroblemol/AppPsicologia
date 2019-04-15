@@ -25,28 +25,14 @@ public function index()
             <a href='<?php echo site_url('Main/family_histories')?>'>Antecedente Familiar</a> 
             <a href='<?php echo site_url('Main/family_relationship')?>'>Relacion Familiar</a>
             <a href='<?php echo site_url('Main/school_histories')?>'>Antecedente escuela</a>
+        
         </div>
        <?php
         echo "<h1>Aqui va a haber algo de
                 notificaciones creo, espero y aspiro
             </h1>";//Just an example to ensure that we get into the function
-        //die();
-        //DEPENDENT DROPDOWN SETUP
-        $crud = new grocery_CRUD();
-$datos = array(
-//GET THE STATE OF THE CURRENT PAGE - E.G LIST | ADD
-'estado' =>  $crud->getState(),
-//SETUP YOUR DROPDOWNS
-//Parent field item always listed first in array, in this case countryID
-//Child field items need to follow in order, e.g idprovincia then idlocalidad
-'combos' => array('id_relative','id_student'),
-//SETUP URL POST FOR EACH CHILD
-//List in order as per above
-'url' => array('', site_url().'/Main/findRelative/'),
-//LOADER THAT GETS DISPLAYED NEXT TO THE PARENT DROPDOWN WHILE THE CHILD LOADS
-'icon_ajax' => base_url().'ajax-loader.gif'
-);
-    $output->combo_setup = $datos;
+        die();
+        
     }
 public function school_histories(){
     $crud = new grocery_CRUD();
@@ -173,7 +159,8 @@ public function psychologicalHistories(){
         $crud->set_relation('id_student', 'students', '{name}');
         //$crud->set_relation('id_relative', 'relatives', '{name}');
         //$crud->callback_field('acudiente',array($this,'getRelatives'));
-        $crud->callback_field('acudiente',array($this,'findRelative'));
+        $crud->callback_edit_field('acudiente',array($this,'getRelatives'));
+        $crud->callback_add_field('acudiente',array($this,'addRelatives'));
         //$crud->set_relation('n_identification', 'students', '{n_identification}');
         $crud->display_as('id_student','Nombre Estudiante');
      
@@ -197,44 +184,19 @@ public function psychologicalHistories(){
         $this->_view_output($output); 
     }
     
-public function getRelatives($primary_key,$row){
-
-    // getting id student  by url 
+function addRelatives(){
+    $input = '<input type= "text" style= "width: 300px;"/>';
+    return $input;
     
-    $id_studentUrl = $this->uri->segment(4);
-    
-    //verification operation
-    
-    $crud = new grocery_CRUD();
-    
-    if(isset($id_studentUrl) && 
-        $crud -> getState() == 'edit'){
-    //select only relative with id_student        
-            $this -> db -> select('id_relative,id_alum,name')
-                        -> from ('relatives')
-                        -> where ('id_alum',$id_studentUrl);
-            
-            $query = $this -> db -> get();            
-            $this->load->helper('set_form');
-            return fromSelectAcudiente($query,$id_studentUrl);
-            
-  
-            //$name = $row -> name;
-            //$date_birth = $row -> date_birth;
-            //$adress = $row ->adress;
-            
-        }
-        return FALSE;
-
 }
-
+    
 function findRelative()
 {
  
      //Tomo el id de provincia que se envió como parámetro por url al seleccionar
 //una provincia del combo idprovincia
  
-  $id_studentUrl = $this->uri->segment(3);
+  $id_studentUrl = $this->uri->segment(4);
  
  
 //consulto las localidades segun la provincia seleccionada
@@ -259,6 +221,39 @@ function findRelative()
   exit;
  
 }
+
+public function getRelatives($primary_key,$row){
+
+    // getting id student  by url 
+    
+    $id_studentUrl = $this->uri->segment(4);
+    
+    //verification operation
+    
+    $crud = new grocery_CRUD();
+    
+    if(isset($id_studentUrl) && 
+        $crud -> getState() == 'edit'){
+    //select only relative with id_student        
+            $this -> db -> select('id_relative,id_alum,name')
+                        -> from ('relatives')
+                        -> where ('id_alum',$id_studentUrl);
+            
+            $query = $this -> db -> get();  
+            //|findRelative();
+            $this->load->helper('set_form');
+            return fromSelectAcudiente($query,$id_studentUrl);
+            
+  
+            //$name = $row -> name;
+            //$date_birth = $row -> date_birth;
+            //$adress = $row ->adress;
+            
+        }
+        return FALSE;
+
+}
+
 
 public function category(){
     

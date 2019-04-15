@@ -33,9 +33,9 @@ function fromSelectAcudiente($query,$id){
     $combo = '<select name = "id_alum" 
                 class = "chosen-select" 
                 data-placeholder="Seleccionar acudiente" 
-                style="width: 300px; display: none;">';
+                style="width: 300px; display: active;">';
     $endcombo = '</select>';
-            
+        
     foreach($query -> result() as $row){
         if($row->id_alum == $id){
             $combo .='<option value="'.$row->id_relative.
