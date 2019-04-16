@@ -56,3 +56,10 @@ function FormAddRelatives($primary_key){
     return $input;
     
 }
+function setTitleForm($index){
+    switch($index){
+        case 'acudiente':
+            return '<h3> Información Acudiente </h3>';
+            break;
+    }
+}

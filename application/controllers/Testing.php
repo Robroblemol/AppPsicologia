@@ -93,10 +93,6 @@ public function psychologicalHistories(){
         $crud->set_language('spanish');
         $crud->set_table('students');
         
-       /* $crud->set_relation_n_n('acudiente',
-                'students_relatives','relatives',
-                'id_student','id_relative','name');
-        */
         $crud->add_fields(
                         'n_identification',
                         'name',
@@ -121,11 +117,12 @@ public function psychologicalHistories(){
      
         
         $crud->callback_edit_field('acudiente',array($this,'getRelatives'));
-        $crud->callback_add_field(' ',array($this,'addRelatives'));
-       /* $crud->callback_add_field('parentesco',array($this,function(){
-            $input = '<input name= "typeAcu" type= "text" style= "width: 300px;"/>';
-            return $input;
-        }));*/
+        $crud->callback_field(' ',function(){
+            $this->load->helper('set_form');
+            return setTitleForm('acudiente');
+        });
+ 
+
         $crud->display_as('id_student','Nombre Estudiante');
      
         $crud->callback_read_field('repet_course', function ($value) {
@@ -145,15 +142,6 @@ public function psychologicalHistories(){
     return $post_array;
      
  }
- function AddRelatives($primary_key){
-    
-    $input = '
-        <h3> Informacion acudiente </h3>
-			';
-    return $input;
-    
-    }   
-    
 
 public function getRelatives($primary_key,$row){
 
