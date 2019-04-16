@@ -50,3 +50,9 @@ function fromSelectAcudiente($query,$id){
     }
     return $combo.$endcombo;
 }
+function FormAddRelatives($primary_key){
+    
+    $input = '<input name= "name" type= "text" style= "width: 300px;"/>';
+    return $input;
+    
+}
