@@ -1,6 +1,7 @@
 <?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
  
 class Testing extends CI_Controller {
+
  
 function __construct()
     {
@@ -9,180 +10,102 @@ function __construct()
         $this->load->database();
         $this->load->helper('url');//este objeto permite cargar las url
 
-        $this->load->model('grocery_crud_model');
-        $this->load->library('grocery_CRUD');
-        
- 
-    }
- 
-public function index()
-    {
-     ?>   <div>
-            <a href='<?php echo site_url('Testing/')?>'>Inicio</a> 
-            <a href='<?php echo site_url('Testing/students')?>'>Estudiantes</a> 
-            <a href='<?php echo site_url('Testing/psychologicalHistories')?>'>Antecedentes psicologicos</a> 
-            <a href='<?php echo site_url('Testing/relatives')?>'>Acudientes</a> 
-        
-        </div>
-       <?php
-        echo "<h1>Aqui va a haber algo de
-                notificaciones creo, espero y aspiro
-            </h1>";//Just an example to ensure that we get into the function
-        die();
-        
-    }
-
-public function relatives(){
-    $crud = new grocery_CRUD();
-    $crud -> set_subject('acudiente');
-    $crud->set_language('spanish');
-    $crud->set_table('relatives');
-    $crud->set_relation('id_alum', 
-       'students', '{n_identification}');
-    
-    $output = $crud->render();
-    $this->_view_output($output); 
-    
-}
-    
-public function students(){
-    $crud = new grocery_CRUD();
-    $crud -> set_subject('estudiante');
-    $crud->set_language('spanish');
-    $crud->set_table('students');
-    
-    
-    $crud -> columns('n_identification','name',
-                    'hometown','current_course'
-                    );
-    $crud->display_as('n_identification','N° Documentos de identidad');//muestra alias
-    $crud->display_as('name','Nombre estudiante');
-    $crud->display_as('hometown','Cuidad de origen');
-    $crud->display_as('date_birth','Fecha de nacimiento');
-    $crud->display_as('current_course','Curso actual');
-    $crud->display_as('repet_course','Repitente');
-    
-    $crud->required_fields('n_identification','name_student',
-                    'hometown','date_birth','current_course',
-                    'repet_course');//campo obligatorio
-    
-    $crud -> field_type('repet_course','true_false');
-    $crud->callback_add_field('repet_course', function () {
+        $this->load->model('Students_model');
+        $this->load->library('session');
         $this->load->helper('set_form');
-        return setBoleanDataAdd();
-                        
-    });
-    
-    $crud->callback_read_field('repet_course', function ($value, $primaty_key) {
-        $this->load->helper('set_form');
-        return fromRepeatView($value);
-    });
-    
-    
-    
-    
-    $output = $crud->render();
-    
-    $this->_view_output($output); 
-    
-}
-
-public function psychologicalHistories(){
-        $crud = new grocery_CRUD();
-        $crud -> set_subject('registro psicologico');
-        $crud->set_language('spanish');
-        $crud->set_table('students');
         
-        $crud->add_fields(
-                        'n_identification',
-                        'name',
-                        'hometown',
-                        'date_birth',
-                        'current_course',
-                        'repet_course',
-                        'email',
-                        ' ',
-                        'acudiente',
-                        'parentesco',
-                        'acudiente fecha nacimiento',
-                        'grade','profesion',
-                        'dirección','telefono',
-                        'email');       
-        
-        
-        
-        $crud -> columns('id_student','n_identification');
-        $crud->set_relation('id_student', 'students', '{name}');
-        //$crud->callback_insert(array($this,'insertAcudiente'));
-     
-        
-        $crud->callback_edit_field('acudiente',array($this,'getRelatives'));
-        $crud->callback_field(' ',function(){
-            $this->load->helper('set_form');
-            return setTitleForm('acudiente');
-        });
  
-
-        $crud->display_as('id_student','Nombre Estudiante');
-     
-        $crud->callback_read_field('repet_course', function ($value) {
-         $this->load->helper('set_form');
-         return fromRepeatView($value);
-        });
-        
-        $output = $crud->render();
-        $this->_view_output($output); 
     }
- function insertAcudiente($post_array){
-     $name = $post_array['nameAcudiente'];
-     echo '<script">';
-     echo 'console.log ("'.$name.'");';
-     echo '</script>';
-     //return $this->db->insert('students', $post_array);
-    return $post_array;
-     
- }
 
-public function getRelatives($primary_key,$row){
-
-    // getting id student  by url 
-    
-    $id_studentUrl = $this->uri->segment(4);
-    
-    //verification operation
-    
-    $crud = new grocery_CRUD();
-    
-    if(isset($id_studentUrl) && 
-        $crud -> getState() == 'edit'){
-    //select only relative with id_student        
-            $this -> db -> select('id_relative,id_alum,name')
-                        -> from ('relatives')
-                        -> where ('id_alum',$id_studentUrl);
-            
-            $query = $this -> db -> get();  
-            //|findRelative();
-            $this->load->helper('set_form');
-            return fromSelectAcudiente($query,$id_studentUrl);
-            
-  
-            //$name = $row -> name;
-            //$date_birth = $row -> date_birth;
-            //$adress = $row ->adress;
-            
+//funcion por defecto del controlador muestra los estudiantes
+public function index(){
+    //cargamos un array con el metodo a visualizar
+     $datos ["get"]=$this -> Students_model->get(); 
+     $this ->load -> view("students_view",$datos);
+    }
+public function add(){
+    //compruebo si se a enviado submit
+        if($this->input->post("submit")){
+            $student = array(
+                'n_identification' => $this->input->post('n_identification'),
+                'name' => $this->input->post('name'),
+                'hometown' => $this->input->post('hometown'),
+                'date_birth' => $this->input->post('date_birth'),
+                'current_course' => $this->input->post('current_course'),
+                'repet_course' => $this->input->post('repet_course'),
+                'email' => $this->input->post('email')
+                );
+            $add = $this -> Students_model->add($student);
         }
-        return FALSE;
-
-}
-
-
-
-
-public function _view_output($output = null){
-        
-        $this->load->view('FormView.php',$output); 
-   
+        if($add == true){
+            //Sesion de una sola ejecucion
+            $this -> session -> set_flashdata('Ok','Estudiente creado correctamente');
+        }else{
+         $this -> session -> set_flashdata('Fallo','Estudiente no creado');   
+        }
+        redirect('/Testing');//me devuelvo a la vista principal
     }
+public function update($id){//recibimos el id por la url
+        if(is_numeric($id_usuario)){
+            $datos ["update"]= 
+                $this -> Students_model
+                    ->update($data['id_student']=$id);
+            
+            //le enviamos los datos al formulario update
+            $this ->load ->view("update_view",$datos);
+            
+            if($this -> input -> post('submit')){
+                $add = $this -> Students_model -> update(
+                    $data = array(
+                        'n_identification' => $this->input->post('n_identification'),
+                        'name' => $this->input->post('name'),
+                        'hometown' => $this->input->post('hometown'),
+                        'date_birth' => $this->input->post('date_birth'),
+                        'current_course' => $this->input->post('current_course'),
+                        'repet_course' => $this->input->post('repet_course'),
+                        'email' => $this->input->post('email')
+                        )
+                    );
+                if($add){
+                    //Sesion de una sola ejecucion
+                    $this -> 
+                     session ->
+                      set_flashdata('Ok','Estudiente modificado correctamente');
+                }else{
+                   $this -> 
+                    session ->
+                     set_flashdata('Fallo','Estudiente no modificado correctamente'); 
+                }
+                redirect('/Testing');
+            }
+        }
+        else{
+           redirect('/Testing'); 
+        }
+        
+    }
+
+public function _delete($id){
+        if(is_numeric($id_usuario)){
+            $delete=$this->Students_model->_delete($id_usuario);
+            if($delete){
+                $this -> 
+                 session ->
+                  set_flashdata('Ok','Estudiente borrado correctamente'); 
+            }else{
+                $this -> 
+                 session ->
+                  set_flashdata('Fallo','Estudiente borrado correctamente'); 
+            }
+            redirect('/Testing'); 
+        }
+        else
+            redirect('/Testing'); 
+
+    }
+
+
+
 } 
 
 

@@ -63,3 +63,11 @@ function setTitleForm($index){
             break;
     }
 }
+
+$array=array();
+function setArray($datos){
+    $array = $datos;
+}
+function getArray(){
+    return $array;
+}
