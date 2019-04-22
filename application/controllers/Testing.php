@@ -24,24 +24,27 @@ public function index(){
      $this ->load -> view("students_view",$datos);
     }
 public function add(){
+   // if($this ->input ->post('repet_course')=="Null")
+     //   $r_corse = false;
     //compruebo si se a enviado submit
-        if($this->input->post("submit")){
+        if($this->input->post("add")){
             $student = array(
                 'n_identification' => $this->input->post('n_identification'),
                 'name' => $this->input->post('name'),
                 'hometown' => $this->input->post('hometown'),
                 'date_birth' => $this->input->post('date_birth'),
                 'current_course' => $this->input->post('current_course'),
-                'repet_course' => $this->input->post('repet_course'),
+                'repet_course' => $this ->input ->post('repet_course'),
                 'email' => $this->input->post('email')
                 );
             $add = $this -> Students_model->add($student);
-        }
+        //}
         if($add == true){
             //Sesion de una sola ejecucion
             $this -> session -> set_flashdata('Ok','Estudiente creado correctamente');
         }else{
          $this -> session -> set_flashdata('Fallo','Estudiente no creado');   
+        }
         }
         redirect('/Testing');//me devuelvo a la vista principal
     }

@@ -15,7 +15,7 @@
     ?>
     <table border="1">
         <tr>
-            <form action="<?=base_url("Testing/add");?>" method="post">
+            <form action="<?=base_url("index.php/Testing/add");?>" method="post">
                 
                 <td>
                    <input type="number" 
@@ -43,9 +43,9 @@
                             placeholder = "curso actual"/>
                 </td>
                 <td>
-                   <input type="radio" 
-                            name="current_course"
-                            value="0"> Repitente </input>
+                   <input type="checkbox" 
+                            name="repet_course"
+                            value=0> Repitente </input>
                 </td>
                 <td>
                    <input type="email" 
@@ -83,7 +83,7 @@
                     <?=$row->email;?>
                 </td>
                 <td>
-                   <a href="<?=base_url("Testing/add/$row->id_student")?>">
+                   <a href="<?=base_url("Testing/update/$row->id_student")?>">
                        Modificar</a>
                     <a href="<?=base_url("Testing/delete/$row->id_student")?>">
                        Eliminar</a>

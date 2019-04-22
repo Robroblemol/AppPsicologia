@@ -14,22 +14,21 @@ class Students_model extends CI_Model{
         $sql = $this -> db ->get('students',$limit,1);
         return  $sql -> result(); //devolvemos el resultado
     }
-    public function add($data = array()){
+    public function add($data){
         $this -> db -> select('n_identification')
                     -> from ('students')
                     -> where ('n_identification',$data['n_identification']);
-        $query = $this -> db -> get();  
-        //berificamos que no exista un estudiente con ese n_identicacion
-        if($query -> num_row() == 0){
-            $this -> db -> insert('students',$data);  
-            $query = $this -> db -> get(); 
-            if($query == true)
-                return true;
-            else
-                return false;
+        $query = $this -> db -> get() ;  
+        //verificamos que no exista un estudiente con ese n_identicacion
+        if($query -> num_rows() == 0){
+
+            $query = $this -> db -> insert('students',$data);  
+            //envio lo devuelto por el servidor true o false
+            return $query;
+     
             
         }else{
-            return false;
+           return false;
         }
             
         
