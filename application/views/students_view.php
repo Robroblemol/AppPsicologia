@@ -16,31 +16,41 @@
     <table border="1">
         <tr>
             <form action="<?=base_url("Testing/add");?>" method="post">
-                <td></td>
+                
                 <td>
                    <input type="number" 
-                            name="n_identification"/>
+                            name="n_identification"
+                            placeholder = "numero de identidad"/>
                 </td>
                 <td>
                    <input type="text" 
-                            name="name"/>
+                            name="name"
+                            placeholder = "nombre estudiante"/>
                 </td>
                 <td>
                    <input type="text" 
-                            name="hometown"/>
+                            name="hometown"
+                            placeholder = "ciudad origen"/>
                 </td>
                 <td>
                    <input type="date" 
-                            name="date_birth"/>
+                            name="date_birth"
+                            placeholder = "fecha nacimiento"/>
                 </td> 
                 <td>
                    <input type="text" 
-                            name="current_course"/>
+                            name="current_course"
+                            placeholder = "curso actual"/>
                 </td>
                 <td>
                    <input type="radio" 
                             name="current_course"
-                            value="0"/>
+                            value="0"> Repitente </input>
+                </td>
+                <td>
+                   <input type="email" 
+                            name="email"
+                            placeholder = "correo estudiante"/>
                 </td>
                  <td>
                    <input type="submit" 
