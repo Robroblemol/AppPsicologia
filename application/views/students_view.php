@@ -16,59 +16,13 @@
     <table border="1">
         <tr>
             <form action="<?=base_url("index.php/Testing/setForm/add");?>" method="post">
-                 <input type="submit" 
-                            name="add"
-                            value="Agregar"/>
-            </form>
-            <form action="<?=base_url("index.php/Testing/add");?>" method="post">
-                
-                <td>
-                   <input type="number" 
-                            name="n_identification"
-                            placeholder = "numero de identidad"
-                            required/>
-                </td>
-                <td>
-                   <input type="text" 
-                            name="name"
-                            placeholder = "nombre estudiante"
-                            required/>
-                </td>
-                <td>
-                   <input type="text" 
-                            name="hometown"
-                            placeholder = "ciudad origen"
-                            required/>
-                </td>
-                <td>
-                   <input type="date" 
-                            name="date_birth"
-                            placeholder = "fecha nacimiento"
-                            required/>
-                </td> 
-                <td>
-                   <input type="text" 
-                            name="current_course"
-                            placeholder = "curso actual"
-                            required/>
-                </td>
-                <td>
-                   <input type="checkbox" 
-                            name="repet_course"
-                            value=1 > Repitente </input>
-                </td>
-                <td>
-                   <input type="email" 
-                            name="email"
-                            placeholder = "correo estudiante"
-                            required/>
-                </td>
                  <td>
-                   <input type="submit" 
+                     <input type="submit" 
                             name="add"
                             value="Agregar"/>
                 </td>
             </form>
+            
         </tr>
         <tr>
                     <th>Identificacion</th>

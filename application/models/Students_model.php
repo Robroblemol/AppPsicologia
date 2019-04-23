@@ -33,10 +33,6 @@ class Students_model extends CI_Model{
         
     }
     public function update($edit= null, $data){
-        if($edit == null){
-            return $this->findOne($data['id_student']);
-        }
-        else{
              if($this ->input ->post('repet_course')== null)
                 $r_corse = 0;
             else
@@ -57,7 +53,7 @@ class Students_model extends CI_Model{
                  WHERE id_student = '.$id.';'
             );
             return $query;
-        }/*
+        /*
        else{
             //$data =array_slice($data,1,6);
             $this ->db -> update('students',$data);
@@ -75,7 +71,7 @@ class Students_model extends CI_Model{
                       ->delete('students', array('id_student' => $id)); 
         return $query;
     }
-    public function findOne($id){
+    public function getOne($id){
         $this -> db -> select('*')
                     ->from('students')
                     -> where ('id_student',$id);
