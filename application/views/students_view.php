@@ -20,37 +20,43 @@
                 <td>
                    <input type="number" 
                             name="n_identification"
-                            placeholder = "numero de identidad"/>
+                            placeholder = "numero de identidad"
+                            required/>
                 </td>
                 <td>
                    <input type="text" 
                             name="name"
-                            placeholder = "nombre estudiante"/>
+                            placeholder = "nombre estudiante"
+                            required/>
                 </td>
                 <td>
                    <input type="text" 
                             name="hometown"
-                            placeholder = "ciudad origen"/>
+                            placeholder = "ciudad origen"
+                            required/>
                 </td>
                 <td>
                    <input type="date" 
                             name="date_birth"
-                            placeholder = "fecha nacimiento"/>
+                            placeholder = "fecha nacimiento"
+                            required/>
                 </td> 
                 <td>
                    <input type="text" 
                             name="current_course"
-                            placeholder = "curso actual"/>
+                            placeholder = "curso actual"
+                            required/>
                 </td>
                 <td>
                    <input type="checkbox" 
                             name="repet_course"
-                            value=0> Repitente </input>
+                            value=1 > Repitente </input>
                 </td>
                 <td>
                    <input type="email" 
                             name="email"
-                            placeholder = "correo estudiante"/>
+                            placeholder = "correo estudiante"
+                            required/>
                 </td>
                  <td>
                    <input type="submit" 
@@ -83,9 +89,9 @@
                     <?=$row->email;?>
                 </td>
                 <td>
-                   <a href="<?=base_url("Testing/update/$row->id_student")?>">
+                   <a href="<?=base_url("index.php/Testing/update/$row->id_student")?>">
                        Modificar</a>
-                    <a href="<?=base_url("Testing/delete/$row->id_student")?>">
+                    <a href="<?=base_url("index.php/Testing/delete/$row->id_student")?>">
                        Eliminar</a>
                 </td>
 

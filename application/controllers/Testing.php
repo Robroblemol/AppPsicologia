@@ -24,8 +24,11 @@ public function index(){
      $this ->load -> view("students_view",$datos);
     }
 public function add(){
-   // if($this ->input ->post('repet_course')=="Null")
-     //   $r_corse = false;
+    $r_corse;
+    if($this ->input ->post('repet_course')== null)
+       $r_corse = 0;
+     else
+        $r_corse = $this ->input ->post('repet_course');
     //compruebo si se a enviado submit
         if($this->input->post("add")){
             $student = array(
@@ -34,7 +37,7 @@ public function add(){
                 'hometown' => $this->input->post('hometown'),
                 'date_birth' => $this->input->post('date_birth'),
                 'current_course' => $this->input->post('current_course'),
-                'repet_course' => $this ->input ->post('repet_course'),
+                'repet_course' => $r_corse,
                 'email' => $this->input->post('email')
                 );
             $add = $this -> Students_model->add($student);
@@ -49,16 +52,16 @@ public function add(){
         redirect('/Testing');//me devuelvo a la vista principal
     }
 public function update($id){//recibimos el id por la url
-        if(is_numeric($id_usuario)){
+        if(is_numeric($id)){
             $datos ["update"]= 
                 $this -> Students_model
-                    ->update($data['id_student']=$id);
+                    ->update(null,$data=array('id_student' =>$id));
             
             //le enviamos los datos al formulario update
             $this ->load ->view("update_view",$datos);
             
             if($this -> input -> post('submit')){
-                $add = $this -> Students_model -> update(
+                $add = $this -> Students_model -> update(0,
                     $data = array(
                         'n_identification' => $this->input->post('n_identification'),
                         'name' => $this->input->post('name'),

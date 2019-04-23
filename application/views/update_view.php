@@ -7,7 +7,7 @@
     <body>
         <h2>Modificar Estudiante</h2>
         <form action="" method="POST">
-            <?php foreach ($add as $row){ ?>
+            <?php foreach ($update as $row){ ?>
             <input type="number" 
                 name="n_identification" 
                 value="<?=$row->n_identification?>"/>
@@ -22,9 +22,9 @@
                 value="<?=$row->date_birth?>"/>
             <input type="text" 
                 name="current_course" 
-                value="<?=$row->date_birth?>"/>
-            <input type="radio" 
-                            name="current_course"
+                value="<?=$row->current_course?>"/>
+            <input type="checkbox" 
+                            name="repet_course"
                             value="<?=$row->repet_course?>"> 
                             Repitente </input>
             <input type="email" 
