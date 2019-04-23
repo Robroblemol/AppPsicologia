@@ -65,7 +65,7 @@ public function update(){//recibimos el id por la url
                     'email' => $this->input->post('email')
                     );
                     
-            $add = $this -> Students_model -> update(1,$data);
+            $add = $this -> Students_model -> update($data);
             if($add){
                 //Sesion de una sola ejecucion
                 $this -> 

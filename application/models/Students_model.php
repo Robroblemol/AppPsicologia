@@ -32,7 +32,7 @@ class Students_model extends CI_Model{
             
         
     }
-    public function update($edit= null, $data){
+    public function update($data){
              if($this ->input ->post('repet_course')== null)
                 $r_corse = 0;
             else
