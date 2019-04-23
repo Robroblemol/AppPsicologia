@@ -34,11 +34,7 @@ class Students_model extends CI_Model{
     }
     public function update($edit= null, $data = array()){
         if($edit == null){
-            $this -> db -> select('*')
-                        ->from('students')
-                        -> where ('id_student',$data['id_student']);
-            $query = $this -> db -> get();
-            return $query ->result();
+            return $this->findOne($data['id_student']);
         }
         else{
             $id =$data['id_student'];
@@ -74,11 +70,17 @@ class Students_model extends CI_Model{
         }*/
         
     }
-    public function _delete($id){
-        $query = $this -> db -> query(
-            'DELETE FROM students WHERE id_student ='.$id
-            );
+    public function delete($id){
+        $query = $this->db
+                      ->delete('students', array('id_student' => $id)); 
         return $query;
+    }
+    public function findOne($id){
+        $this -> db -> select('*')
+                    ->from('students')
+                    -> where ('id_student',$id);
+            $query = $this -> db -> get();
+            return $query ->result();
     }
     
 }

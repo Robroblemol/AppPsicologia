@@ -91,9 +91,9 @@ public function update($id){//recibimos el id por la url
         
     }
 
-public function _delete($id){
-        if(is_numeric($id_usuario)){
-            $delete=$this->Students_model->_delete($id_usuario);
+public function delete($id){
+        if(is_numeric($id)){
+            $delete=$this->Students_model->delete($id);
             if($delete){
                 $this -> 
                  session ->
