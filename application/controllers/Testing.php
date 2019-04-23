@@ -12,6 +12,7 @@ function __construct()
 
         $this->load->model('Students_model');
         $this->load->library('session');
+        $this->load->library('obj_student');
         $this->load->helper('set_form');
         
  
@@ -79,14 +80,20 @@ public function update(){//recibimos el id por la url
             redirect('/Testing');
         }
     }
-public function updateForm($id){
+public function setForm($id){
     if(is_numeric($id)){
         $datos ["update"]= 
             $this -> Students_model
-                ->update(null,$data=array('id_student' =>$id));
-        
+                ->update(null,$data=array(
+                    'id_student' =>$id,
+                ));
+        $datos ["status"] = true;
         //le enviamos los datos al formulario update
-        $this ->load ->view("update_view",$datos);
+        $this ->load ->view("setForm_view",$datos);
+    }else{
+       $datos ["status"] = false;
+       $datos ["update"] = new Obj_student;
+       $this ->load ->view("setForm_view",$datos);
     }
 }
 

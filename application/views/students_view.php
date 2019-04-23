@@ -15,6 +15,11 @@
     ?>
     <table border="1">
         <tr>
+            <form action="<?=base_url("index.php/Testing/setForm/add");?>" method="post">
+                 <input type="submit" 
+                            name="add"
+                            value="Agregar"/>
+            </form>
             <form action="<?=base_url("index.php/Testing/add");?>" method="post">
                 
                 <td>
@@ -98,7 +103,7 @@
                     <?=$row->email;?>
                 </td>
                 <td>
-                   <a href="<?=base_url("index.php/Testing/updateForm/$row->id_student")?>">
+                   <a href="<?=base_url("index.php/Testing/setForm/$row->id_student")?>">
                        Modificar</a>
                     <a href="<?=base_url("index.php/Testing/delete/$row->id_student")?>">
                        Eliminar</a>
