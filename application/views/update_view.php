@@ -28,7 +28,11 @@
                 value="<?=$row->current_course?>"/>
             <input type="checkbox" 
                             name="repet_course"
-                            value="<?=$row->repet_course?>"> 
+                            value="1"
+                            <?= 
+                                $sel = ($row->repet_course == 1)?
+                                "checked" : "";
+                            ?> />
                             Repitente </input>
             <input type="email" 
                 name="email" 

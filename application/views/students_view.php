@@ -65,6 +65,15 @@
                 </td>
             </form>
         </tr>
+        <tr>
+                    <th>Identificacion</th>
+                    <th>Nombre Estudiante</th>
+                    <th>Lugar nacimiento</th>
+                    <th>Fecha nacimientos</th>
+                    <th>Curso acutal</th>
+                    <th>repitente</th>
+                    <th>email</th>
+                </tr>
         <?php foreach($get as $row){ ?>
             <tr>
                 <td>
