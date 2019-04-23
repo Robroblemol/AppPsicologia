@@ -51,45 +51,44 @@ public function add(){
         }
         redirect('/Testing');//me devuelvo a la vista principal
     }
-public function update($id){//recibimos el id por la url
-        if(is_numeric($id)){
-            $datos ["update"]= 
-                $this -> Students_model
-                    ->update(null,$data=array('id_student' =>$id));
-            
-            //le enviamos los datos al formulario update
-            $this ->load ->view("update_view",$datos);
-            
-            if($this -> input -> post('submit')){
-                $add = $this -> Students_model -> update(0,
-                    $data = array(
-                        'n_identification' => $this->input->post('n_identification'),
-                        'name' => $this->input->post('name'),
-                        'hometown' => $this->input->post('hometown'),
-                        'date_birth' => $this->input->post('date_birth'),
-                        'current_course' => $this->input->post('current_course'),
-                        'repet_course' => $this->input->post('repet_course'),
-                        'email' => $this->input->post('email')
-                        )
+public function update(){//recibimos el id por la url
+        if($this -> input -> post('id_student')){
+                    
+            $data = array(
+                    'id_student' =>$this->input->post('id_student'),
+                    'n_identification' => $this->input->post('n_identification'),
+                    'name' => $this->input->post('name'),
+                    'hometown' => $this->input->post('hometown'),
+                    'date_birth' => $this->input->post('date_birth'),
+                    'current_course' => $this->input->post('current_course'),
+                    'repet_course' => $this->input->post('repet_course'),
+                    'email' => $this->input->post('email')
                     );
-                if($add){
-                    //Sesion de una sola ejecucion
-                    $this -> 
-                     session ->
-                      set_flashdata('Ok','Estudiente modificado correctamente');
-                }else{
-                   $this -> 
-                    session ->
-                     set_flashdata('Fallo','Estudiente no modificado correctamente'); 
-                }
-                redirect('/Testing');
+                    
+            $add = $this -> Students_model -> update(1,$data);
+            if($add){
+                //Sesion de una sola ejecucion
+                $this -> 
+                 session ->
+                  set_flashdata('Ok','Estudiente modificado correctamente');
+            }else{
+               $this -> 
+                session ->
+                 set_flashdata('Fallo','Estudiente no modificado correctamente'); 
             }
+            redirect('/Testing');
         }
-        else{
-           redirect('/Testing'); 
-        }
-        
     }
+public function updateForm($id){
+    if(is_numeric($id)){
+        $datos ["update"]= 
+            $this -> Students_model
+                ->update(null,$data=array('id_student' =>$id));
+        
+        //le enviamos los datos al formulario update
+        $this ->load ->view("update_view",$datos);
+    }
+}
 
 public function delete($id){
         if(is_numeric($id)){

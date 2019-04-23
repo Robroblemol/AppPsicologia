@@ -6,8 +6,11 @@
     </head>
     <body>
         <h2>Modificar Estudiante</h2>
-        <form action="" method="POST">
+        <form action="<?=base_url("index.php/Testing/update")?>" method="post">
             <?php foreach ($update as $row){ ?>
+            <input type="hidden" 
+                name="id_student" 
+                value ="<?=$row -> id_student ?>"/>
             <input type="number" 
                 name="n_identification" 
                 value="<?=$row->n_identification?>"/>

@@ -32,39 +32,39 @@ class Students_model extends CI_Model{
             
         
     }
-    public function update($edit= null, $data = array()){
+    public function update($edit= null, $data){
         if($edit == null){
             return $this->findOne($data['id_student']);
         }
         else{
+             if($this ->input ->post('repet_course')== null)
+                $r_corse = 0;
+            else
+                $r_corse = $this ->input ->post('repet_course');
             $id =$data['id_student'];
             $n_i=$data['n_identification'];
             $nam=$data['name'];
             $d_bith=$data['date_birth'];
             $c_c=$data['current_course'];
-            $r_c=$data['repet_course'];
+            $r_c=$r_corse;
             $ema=$data['email'];
             $query = $this ->db ->query('
-                UPDATE students SET 
+                UPDATE students SET  
                 n_identification ='.$n_i.'
-                , name ='.$nam.', date_birth ='.$d_bith.'
-                , current_course ='.$c_c.'
-                , repet_course ='.$r_c.', email ='.$ema.'
+                , name = "'.$nam.'", date_birth ="'.$d_bith.'"
+                , current_course ="'.$c_c.'"
+                , repet_course ='.$r_c.', email ="'.$ema.'" 
                  WHERE id_student = '.$id.';'
             );
             return $query;
-        }
-       /*else{
+        }/*
+       else{
             //$data =array_slice($data,1,6);
-            $this -> db -> update('students',
-                            $data,"id_student =".$data['id_student']);
-                $this -> db ->set('n_identification',
-                                'name',
-                                'hometown',
-                                'current_course',
-                                'repet_course',
-                                'email'
-                                );
+            $this ->db -> update('students',$data);
+            $this ->db ->set($data);
+            //$this ->db ->from('students');
+            $this ->db ->where('id_student',$data['id_student']);
+            
             $query = $this -> db -> get();
             return $query->result;
         }*/

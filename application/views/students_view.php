@@ -89,7 +89,7 @@
                     <?=$row->email;?>
                 </td>
                 <td>
-                   <a href="<?=base_url("index.php/Testing/update/$row->id_student")?>">
+                   <a href="<?=base_url("index.php/Testing/updateForm/$row->id_student")?>">
                        Modificar</a>
                     <a href="<?=base_url("index.php/Testing/delete/$row->id_student")?>">
                        Eliminar</a>
