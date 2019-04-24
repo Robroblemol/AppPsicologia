@@ -83,7 +83,7 @@ public function setForm($id){
     if(is_numeric($id)){
         $datos ["update"]= 
             $this -> Students_model
-                ->getOne($id);
+                ->getOne($id,"students","id_student");
         $datos ["status"] = true;
         //le enviamos los datos al formulario update
         $this ->load ->view("setForm_view",$datos);

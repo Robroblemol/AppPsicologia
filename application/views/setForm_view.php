@@ -2,7 +2,7 @@
 <html lang="es">
     <head>
         <meta charset="UTF-8" />
-        <title>Modificar usuarios</title>
+        <title>Estudiantes</title>
     </head>
     <body>
         <h2><?=($status)?"Modificar Estudiante":"Agregar Estudiante"?></h2>

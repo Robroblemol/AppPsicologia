@@ -14,7 +14,16 @@
             echo $this ->session ->flashdata('Fallo');
     ?>
     <table border="1">
+        
         <tr>
+            <th>Identificacion</th>
+            <th>Nombre Estudiante</th>
+            <th>Lugar nacimiento</th>
+            <th>Fecha nacimientos</th>
+            <th>Curso acutal</th>
+            <th>repitente</th>
+            <th>email</th>
+                    
             <form action="<?=base_url("index.php/Testing/setForm/add");?>" method="post">
                  <td>
                      <input type="submit" 
@@ -24,15 +33,6 @@
             </form>
             
         </tr>
-        <tr>
-                    <th>Identificacion</th>
-                    <th>Nombre Estudiante</th>
-                    <th>Lugar nacimiento</th>
-                    <th>Fecha nacimientos</th>
-                    <th>Curso acutal</th>
-                    <th>repitente</th>
-                    <th>email</th>
-                </tr>
         <?php foreach($get as $row){ ?>
             <tr>
                 <td>
@@ -57,7 +57,7 @@
                     <?=$row->email;?>
                 </td>
                 <td>
-                   <a href="<?=base_url("index.php/Testing/setForm/$row->id_student")?>">
+                    <a href="<?=base_url("index.php/Testing/setForm/$row->id_student")?>">
                        Modificar</a>
                     <a href="<?=base_url("index.php/Testing/delete/$row->id_student")?>">
                        Eliminar</a>
