@@ -24,7 +24,7 @@
             <th>repitente</th>
             <th>email</th>
                     
-            <form action="<?=base_url("index.php/Testing/setForm/add");?>" method="post">
+            <form action="<?=base_url("index.php/Student/setForm/add");?>" method="post">
                  <td>
                      <input type="submit" 
                             name="add"
@@ -57,9 +57,9 @@
                     <?=$row->email;?>
                 </td>
                 <td>
-                    <a href="<?=base_url("index.php/Testing/setForm/$row->id_student")?>">
+                    <a href="<?=base_url("index.php/Student/setForm/$row->id_student")?>">
                        Modificar</a>
-                    <a href="<?=base_url("index.php/Testing/delete/$row->id_student")?>">
+                    <a href="<?=base_url("index.php/Student/delete/$row->id_student")?>">
                        Eliminar</a>
                 </td>
 

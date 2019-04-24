@@ -1,6 +1,6 @@
 <?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
  
-class Testing extends CI_Controller {
+class Student extends CI_Controller {
 
  
 function __construct()
@@ -49,7 +49,7 @@ public function add(){
          $this -> session -> set_flashdata('Fallo','Estudiente no creado');   
         }
         }
-        redirect('/Testing');//me devuelvo a la vista principal
+        redirect('/Student');//me devuelvo a la vista principal
     }
 public function update(){//recibimos el id por la url
         if($this -> input -> post('id_student')){
@@ -76,7 +76,7 @@ public function update(){//recibimos el id por la url
                 session ->
                  set_flashdata('Fallo','Estudiente no modificado correctamente'); 
             }
-            redirect('/Testing');
+            redirect('/Student');
         }
     }
 public function setForm($id){
@@ -106,10 +106,10 @@ public function delete($id){
                  session ->
                   set_flashdata('Fallo','Estudiente borrado correctamente'); 
             }
-            redirect('/Testing'); 
+            redirect('/Student'); 
         }
         else
-            redirect('/Testing'); 
+            redirect('/Student'); 
 
     }
 

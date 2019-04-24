@@ -9,9 +9,9 @@
         <form action="<?=
             base_url(
                 ($status)?
-                "index.php/Testing/update"
+                "index.php/Student/update"
                 :
-                "index.php/Testing/add"
+                "index.php/Student/add"
                 )
             ?>" method="post">
             <?php if($status){?>

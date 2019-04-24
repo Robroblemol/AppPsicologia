@@ -82,6 +82,7 @@ class Students_model extends CI_Model{
                       ->delete('students', array('id_student' => $id)); 
         return $query;
     }
+    
     //funcion generica para relizar un select de
     //un campo especifico, de una tabla especifica,
     // con un id especifico.
