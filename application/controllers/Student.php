@@ -79,20 +79,6 @@ public function update(){//recibimos el id por la url
             redirect('/Student');
         }
     }
-public function setForm($id){
-    if(is_numeric($id)){
-        $datos ["update"]= 
-            $this -> Students_model
-                ->getOne($id,"students","id_student");
-        $datos ["status"] = true;
-        //le enviamos los datos al formulario update
-        $this ->load ->view("setForm_view",$datos);
-    }else{
-       $datos ["status"] = false;
-       $datos ["update"] = '';
-       $this ->load ->view("setForm_view",$datos);
-    }
-}
 
 public function delete($id){
         if(is_numeric($id)){
@@ -111,6 +97,28 @@ public function delete($id){
         else
             redirect('/Student'); 
 
+    }
+public function setForm($id){
+        if(is_numeric($id)){
+            $datos ["update"]= 
+                $this -> Students_model
+                    ->getOne($id,"students","id_student");
+            $datos ["status"] = true;
+            //le enviamos los datos al formulario update
+            $this ->load ->view("setForm_view",$datos);
+        }else{
+           $datos ["status"] = false;
+           $datos ["update"] = '';
+           $this ->load ->view("setForm_view",$datos);
+        }
+    }
+public function findOne(){
+        $id = $this -> input ->post('id');
+        $field = $this -> input ->post('field');
+        $datos ["get"]= $this -> Students_model
+            ->getOne($id,'students',$field);
+        
+        $this ->load -> view("students_view",$datos);
     }
 
 } 

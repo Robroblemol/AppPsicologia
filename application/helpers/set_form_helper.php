@@ -63,11 +63,28 @@ function setTitleForm($index){
             break;
     }
 }
-
-$array=array();
-function setArray($datos){
-    $array = $datos;
+function getFieldStudent($i){
+    $field = array(
+        "n_identification",
+        "name",
+        "hometown",
+        "date_birth",
+        "current_course",
+        "repet_course",
+        "email",
+        );
+    return $field[$i];
 }
-function getArray(){
-    return $array;
+
+function getFieldPost($post,$i=7){
+    if($i >= 1){
+        $field =  getFieldStudent($i);
+        if($field == $post[$field]){
+            return $post[$field];
+        }else{
+            $i--;
+            getFieldPost($post,$i);
+        }
+    }else
+        return null;
 }

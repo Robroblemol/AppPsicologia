@@ -13,8 +13,37 @@
         if($this ->session ->flashdata('Fallo'))
             echo $this ->session ->flashdata('Fallo');
     ?>
-    <table border="1">
-        
+    
+    <table border="0">
+         <form action="<?=base_url("index.php/Student/findOne");?>" id = "find" method="post">
+                 <td>
+                     <input type="texto" 
+                            name="id"
+                            placeholder = "valor a buscar"/>
+                </td>
+                <td>
+                    <select name = "field" form = "find">
+                          <option value="n_identification">Identificacion</option>
+                          <option value="name">Nombre estudiente</option>
+                          <option value="hometown">Lugar nacimiento</option>
+                          <option value="date_birth">Fecha de nacimiento</option>
+                          <option value="current_course">Curso acutal</option>
+                          <option value="repet_course">Repitente</option>
+                          <option value="email">email</option>
+                    </select>
+                </td>
+                <td>
+                     <input type="submit" 
+                            name="findOne"
+                            value="Buscar"/>
+                </td>
+                <td>
+                    <a href="<?=base_url("index.php/Student")?>">
+                       Reset</a>
+                </td>
+        </form>
+    </table>
+    <table border="2">
         <tr>
             <th>Identificacion</th>
             <th>Nombre Estudiante</th>
