@@ -49,7 +49,8 @@
                             placeholder = "id estudiante"
                             required/>
                     <div>
-                        <label for="">Describe relacion paternal como: </label>
+                    <br/>
+                        <label for="">Describe relacion paternal como:</label>    
                         <select name = "w_fat" form = "addForm">
                             <option value="Exclente">Exclente</option>
                             <option value="Buena">Buena</option>
@@ -58,7 +59,7 @@
                             <option value="N/A">N/A</option>
                         </select>    
                     </div>
-                    
+                    <br/>
                     <div>
                         <label for="">Describe relacion maternal como: </label>
                         <select name = "w_mot" form = "addForm">
@@ -69,7 +70,7 @@
                             <option value="N/A">N/A</option>
                         </select>    
                     </div>
-                    
+                    <br/>
                     <div>
                         <label for="">Describe relacion hermanos como: </label>
                         <select name = "w_bro" form = "addForm">
@@ -80,6 +81,8 @@
                             <option value="N/A">N/A</option>
                         </select>    
                     </div>
+                    <br/>
+                    <div>
                         <label for="">Describe relacion padrasto como: </label>
                         <select name = "w_step_par" form = "addForm">
                             <option value="Exclente">Exclente</option>
@@ -89,12 +92,18 @@
                             <option value="N/A">N/A</option>
                         </select>    
                     </div>
+                    <br/>
                     <div>
-                        <input type="text" 
+                        <input type="textarea" 
                                 name="obv"
                                 placeholder = "Observaciones"
-                                
+                                style = "
+                                    width: 30%;
+                                    padding: 12px;
+                                    height:200px;
+                                    "
                                 required/>
+                       <br/>        
                        <input type="submit" 
                                 name="add"
                                 value="Agregar"/>
