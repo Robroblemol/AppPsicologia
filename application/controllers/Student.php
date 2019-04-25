@@ -82,7 +82,7 @@ public function update(){//recibimos el id por la url
 
 public function delete($id){
         if(is_numeric($id)){
-            $delete=$this->Students_model->delete($id);
+            $delete=$this->Students_model->delete($id,"students");
             if($delete){
                 $this -> 
                  session ->

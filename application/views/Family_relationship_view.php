@@ -2,10 +2,10 @@
 <html lang="es">
   <head>
         <meta charset="utf-8"/>
-        <title>Estudientes</title>
+        <title>Relación familiar </title>
     </head>
 <body>
-    <h2>Estudientes registrados</h2>
+    <h2>Relación familiar</h2>
     <?php 
       //si hay sessiones flashdata se muestran!
         if($this ->session ->flashdata('Ok'))
@@ -15,7 +15,8 @@
     ?>
     
     <table border="0">
-         <form action="<?=base_url("index.php/Student/findOne");?>" id = "find" method="post">
+         <form action="<?=base_url("index.php/Family_relationship/findOne");?>" 
+                id = "find" method="post">
                  <td>
                      <input type="texto" 
                             name="id"
@@ -24,13 +25,11 @@
                 </td>
                 <td>
                     <select name = "field" form = "find">
-                          <option value="n_identification">Identificacion</option>
-                          <option value="name">Nombre estudiente</option>
-                          <option value="hometown">Lugar nacimiento</option>
-                          <option value="date_birth">Fecha de nacimiento</option>
-                          <option value="current_course">Curso acutal</option>
-                          <option value="repet_course">Repitente</option>
-                          <option value="email">email</option>
+                          <option value="id_student">Identificacion</option>
+                          <option value="with_father">Relacion padre</option>
+                          <option value="with_mother">Relacion madre</option>
+                          <option value="with_brothers">Relacion hermanos</option>
+                          <option value="with_step_parents">Relacion padrastros</option>
                     </select>
                 </td>
                 <td>
@@ -39,22 +38,22 @@
                             value="Buscar"/>
                 </td>
                 <td>
-                    <a href="<?=base_url("index.php/Student")?>">
+                    <a href="<?=base_url("index.php/Family_relationship")?>">
                        Reset</a>
                 </td>
         </form>
     </table>
     <table border="2">
         <tr>
-            <th>Identificacion</th>
-            <th>Nombre Estudiante</th>
-            <th>Lugar nacimiento</th>
-            <th>Fecha nacimientos</th>
-            <th>Curso acutal</th>
-            <th>repitente</th>
-            <th>email</th>
+            <th>id_student</th>
+            <th>Relacion padre</th>
+            <th>Relacion madre</th>
+            <th>Relacion hermanos</th>
+            <th>Relacion padredastros</th>
+            <th>Observaciones</th>
+            <th>Fecha</th>
                     
-            <form action="<?=base_url("index.php/Student/setForm/add");?>" method="post">
+            <form action="<?=base_url("index.php/Family_relationship/setForm/add");?>" method="post">
                  <td>
                      <input type="submit" 
                             name="add"
@@ -66,30 +65,30 @@
         <?php foreach($get as $row){ ?>
             <tr>
                 <td>
-                    <?=$row->n_identification;?>
+                    <?=$row->id_student;?>
                 </td>
                 <td>
-                    <?=$row->name;?>
+                    <?=$row->with_father;?>
                 </td>
                 <td>
-                    <?=$row->hometown;?>
+                    <?=$row->with_mother;?>
                 </td>
                 <td>
-                    <?=$row->date_birth;?>
+                    <?=$row->with_brothers;?>
                 </td>
                 <td>
-                    <?=$row->current_course;?>
+                    <?=$row->with_step_parents;?>
                 </td>
                 <td>
-                    <?=$row->repet_course;?>
+                    <?=$row->observations;?>
                 </td>
                 <td>
-                    <?=$row->email;?>
+                    <?=$row->date;?>
                 </td>
                 <td>
-                    <a href="<?=base_url("index.php/Student/setForm/$row->id_student")?>">
+                    <a href="<?=base_url("index.php/Family_relationship/setForm/$row->id_relationship")?>">
                        Modificar</a>
-                    <a href="<?=base_url("index.php/Student/delete/$row->id_student")?>">
+                    <a href="<?=base_url("index.php/Family_relationship/delete/$row->id_relationship/true")?>">
                        Eliminar</a>
                 </td>
 

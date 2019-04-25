@@ -33,33 +33,26 @@ class Students_model extends CI_Model{
         
     }
     public function update($data){
-        //verificamos que el el registro no este repetido
-        //    $this -> db -> select('n_identification')
-        //            -> from ('students')
-        //            -> where ('n_identification',$data['n_identification']);
-        //    $query = $this -> db -> get();
-            
-        //    if($query -> num_rows() == 0){
-                if($this ->input ->post('repet_course')== null)
-                    $r_corse = 0;
-                else
-                    $r_corse = $this ->input ->post('repet_course');
-                $id =$data['id_student'];
-                $n_i=$data['n_identification'];
-                $nam=$data['name'];
-                $d_bith=$data['date_birth'];
-                $c_c=$data['current_course'];
-                $r_c=$r_corse;
-                $ema=$data['email'];
-                $query = $this ->db ->query('
-                    UPDATE students SET  
-                    n_identification ='.$n_i.'
-                    , name = "'.$nam.'", date_birth ="'.$d_bith.'"
-                    , current_course ="'.$c_c.'"
-                    , repet_course ='.$r_c.', email ="'.$ema.'" 
-                     WHERE id_student = '.$id.';'
-                );
-                return $query;
+            if($this ->input ->post('repet_course')== null)
+                $r_corse = 0;
+            else
+                $r_corse = $this ->input ->post('repet_course');
+            $id =$data['id_student'];
+            $n_i=$data['n_identification'];
+            $nam=$data['name'];
+            $d_bith=$data['date_birth'];
+            $c_c=$data['current_course'];
+            $r_c=$r_corse;
+            $ema=$data['email'];
+            $query = $this ->db ->query('
+                UPDATE students SET  
+                n_identification ='.$n_i.'
+                , name = "'.$nam.'", date_birth ="'.$d_bith.'"
+                , current_course ="'.$c_c.'"
+                , repet_course ='.$r_c.', email ="'.$ema.'" 
+                 WHERE id_student = '.$id.';'
+            );
+            return $query;
             //}else{
             //    return false;
             //}
@@ -77,9 +70,9 @@ class Students_model extends CI_Model{
         }*/
         
     }
-    public function delete($id){
+    public function delete($id,$nameTable){
         $query = $this->db
-                      ->delete('students', array('id_student' => $id)); 
+                      ->delete($nameTable, array('id_student' => $id)); 
         return $query;
     }
     
@@ -91,9 +84,9 @@ class Students_model extends CI_Model{
     //nameTabla el nombre de la tabla 
     //where es el campo que queremos seleccionar
     
-    public function getOne($id,$nameTabla,$where, $select = '*'){
+    public function getOne($id,$nameTable,$where, $select = '*'){
         $this -> db -> select($select)
-                    ->from($nameTabla)
+                    ->from($nameTable)
                     -> where ($where,$id);
             $query = $this -> db -> get();
             return $query ->result();

@@ -70,11 +70,11 @@ END;
 CREATE TABLE IF NOT EXISTS `family_relationship` (
     `id_relationship` smallint(5) unsigned NOT NULL AUTO_INCREMENT,
     `id_student` smallint(5) unsigned NOT NULL,
-    `with_father` varchar(25),
-    `with_mother` varchar(25),
-    `with_brothers` varchar(25),
-    `with_step_parents` varchar(25),
-    `observations` varchar(25),
+    `with_father` varchar(1000),
+    `with_mother` varchar(1000),
+    `with_brothers` varchar(1000),
+    `with_step_parents` varchar(1000),
+    `observations` varchar(1000),
     `date`timestamp DEFAULT CURRENT_TIMESTAMP,
     PRIMARY KEY (`id_relationship`)
 )  ENGINE=InnoDB  DEFAULT CHARSET=utf8 ;
