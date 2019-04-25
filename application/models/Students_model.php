@@ -34,12 +34,12 @@ class Students_model extends CI_Model{
     }
     public function update($data){
         //verificamos que el el registro no este repetido
-            $this -> db -> select('n_identification')
-                    -> from ('students')
-                    -> where ('n_identification',$data['n_identification']);
-            $query = $this -> db -> get();
+        //    $this -> db -> select('n_identification')
+        //            -> from ('students')
+        //            -> where ('n_identification',$data['n_identification']);
+        //    $query = $this -> db -> get();
             
-            if($query -> num_rows() == 0){
+        //    if($query -> num_rows() == 0){
                 if($this ->input ->post('repet_course')== null)
                     $r_corse = 0;
                 else
@@ -60,9 +60,9 @@ class Students_model extends CI_Model{
                      WHERE id_student = '.$id.';'
                 );
                 return $query;
-            }else{
-                return false;
-            }
+            //}else{
+            //    return false;
+            //}
                 
         /*
        else{
