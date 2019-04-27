@@ -26,7 +26,7 @@
                     name="id_stu" 
                     value="<?=$row->id_student?>"/>
                     
-                      <div>
+                    <div>
                     <br/>
                     <label for="">Describe relacion paternal como:</label>    
                     <select name = "w_fat" form = "addForm">
