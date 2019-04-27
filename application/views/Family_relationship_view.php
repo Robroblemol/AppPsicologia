@@ -49,7 +49,7 @@
             <th>Relacion padre</th>
             <th>Relacion madre</th>
             <th>Relacion hermanos</th>
-            <th>Relacion padredastros</th>
+            <th>Relacion padrastros</th>
             <th>Observaciones</th>
             <th>Fecha</th>
                     

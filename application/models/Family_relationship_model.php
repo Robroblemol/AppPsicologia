@@ -33,11 +33,10 @@ class Family_relationship_model extends CI_Model{
         $query = $this ->db ->query('
             UPDATE family_relationship SET  
             id_student ='.$id_stu.'
-            , with_father = "'.$w_mot.'", with_mother ="'.$w_mot.'"
+            , with_father = "'.$w_fat.'", with_mother ="'.$w_mot.'"
             , with_brothers ="'.$w_bro.'"
             , with_step_parents ="'.$w_step_par.'"
             , observations ="'.$obv.'"
-            , date ="'.$dat.'"
              WHERE id_relationship = '.$id.';'
         );
         return $query;
