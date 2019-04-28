@@ -85,6 +85,7 @@ CREATE TABLE IF NOT EXISTS `school_histories` (
     `id_student` smallint(5) unsigned NOT NULL,
     `histori_school` varchar(255),
     `skills_dificulties` varchar(255),
+    `date`timestamp DEFAULT CURRENT_TIMESTAMP,
     PRIMARY KEY (`id_school_histories`)
 )  ENGINE=InnoDB  DEFAULT CHARSET=utf8 ;
 
@@ -162,16 +163,16 @@ CREATE TABLE IF NOT EXISTS `psicology_asistan_register` (
 )  ENGINE=InnoDB  DEFAULT CHARSET=utf8;
 
 
-CREATE TABLE IF NOT EXISTS `pedagogical_profile` (
-    `id_profile` smallint(5) unsigned NOT NULL AUTO_INCREMENT,
+CREATE TABLE IF NOT EXISTS `social_economic_histories` (
+    `id_social_economic` smallint(5) unsigned NOT NULL AUTO_INCREMENT,
     `id_student` smallint(5) unsigned NOT NULL,
-    `cognit`varchar(255),
-    `comunication`varchar(50),
-    `moral_spirt` varchar(50),
-    `strengths` varchar(50),
-    `weakness` varchar(50),
-    `learnig_barries` varchar(50),
-    `strateg` varchar(50),
+    `free_time`varchar(500),
+    `inter_persons`varchar(50),
+    `behavior_encouragement` varchar(50),
+    `life_proyect` varchar(50),
+    `ant_health` varchar(50),
+    `ant_psicology` varchar(50),
+    `date` timestamp DEFAULT CURRENT_TIMESTAMP,
     PRIMARY KEY (`id_profile`)
 )  ENGINE=InnoDB  DEFAULT CHARSET=utf8;
 
