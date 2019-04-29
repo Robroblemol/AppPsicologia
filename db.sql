@@ -161,8 +161,8 @@ REFERENCES `students`(`id_student`);
 CREATE TABLE IF NOT EXISTS `psicology_asistan_register` (
     `id_register` smallint(5) unsigned NOT NULL AUTO_INCREMENT,
     `id_student` smallint(5) unsigned NOT NULL,
-    `reason`varchar(255)NOT NULL,
-    `funcionary`varchar(255)NOT NULL,
+    `reason`varchar(500)NOT NULL,
+    `funcionary`varchar(500)NOT NULL,
     `date` timestamp DEFAULT CURRENT_TIMESTAMP,
     PRIMARY KEY (`id_register`)
 )  ENGINE=InnoDB  DEFAULT CHARSET=utf8;
@@ -182,7 +182,7 @@ CREATE TABLE IF NOT EXISTS `social_economic_histories` (
     `ant_health` varchar(500),
     `ant_psicology` varchar(500),
     `date` timestamp DEFAULT CURRENT_TIMESTAMP,
-    PRIMARY KEY (`id_profile`)
+    PRIMARY KEY (`id_social_economic`)
 )  ENGINE=InnoDB  DEFAULT CHARSET=utf8;
 
 ALTER TABLE `social_economic_histories`
