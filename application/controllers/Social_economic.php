@@ -109,7 +109,7 @@ public function delete($id,$goto){
         if(is_numeric($id)){
             $delete=$this
                 ->Social_economic_model
-                ->delete($id,"social_economic");
+                ->delete($id,"social_economic_histories");
             if($delete){
                 $this -> 
                  session ->
