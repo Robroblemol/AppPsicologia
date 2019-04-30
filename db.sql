@@ -195,6 +195,8 @@ CREATE TABLE IF NOT EXISTS `appointmets` (
     `description`varchar(255),
     `asing_appo`varchar(50),
     `state_appo` varchar(50),
+    `request_date`varchar(50),
+    `date`timestamp DEFAULT CURRENT_TIMESTAMP, 
     PRIMARY KEY (`id_appointmet`)
 )  ENGINE=InnoDB  DEFAULT CHARSET=utf8;
 

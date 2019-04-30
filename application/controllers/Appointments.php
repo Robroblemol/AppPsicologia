@@ -1,6 +1,6 @@
 <?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
  
-class Psicology_asistan extends CI_Controller {
+class Appointments extends CI_Controller {
 
  
 function __construct()
@@ -10,7 +10,7 @@ function __construct()
         $this->load->database();
         $this->load->helper('url');//este objeto permite cargar las url
 
-        $this->load->model('Psicology_asistan_model');
+        $this->load->model('Appointments_model');
         $this->load->library('session');
  
     }
@@ -18,19 +18,19 @@ function __construct()
 //funcion por defecto del controlador muestra los estudiantes
 public function index(){
     //cargamos un array con el metodo a visualizar
-     $datos ["get"]=$this -> Psicology_asistan_model->get(); 
-     $this ->load -> view("Psicology_asistan_view",$datos);
+     $datos ["get"]=$this -> Appointments_model->get(); 
+     $this ->load -> view("Appointments_view",$datos);
     }
 public function findOne(){
         if($this ->input -> post('findOne')){
             $id = $this -> input ->post('id');
             $field = $this -> input ->post('field');
-            $datos ["get"]= $this -> Psicology_asistan_model
-                ->getOne($id,'psicology_asistan_register',$field);
+            $datos ["get"]= $this -> Appointments_model
+                ->getOne($id,'appointmets',$field);
             
-            $this ->load -> view("Psicology_asistan_view",$datos);
+            $this ->load -> view("Appointments_view",$datos);
         }else{
-            redirect('/Psicology_asistan_view');
+            redirect('/Appointments_view');
         }
         
     }
@@ -39,13 +39,15 @@ public function add($goto){
         if($this->input->post("add")){
             $data = array(
                 'id_student' => $this->input->post('id_stu'),
-                'reason' => $this->input->post('rea'),
-                'funcionary' => $this->input->post('fun'),
+                'description' => $this->input->post('des'),
+                'asing_appo' => $this->input->post('a_app'),
+                'state_appo' => $this->input->post('s_app'),
+                //'request_date' => $this->input->post('r_date'),
                // 'date' => $this->input->post('dat'),
                 );
-            if($this->input->post("reao")!=null)
-                $data['reason']=$this->input->post("reao");
-            $add = $this -> Psicology_asistan_model->add($data);
+            //if($this->input->post("reao")!=null)
+            //    $data['reason']=$this->input->post("reao");
+            $add = $this -> Appointments_model->add($data);
         //}
         if($add == true){
             //Sesion de una sola ejecucion
@@ -54,21 +56,23 @@ public function add($goto){
          $this -> session -> set_flashdata('Fallo','Registro no creado');   
         }
         }
-        if($goto) redirect('/Psicology_asistan');//me devuelvo a la vista principal
+        if($goto) redirect('/Appointments');//me devuelvo a la vista principal
     }
 public function update($goto){//recibimos el id por la url
         if($this -> input -> post('submit')){
                     
             $data = array(
-                'id_reg' => $this->input->post('id_reg'),
+                'id_app' => $this->input->post('id_stu'),
                 'id_stu' => $this->input->post('id_stu'),
-                'rea' => $this->input->post('rea'),
-                'fun' => $this->input->post('fun'),
+                'des' => $this->input->post('des'),
+                'a_app' => $this->input->post('a_app'),
+                's_app' => $this->input->post('s_app'),
+            //    'r_dat' => $this->input->post('r_date'),
                // 'date' => $this->input->post('dat'),
                 );
-            if($this->input->post("reao")!=null)
-                $data['rea']=$this->input->post("reao");        
-            $upDate =$this ->Psicology_asistan_model ->update($data);
+            //if($this->input->post("reao")!=null)
+            //    $data['rea']=$this->input->post("reao");        
+            $upDate =$this ->Appointments_model ->update($data);
             if($upDate){
                 //Sesion de una sola ejecucion
                 $this -> 
@@ -80,31 +84,31 @@ public function update($goto){//recibimos el id por la url
                  set_flashdata('Fallo','Registro no modificado correctamente'); 
             }
             //me devuelvo a la vista principal si vengo del maestro
-            if($goto) redirect('/Psicology_asistan');
+            if($goto) redirect('/Appointments');
         }
     }
 public function setForm($id){
         if(is_numeric($id)){
             $datos ["update"]= 
-                $this -> Psicology_asistan_model
+                $this -> Appointments_model
                     ->getOne($id,
-                            "psicology_asistan_register",
-                            "id_register");
+                            "appointmets",
+                            "id_appointmet");
             $datos ["status"] = true;
             //le enviamos los datos al formulario update
-            $this ->load ->view("FormPsicology_asistan_view",$datos);
+            $this ->load ->view("FormAppointments_view",$datos);
         }else{
            $datos ["status"] = false;
            $datos ["update"] = '';
-           $this ->load ->view("FormPsicology_asistan_view",$datos);
+           $this ->load ->view("FormAppointments_view",$datos);
         }
     }
 
 public function delete($id,$goto){
         if(is_numeric($id)){
             $delete=$this
-                ->Psicology_asistan_model
-                ->delete($id,"psicology_asistan_register");
+                ->Appointments_model
+                ->delete($id,"appointmets");
             if($delete){
                 $this -> 
                  session ->
@@ -114,10 +118,10 @@ public function delete($id,$goto){
                  session ->
                   set_flashdata('Fallo','Registro borrado correctamente'); 
             }
-            if($goto) redirect('/Psicology_asistan'); 
+            if($goto) redirect('/Appointments'); 
         }
         elseif($goto)
-            redirect('/Psicology_asistan'); 
+            redirect('/Appointments'); 
 
     }
 
