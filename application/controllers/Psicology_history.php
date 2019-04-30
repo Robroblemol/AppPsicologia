@@ -1,6 +1,6 @@
 <?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
  
-class Appointments extends CI_Controller {
+class Psicology_history extends CI_Controller {
 
  
 function __construct()
@@ -10,7 +10,11 @@ function __construct()
         $this->load->database();
         $this->load->helper('url');//este objeto permite cargar las url
 
-        $this->load->model('Appointments_model');
+        $this->load->model('Students_model');
+        $this->load->model('School_histories_model');
+        $this->load->model('Family_relationship_model');
+        $this->load->model('Social_economic_model');
+        
         $this->load->library('session');
  
     }
@@ -18,19 +22,38 @@ function __construct()
 //funcion por defecto del controlador muestra los estudiantes
 public function index(){
     //cargamos un array con el metodo a visualizar
-     $datos ["get"]=$this -> Appointments_model->get(); 
-     $this ->load -> view("Appointments_view",$datos);
+     $datos ["get"]=$this -> Students_model->get(); 
+     $this ->load -> view("Psicology_histories_view",$datos);
     }
+public function get_detail($id){
+    $datos ["get"]=$this -> Students_model->getOne(
+        $id,'students','id_student'
+        );
+    $datos ["getFamily"]=
+        $this->Family_relationship_model->getOne(
+            $id,'family_relationship','id_student'
+            );
+    $datos ["getSchool"]=
+        $this-> School_histories_model->getOne(
+            $id,'school_histories','id_student'
+            );
+    $datos ["getSocial"]=
+        $this-> Social_economic_model->getOne(
+            $id,'social_economic_histories','id_student'
+            );
+    $this->load->view("Psicology_histories_detail_view",$datos);
+    
+}
 public function findOne(){
         if($this ->input -> post('findOne')){
             $id = $this -> input ->post('id');
             $field = $this -> input ->post('field');
-            $datos ["get"]= $this -> Appointments_model
-                ->getOne($id,'appointmets',$field);
+            $datos ["get"]= $this -> Students_model
+                ->getOne($id,'students',$field);
             
-            $this ->load -> view("Appointments_view",$datos);
+            $this ->load -> view("Psicology_histories_view",$datos);
         }else{
-            redirect('/Appointments_view');
+            redirect('/Psicology_histories_view');
         }
         
     }

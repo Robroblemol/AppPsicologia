@@ -54,10 +54,13 @@
                         </tr>
                     </table>      
                 <div>
-                   <input type="number" 
-                        name="s_app" 
-                        value ="<?=
-                         $row ->state_appo ?>"/>  
+                     <input type="checkbox" 
+                                name="s_app"
+                                value="1"
+                                <?= 
+                                    $sel = ($row->state_appo == 1)?
+                                    "checked" : "";
+                                ?> />
                 </div>  
                
                 <input type="submit" 
@@ -97,9 +100,13 @@
                         <!-- <input type="week" 
                                 name="a_app"
                                 /> -->
+                        <input type="checkbox" 
+                            name="s_app"
+                            value=1 > Estado </input>
+                        <!--        Repitente </input>
                         <input type="number" 
                                 name="s_app"
-                                placeholder = "Estado"/>
+                                placeholder = "Estado"/> -->
                     </div>
                     
                   <div>
