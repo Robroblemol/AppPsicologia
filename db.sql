@@ -172,7 +172,7 @@ ADD FOREIGN KEY (`id_student`)
 REFERENCES `students`(`id_student`);
 
 
-CREATE TABLE IF NOT EXISTS `social_economic_histories` (
+CREATE TABLE IF NOT EXISTS `register_histories` (
     `id_social_economic` smallint(5) unsigned NOT NULL AUTO_INCREMENT,
     `id_student` smallint(5) unsigned NOT NULL,
     `free_time`varchar(1000),
