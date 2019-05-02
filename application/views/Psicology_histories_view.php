@@ -68,9 +68,8 @@
                 <td>
 
                 <td>
-                    <a href="<?=base_url("index.php/Psicology_history/setForm/$row->id_student")?>">
-                       Modificar</a>
-                    <a href="<?=base_url("index.php/Psicology_history/delete/$row->id_student")?>">
+        
+                    <a href="<?=base_url("index.php/Psicology_history/delete/$row->id_student/true")?>">
                        Eliminar</a>
                 </td>
 

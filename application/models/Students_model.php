@@ -9,7 +9,7 @@ class Students_model extends CI_Model{
         $this->load->database();
     }
     
-    public function get($limit = 10){
+    public function get($limit = 50){
         //hacemos la consulta
         $query = $this -> db ->get('students',$limit,0);
         return  $query -> result(); //devolvemos el resultado
@@ -90,6 +90,13 @@ class Students_model extends CI_Model{
                     -> where ($where,$id);
             $query = $this -> db -> get();
             return $query ->result();
+    }
+    public function getID($index){
+         $this -> db -> select('id_student')
+                    ->from('students')
+                    -> where ('n_identification',$index);
+            $query = $this -> db -> get();
+            return $query ->result_array();
     }
     
 }
