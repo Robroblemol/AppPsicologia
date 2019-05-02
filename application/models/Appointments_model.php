@@ -44,6 +44,11 @@ class Appointments_model extends CI_Model{
                             array('id_appointmet' => $id)); 
         return $query;
     }
+        public function deleteByID($nameTable,$index){
+         $query = $this->db
+                      ->delete($nameTable,$index); 
+        return $query;
+    }
     
     //funcion generica para relizar un select de
     //un campo especifico, de una tabla especifica,

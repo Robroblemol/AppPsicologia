@@ -182,19 +182,24 @@ public function delete($id,$goto){
         if(is_numeric($id)){
             $deleteAsistan=$this
                 ->Psicology_asistan_model
-                ->delete($id,'psicology_asistan_register');
+                ->deleteByID('psicology_asistan_register',
+                    array('id_student'=>$id));
             $deleteApp=$this
                 ->Appointments_model
-                ->delete($id,'appointmets');
+                ->deleteByID('appointmets',
+                    array('id_student'=>$id));
             $deleteSocio=$this
                 ->Social_economic_model
-                ->delete($id,"social_economic_histories");
+                ->deleteByID("social_economic_histories",
+                    array('id_student'=>$id));
             $deleteSchool = $this
                 ->School_histories_model
-                ->delete($id,"school_histories");
+                ->deleteByID("school_histories",
+                    array('id_student'=>$id));
             $deleteFamily=$this
                 ->Family_relationship_model
-                ->delete($id,"family_relationship");
+                ->deleteByID("family_relationship",
+                    array('id_student'=>$id));
              $deleteStudent = $this
                 ->Students_model
                 ->delete($id,"students");
@@ -214,10 +219,10 @@ public function delete($id,$goto){
                  session ->
                   set_flashdata('Fallo','Registro borrado correctamente'); 
             }
-            if($goto) redirect('/Appointments'); 
+            if($goto) redirect('/Psicology_history'); 
         }
         elseif($goto)
-            redirect('/Appointments'); 
+            redirect('/Psicology_history'); 
 
     }
 
