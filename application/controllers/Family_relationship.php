@@ -82,7 +82,7 @@ public function update($goto){//recibimos el id por la url
                  set_flashdata('Fallo','Registro no modificado correctamente'); 
             }
             //me devuelvo a la vista principal si vengo del maestro
-            if($goto) redirect('/Family_relationship');
+            if($goto) redirect('/Psicology_history');
         }
     }
 public function setForm($id){
