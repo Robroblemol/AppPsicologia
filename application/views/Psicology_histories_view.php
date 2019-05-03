@@ -38,7 +38,8 @@
         Seguimiento Psicologico</a>
     <a href='<?php echo site_url('Student')?>'>
         Estudiantes</a>
-    
+    <a href='<?php echo site_url('Appointments')?>'>
+        Citas</a>
  </nav>
 <div class ="body">
     <h2 class="display-4">Estudientes registrados</h2>
@@ -57,7 +58,7 @@
                     <?=$this ->session ->flashdata('Fallo');?>
                 </div>
             <?php }?>
-            <table class="table">
+            <table class="table table-responsive">
             <tr>
                 <th>Identificacion</th>
                 <th>Nombre Estudiante</th>

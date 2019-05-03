@@ -34,6 +34,8 @@
             Seguimiento Psicologico</a>
         <a href='#'>
             Estudiantes</a>
+        <a href='<?php echo site_url('Appointments')?>'>
+        Citas</a>
     
      </nav>
      
