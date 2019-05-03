@@ -32,12 +32,18 @@
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 
 
- <!-- <nav class="navbar navbar-light" style="background-color: #e3f2fd;">-->
+  <nav class="navbar navbar-light" style="background-color: #e3f2fd;">
     <!-- Navbar content -->
+    <a href='#'>
+        Seguimiento Psicologico</a>
+    <a href='<?php echo site_url('Student')?>'>
+        Estudiantes</a>
+    
+ </nav>
 <div class ="body">
     <h2 class="display-4">Estudientes registrados</h2>
      <hr class="my-4">
-    <div class ='detail'>
+    <div class = "jumbotron">
          <?php 
             //si hay sessiones flashdata se muestran!
             if($this ->session ->flashdata('Ok')){?>
@@ -51,8 +57,7 @@
                     <?=$this ->session ->flashdata('Fallo');?>
                 </div>
             <?php }?>
-    
-        <table class="table">
+            <table class="table">
             <tr>
                 <th>Identificacion</th>
                 <th>Nombre Estudiante</th>
@@ -68,27 +73,26 @@
                 
             </tr>
             <?php foreach($get as $row){ ?>
-            <tr>
-                <td>
-    
-                    <?=$row->n_identification;?>
-                    
-                </td>
-                <td>
-                    <a href="<?=base_url("index.php/Psicology_history/get_detail/$row->id_student")?>"> 
-                    <?=$row->name;?>
-                    </a>
-                </td>
+                <tr>
+                    <td>
+                        <?=$row->n_identification;?>
+                    </td>
+                    <td>
+                        <a href="<?=base_url("index.php/Psicology_history/get_detail/$row->id_student")?>"> 
+                            <?=$row->name;?>
+                        </a>
+                    </td>
 
-                <td>
+                    <td>
         
-                    <a href="<?=base_url("index.php/Psicology_history/delete/$row->id_student/true")?>">
-                       Eliminar</a>
-                </td>
+                        <a href="<?=base_url("index.php/Psicology_history/delete/$row->id_student/true")?>">
+                           Eliminar</a>
+                    </td>
 
-            </tr>
-            <?php } ?>
-        </table>
+                </tr>
+                <?php } ?>
+            </table>
+        
         <div class="container">
              <form action="<?=base_url("index.php/Psicology_history/findOne");?>" id = "find" method="post">
                 <div class="row">
@@ -101,7 +105,7 @@
                                    padding: 5px;"/>
                 </div>
                 <div class="col-sm">
-                    <select  class="btn btn-info dropdown-toggle" 
+                    <select  class="form-control" 
                         name = "field" form = "find" style= 'padding: 5px;'>
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                         <option value="n_identification" 
@@ -113,12 +117,12 @@
                 </div>
                 <div class="col-sm">
                     <input type="submit"
-                        class="btn btn-secondary"
+                        class="btn btn-info"
                         name="findOne"
                         value="Buscar"
                         /> 
             
-                    <a href="<?=base_url("index.php/Psicology_history")?>">
+                    <a  href="<?=base_url("index.php/Psicology_history")?>">
                        Reset</a>
                 </div>
                 </div>
