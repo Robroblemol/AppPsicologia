@@ -35,7 +35,8 @@
  <!-- <nav class="navbar navbar-light" style="background-color: #e3f2fd;">-->
     <!-- Navbar content -->
 <div class ="body">
-    <h2>Estudientes registrados</h2>
+    <h2 class="display-4">Estudientes registrados</h2>
+     <hr class="my-4">
     <div class ='detail'>
          <?php 
             //si hay sessiones flashdata se muestran!
@@ -88,17 +89,18 @@
             </tr>
             <?php } ?>
         </table>
-        <table class="table">
+        <div class="container">
              <form action="<?=base_url("index.php/Psicology_history/findOne");?>" id = "find" method="post">
-                <td>
+                <div class="row">
+                <div class="col-sm">
                     <input type="texto" 
                             name="id"
                             placeholder = "valor a buscar"
                             required
                             style="border-radius: 5px;
                                    padding: 5px;"/>
-                </td>
-                <td>
+                </div>
+                <div class="col-sm">
                     <select  class="btn btn-info dropdown-toggle" 
                         name = "field" form = "find" style= 'padding: 5px;'>
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
@@ -108,8 +110,8 @@
                             class="dropdown-item">Nombre estudiente</option>
                         </div>
                     </select>
-                </td>
-                <td>
+                </div>
+                <div class="col-sm">
                     <input type="submit"
                         class="btn btn-secondary"
                         name="findOne"
@@ -118,9 +120,11 @@
             
                     <a href="<?=base_url("index.php/Psicology_history")?>">
                        Reset</a>
-                </td>
+                </div>
+                </div>
             </form>
-        </table>
+            
+        </div>
     </div>
 </div>
     
