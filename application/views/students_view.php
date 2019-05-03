@@ -104,7 +104,7 @@
                 </td>
                 <td>
                     <a href="<?=base_url("index.php/Student/setForm/$row->id_student")?>">
-                        <?=$row->repet_course;?>
+                        <?=($row->repet_course==1)? "Si":"No";?>
                     </a>
                 </td>
                 <td>
@@ -112,13 +112,6 @@
                         <?=$row->email;?>
                     </a>
                 </td>
-                
-                <td>
- 
-                    <a href="<?=base_url("index.php/Student/delete/$row->id_student")?>">
-                       Eliminar</a>
-                </td>
-
             </tr>
         <?php } ?>
     </table> 
@@ -131,8 +124,8 @@
                                 name="id"
                                 placeholder = "valor a buscar"
                                 required
-                                style="border-radius: 5px;
-                                   padding: 5px;"/>
+                                class="form-control"
+                             />
                     </div>
                 <div class="col-sm">
                     <select class="form-control"

@@ -101,8 +101,7 @@
                             name="id"
                             placeholder = "valor a buscar"
                             required
-                            style="border-radius: 5px;
-                                   padding: 5px;"/>
+                            class="form-control"/>
                 </div>
                 <div class="col-sm">
                     <select  class="form-control" 
