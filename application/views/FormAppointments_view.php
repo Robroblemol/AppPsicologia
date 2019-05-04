@@ -89,7 +89,7 @@
                
                 <input type="submit" 
                         name="submit" 
-                        class="btn btn-primary mb-2"
+                        class="btn btn-primary mb-2"    
                         value="Modificar"/>
                 <?php } ?>
             <?php } else {?>

@@ -42,7 +42,7 @@
         Citas</a>
  </nav>
 <div class ="body">
-    <h2 class="display-4">Estudientes registrados</h2>
+    <h2 class="display-4">Estudiantes registrados</h2>
      <hr class="my-4">
     <div class = "jumbotron">
          <?php 
