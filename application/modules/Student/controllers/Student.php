@@ -1,6 +1,6 @@
 <?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
  
-class Student extends CI_Controller {
+class Student extends MX_Controller {
 
  
 function __construct()
@@ -22,6 +22,11 @@ public function index(){
     //cargamos un array con el metodo a visualizar
      $datos ["get"]=$this -> Students_model->get(); 
      $this ->load -> view("students_view",$datos);
+    }
+public function getForm(){
+    //cargamos un array con el metodo a visualizar
+     $datos ["get"]=$this -> Students_model->get(); 
+     $this ->load -> view("tabla_students_view",$datos);
     }
 public function add(){
     $r_corse;

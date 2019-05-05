@@ -1,5 +1,0 @@
-*{
-    padding: 15px;
-    background-color: black;
-    color: white;
-}
