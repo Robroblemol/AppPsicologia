@@ -9,12 +9,13 @@ function __construct()
         $this->load->database();
         $this->load->helper('url');//este objeto permite cargar las url
         //$this->load->model('Students_model');
- 
+        $this->title="Seguimiento psicologico";
+        $this->app="Seguimiento psicologico";
     }
  
 public function index()
     {
-     $data ["title"]= "Página de inicio";
+     $data ["title"]= "Inicio";
      $this->load->view('/home/head',$data);
      $data ["app"] = "Seguimiento psicologico";
      $this->load->view('/home/nav',$data);
@@ -24,12 +25,18 @@ public function index()
      //$this ->load->view("home_view",$data);
      
     }
-public function getHead($title){
-    $data ["title"]= $title;
+public function setTitle($title){
+    $this->title=$title;
+}
+public function setApp($app){
+    $this->app=$app;
+}
+public function getHead(){
+    $data ["title"]= $this->title;
     $this->load->view('/home/head',$data);
 }
-public function getNav($app){
-    $data ["app"]= $app;
+public function getNav(){
+    $data ["app"]= $this->app;
     $this->load->view('/home/nav',$data);
     
     }

@@ -33,12 +33,18 @@
 
       <div class="container-fluid">
 
-        <!-- Breadcrumbs-->
-        <ol class="breadcrumb">
-          <li class="breadcrumb-item">
-            <a href="#">Dashboard</a>
-          </li>
-          <li class="breadcrumb-item active">Overview</li>
-        </ol>
+        <?php 
+            //si hay sessiones flashdata se muestran!
+            if($this ->session ->flashdata('Ok')){?>
+                <div class="alert alert-success" 
+                    role="alert">
+                    <?= $this ->session ->flashdata('Ok');?>
+                </div>
+           <?php }
+            if($this ->session ->flashdata('Fallo')){?>
+                <div class="alert alert-info" role="alert">
+                    <?=$this ->session ->flashdata('Fallo');?>
+                </div>
+            <?php }?>
 
      
