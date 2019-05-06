@@ -21,10 +21,11 @@
   <link href="<?= base_url('/template/')?>css/sb-admin.css" rel="stylesheet">
 
 </head>
-<?php 
 
-    echo modules::run("Home/getNav/$app");
+
+<?php 
+    echo modules::run("Home/getNav");
     echo modules::run("Home/getHeader");
-    echo modules::run("Student/getForm");
+    echo modules::run("Psicology_history/get_form");
     echo modules::run("Home/getFooter");
 ?>

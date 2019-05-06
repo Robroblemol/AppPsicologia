@@ -10,7 +10,7 @@ function __construct()
         $this->load->database();
         $this->load->helper('url');//este objeto permite cargar las url
 
-        //$this->load->model('Students_model');
+        $this->load->model('Students_model');
         $this->load->model('School_histories_model');
         $this->load->model('Family_relationship_model');
         $this->load->model('Social_economic_model');
@@ -30,10 +30,16 @@ public function index(){
         'app'=> 'Seguimiento estudiante');
      $this ->load -> view("Psicology_histories_view",$data);
     }
+public function get_form(){
+    //$datos ["get"]=$this -> Students_model->get(); 
+    $data=modules::run("Student/get");
+    $this ->load -> view("Form_Psicology_histories_view",$data);
+}
 public function get_detail($id){
-    //$datos ["get"]=$this -> Students_model->getOne(
-    //    $id,'students','id_student'
-     //   );
+    
+    $datos ["get"]=$this -> Students_model->getOne(
+        $id,'students','id_student'
+        );
     $datos ["getFamily"]=
         $this->Family_relationship_model->getOne(
             $id,'family_relationship','id_student'
