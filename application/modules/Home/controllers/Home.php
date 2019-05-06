@@ -8,6 +8,7 @@ function __construct()
  
         $this->load->database();
         $this->load->helper('url');//este objeto permite cargar las url
+        $this->load->library('session');
         //$this->load->model('Students_model');
         $this->title="Seguimiento psicologico";
         $this->app="Seguimiento psicologico";

@@ -1,47 +1,20 @@
-<!DOCTYPE HTML>
-<html lang="es">
-  <head>
-        <meta charset="utf-8"/>
-        <title>Historial Psicologico</title>
-        <!-- Required meta tags -->
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" 
-        href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" 
-        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" 
-        crossorigin="anonymous">
-    </head>
-    <style type="text/css">
-        .detail{
-            border-radius: 5px;
-            background-color: #f2f2f2;
-            padding: 5px;
-        }
-        .body{
-            width : 70%;
-            margin-left : auto;
-            margin-right : auto;
-            padding : 0px;
-        }
-    </style>
-<body>
-  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-
-    <div class ="body">
-        <a href="<?=
+<?php 
+    echo modules::run("Home/getHead");
+    echo modules::run("Home/getNav");
+    echo modules::run("Home/getHeader");
+    ?>
+    <a href="<?=
             base_url("index.php/Psicology_history")?>"
             >
-            Volver
-        </a>
-        <h1>Seguimiento psicologico</h1>
+            <i class="fa fa-arrow-left" aria-hidden="true"></i> Volver
+          </a>
+    <h1>Seguimiento psicologico</h1>
         <?php foreach($get as $row){ ?>
-            <div class = "jumbotron">
-             <h2><?= $row->name?></h2>
-                <p>
+            <div class = "card mb-3">
+                <div class="card-header">
+                     <h2><?= $row->name?></h2>
+                 </div>
+                <div class="card-body">
                     Número de identificacion: 
                     <?= $row->n_identification?><br/>
                     Cuidad de nacimiento: 
@@ -56,20 +29,25 @@
                     Correo:  
                     <?= $row->email?>
                     <br/>
-                </p>
-                    <a href="<?=
-                        base_url("index.php/Student/setForm/$row->id_student")?>"
-                        >
-                        Editar
-                    </a>
+                </div>
+                <div class="card-footer small text-muted">
+                    <a  href="<?=
+                        base_url("index.php/Student/setForm/$row->id_student")?>">
+                        <i class="fa fa-edit"></i> Editar</a>
+    
+                
+                </div>
             </div>
         <?php } ?>
         
 
         <?php foreach($getFamily as $row){ ?>
-         <h2>Relacion familiar</h2>
-            <div class = "jumbotron">
-                <p>
+         
+            <div class = "card mb-3">
+                  <div class="card-header">
+                     <h2>Relacion familiar</h2>
+                 </div>
+                <div class="card-body">
                     <h3> <?= $row->date?> </h3>
                     Describe relacion con padre como:   
                     <?= $row->with_father?><br/>
@@ -81,36 +59,44 @@
                     <?= $row->with_step_parents?><br/>
                     Observaciones:   
                     <?= $row->observations?><br/>
-                </p>
+                </div>
+                <div class="card-footer small text-muted">
                  <a href="<?=
                         base_url("index.php/Family_relationship/setForm/$row->id_relationship")?>"
                         >
-                        Editar
+                        <i class="fa fa-edit"></i>Editar
                     </a>
+                </div>
             </div>
         <?php } ?>
         
-        <h2>Antecedentes Escolar</h2>
         <?php foreach($getSchool as $row){ ?>
-            <div class = "jumbotron">
-                <p>
+            <div class = "card mb-3">
+                  <div class="card-header">
+                    <h2>Antecedentes Escolar</h2>
+                  </div>
+                <div class="card-body">
                     Antecedentes escolar:   
                     <?= $row->histori_school?><br/>
                     Habilidades / dificultades:  
                     <?= $row->skills_dificulties?>
-                </p>
+                </div>
+                <div class="card-footer small text-muted">
                  <a href="<?=
                         base_url("index.php/School_histories/setForm/$row->id_school_histories")?>"
                         >
-                        Editar
+                        <i class="fa fa-edit"></i>Editar
                     </a>
+                </div>
             </div>
         <?php } ?>
         
-         <h2>Historia socioemocional</h2>
         <?php foreach($getSocial as $row){ ?>
-            <div class = "jumbotron">
-                <p>
+            <div class = "card mb-3">
+                 <div class="card-header">
+                     <h2>Historia socioemocional</h2>
+                  </div>
+                 <div class="card-body">
                     Tiempo libre:    
                     <?= $row->free_time?><br/>
                     Relaciones interpersonales: 
@@ -125,21 +111,25 @@
                     <?= $row->ant_psicology?><br/>
                      Fecha:  
                     <?= $row->date?><br/>
-                </p>
+                </div>
+                <div class="card-footer small text-muted">
                 <a href="<?=
                         base_url("index.php/Social_economic/setForm/$row->id_social_economic")?>"
                         >
-                        Editar
+                        <i class="fa fa-edit"></i>Editar
                     </a>
+                </div>
             </div>
          <?php } ?>
-    </div>
-    <div class ="body">
-        <a href="<?=
+          <a href="<?=
             base_url("index.php/Psicology_history")?>"
             >
-            Volver
-        </a>
+            <i class="fa fa-arrow-left" aria-hidden="true"></i> Volver
+          </a>
+    </div>
+
+       
+<?php 
+    echo modules::run("Home/getFooter");
+?>
         
-</body>
-</html>
