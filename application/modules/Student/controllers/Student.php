@@ -20,13 +20,25 @@ function __construct()
 //funcion por defecto del controlador muestra los estudiantes
 public function index(){
     //cargamos un array con el metodo a visualizar
-     $datos ["get"]=$this -> Students_model->get(); 
+     $datos ["get"]=$this -> Students_model->get();
+     $datos ["app"]="Registro estudiantes";
+     $datos ["title"]="Estudiantes";
      $this ->load -> view("students_view",$datos);
     }
+public function get(){
+    $datos ["get"]=$this -> Students_model->get();
+    return $datos;
+}
 public function getForm(){
     //cargamos un array con el metodo a visualizar
      $datos ["get"]=$this -> Students_model->get(); 
      $this ->load -> view("tabla_students_view",$datos);
+    }
+public function get_one($id,$field='id_student'){
+        $datos = $this -> Students_model
+            ->getOne($id,'students',$field);
+        
+        return $datos;
     }
 public function add(){
     $r_corse;
@@ -105,25 +117,25 @@ public function delete($id){
     }
 public function setForm($id){
         if(is_numeric($id)){
+            
+            $data ["title"]= "Editar estudiante";
+            $this->load->view('/addForm/head_form',$data);
+
             $datos ["update"]= 
                 $this -> Students_model
                     ->getOne($id,"students","id_student");
             $datos ["status"] = true;
-            //le enviamos los datos al formulario update
-            $this ->load ->view("setForm_view",$datos);
+            $this->load->view('/addForm/body_form',$datos);
+            $this->load->view('/addForm/footer_form');
+    
         }else{
+           $data ["title"]= "Editar estudiante";
+           $this->load->view('/addForm/head_form',$data);     
            $datos ["status"] = false;
            $datos ["update"] = '';
-           $this ->load ->view("setForm_view",$datos);
+            $this->load->view('/addForm/body_form',$datos);
+            $this->load->view('/addForm/footer_form');
         }
-    }
-public function findOne(){
-        $id = $this -> input ->post('id');
-        $field = $this -> input ->post('field');
-        $datos ["get"]= $this -> Students_model
-            ->getOne($id,'students',$field);
-        
-        $this ->load -> view("students_view",$datos);
     }
 
 } 

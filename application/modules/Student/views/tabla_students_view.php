@@ -1,7 +1,20 @@
 <div class="card mb-3">
           <div class="card-header">
-            <i class="fas fa-table"></i>
-            Estudiantes registrados</div>
+            
+            <form action="<?=base_url("index.php/Student/setForm/add");?>" method="post">
+             <i class="fas fa-table"></i>
+                Estudiantes registrados
+                 <button type="submit"
+                        class="btn btn-primary"
+                        name="add"
+                        value="Agregar">
+                     <i class="fa fa-plus" aria-hidden="true"></i>
+                     Agregar
+                 </button>
+         
+            </form>
+            </div>
+            
           <div class="card-body">
             <div class="table-responsive">
               <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
