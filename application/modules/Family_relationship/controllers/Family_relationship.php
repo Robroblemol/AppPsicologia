@@ -19,11 +19,11 @@ function __construct()
 public function index(){
     //cargamos un array con el metodo a visualizar
      $datos ["get"]=$this -> Family_relationship_model->get(); 
-     $datos ["title"]="Relacion familiar";
-     $datos ["app"]="Relacion familiar";
+     $datos ["title"]="Relación familiar";
+     $datos ["app"]="Relación familiar";
      $this ->load -> view("Family_relationship_view",$datos);
     }
-public function getForm(){
+public function get_table(){
     //cargamos un array con el metodo a visualizar
      //$datos ["get"]=$this -> Family_relationship_model->get(); 
      $this ->load -> view("table_family_relation");

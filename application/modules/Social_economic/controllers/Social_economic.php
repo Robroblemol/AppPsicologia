@@ -1,6 +1,6 @@
 <?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
  
-class Social_economic extends CI_Controller {
+class Social_economic extends MX_Controller {
 
  
 function __construct()
@@ -18,8 +18,15 @@ function __construct()
 //funcion por defecto del controlador muestra los estudiantes
 public function index(){
     //cargamos un array con el metodo a visualizar
+     $datos ["title"]= "Socioemocional";
+     $datos ["app"]= "Registro Socioemocional";
      $datos ["get"]=$this -> Social_economic_model->get(); 
-     $this ->load -> view("Social_economic_view",$datos);
+     $this ->load -> view("social_economic_view",$datos);
+    }
+public function get_table(){
+    //cargamos un array con el metodo a visualizar
+    // $datos ["get"]=$this -> Social_economic_model->get(); 
+     $this ->load -> view("table_social_economic_view");
     }
 public function findOne(){
         if($this ->input -> post('findOne')){
