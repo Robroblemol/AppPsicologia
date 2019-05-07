@@ -14,6 +14,8 @@
           <a class="dropdown-item" 
             href="<?=base_url("index.php/Student")?>">Estudiantes</a>
           <a class="dropdown-item" 
+            href="<?=base_url("index.php/Family_relationship")?>">Relación familiar</a>
+          <a class="dropdown-item" 
             href="<?=base_url("index.php/Attendants")?>">Acudientes</a>
           <div class="dropdown-divider"></div>
           <h6 class="dropdown-header">Citas:</h6>

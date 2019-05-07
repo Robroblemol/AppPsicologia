@@ -1,6 +1,6 @@
 <?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
  
-class School_histories extends CI_Controller {
+class School_histories extends MX_Controller {
 
  
 function __construct()
@@ -20,6 +20,11 @@ public function index(){
     //cargamos un array con el metodo a visualizar
      $datos ["get"]=$this -> School_histories_model->get(); 
      $this ->load -> view("School_histories_view",$datos);
+    }
+public function getForm(){
+    //cargamos un array con el metodo a visualizar
+     $datos ["get"]=$this -> School_histories_model->get(); 
+     $this ->load -> view("table_school_histories_view",$datos);
     }
 public function findOne(){
         if($this ->input -> post('findOne')){
@@ -82,18 +87,25 @@ public function update($goto){//recibimos el id por la url
     }
 public function setForm($id){
         if(is_numeric($id)){
+            $data ["title"]= "Editar Historial familiar";
+            $this->load->view('/addForm/head_form',$data);
             $datos ["update"]= 
                 $this -> School_histories_model
                     ->getOne($id,
                             "school_histories",
                             "id_school_histories");
             $datos ["status"] = true;
+            $this->load->view('/addForm/body_school_form',$datos);
             //le enviamos los datos al formulario update
-            $this ->load ->view("FormSchoolHistories_view",$datos);
+            //$this ->load ->view("FormSchoolHistories_view",$datos);
+            $this->load->view('/addForm/footer_form');
         }else{
+           $data ["title"]= "Editar Historial familiar";
+           $this->load->view('/addForm/head_form',$data);
            $datos ["status"] = false;
            $datos ["update"] = '';
-           $this ->load ->view("FormSchoolHistories_view",$datos);
+           $this->load->view('/addForm/body_school_form',$datos);
+           //$this ->load ->view("FormSchoolHistories_view",$datos);
         }
     }
 
