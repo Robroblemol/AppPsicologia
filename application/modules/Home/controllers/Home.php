@@ -32,19 +32,19 @@ public function setTitle($title){
 public function setApp($app){
     $this->app=$app;
 }
-public function getHead(){
+public function get_head(){
    // $data ["title"]= $this->title;
     $this->load->view('/home/head');
 }
-public function getNav(){
+public function get_nav(){
     //$data ["app"]= $this->app;
     $this->load->view('/home/nav');
     
     }
-public function getHeader(){
+public function get_header(){
     $this->load->view('/home/header');
 }
-public function getFooter(){
+public function get_footer(){
     $this->load->view('/home/footer');
     }
 }

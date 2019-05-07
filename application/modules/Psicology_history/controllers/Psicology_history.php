@@ -26,14 +26,14 @@ function __construct()
 public function index(){
     //cargamos un array con el metodo a visualizar
      //$datos ["get"]=$this -> Students_model->get();
-     $data =array('title'=>'Seguimiento psicologico', 
+     $datos =array('title'=>'Seguimiento psicologico', 
         'app'=> 'Seguimiento estudiante');
-     $this ->load -> view("Psicology_histories_view",$data);
+     $this ->load -> view("Psicology_histories_view",$datos);
     }
-public function get_form(){
+public function get_table(){
     //$datos ["get"]=$this -> Students_model->get(); 
-    $data=modules::run("Student/get");
-    $this ->load -> view("Form_Psicology_histories_view",$data);
+    $datos=modules::run("Student/get");
+    $this ->load -> view("Form_Psicology_histories_view",$datos);
 }
 public function get_detail($id){
     

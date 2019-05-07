@@ -1,11 +1,9 @@
 
 <?php 
-    echo modules::run("Home/setTitle/$title");
-    echo modules::run("Home/setApp/$app");
-    echo modules::run("Home/getHead");
-    echo modules::run("Home/getNav");
-    echo modules::run("Home/getHeader");
-    echo modules::run("Student/getForm");
-    echo modules::run("Home/getFooter");
+    echo modules::run("Home/get_head");
+    echo modules::run("Home/get_nav");
+    echo modules::run("Home/get_header");
+    echo modules::run("Student/get_table");
+    echo modules::run("Home/get_footer");
 
 ?>

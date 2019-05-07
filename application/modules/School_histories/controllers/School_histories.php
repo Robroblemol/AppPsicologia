@@ -21,7 +21,7 @@ public function index(){
      $datos ["get"]=$this -> School_histories_model->get(); 
      $this ->load -> view("School_histories_view",$datos);
     }
-public function getForm(){
+public function get_table(){
     //cargamos un array con el metodo a visualizar
      $datos ["get"]=$this -> School_histories_model->get(); 
      $this ->load -> view("table_school_histories_view",$datos);

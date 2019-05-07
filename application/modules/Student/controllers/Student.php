@@ -29,7 +29,7 @@ public function get(){
     $datos ["get"]=$this -> Students_model->get();
     return $datos;
 }
-public function getForm(){
+public function get_table(){
     //cargamos un array con el metodo a visualizar
     // $datos ["get"]=$this -> Students_model->get(); 
      $this ->load -> view("tabla_students_view");

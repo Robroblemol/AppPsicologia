@@ -1,3 +1,3 @@
 <?php 
-    echo modules::run("Student/getForm");
+    //echo modules::run("Student/get_table");
 ?>
