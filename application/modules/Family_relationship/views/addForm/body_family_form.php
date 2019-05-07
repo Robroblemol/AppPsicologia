@@ -1,33 +1,9 @@
-<!DOCTYPE HTML>
-<html lang="es">
-    <head>
-        <meta charset="UTF-8" />
-        <title>Registro familiar</title>
-        <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-        <!-- Bootstrap CSS -->
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    </head>
-    <style type="text/css">
-        .detail{
-            border-radius: 5px;
-            background-color: #f2f2f2;
-            padding: 5px;
-        }
-        .body{
-            width : 70%;
-            margin-left : auto;
-            margin-right : auto;
-            padding : 0px;
-        }
-    </style>
-    <body>
-        <div class="body">
-            <h2 class="display-4"><?=($status)?"Modificar registro familiar":"Agregar registro familiar"?></h2>
-            <hr class="my-4">
-            <div class = "jumbotron">
-                <form action="<?=
+    <div class="container">
+    <div class="card card-login mx-auto mt-5">
+      <div class="card-header"><?=($status)?"Modificar Estudiante":"Agregar Estudiante"?></div>
+      <div class="card-body">
+       <form action="<?=
                     base_url(
                         ($status)?
                         "index.php/Family_relationship/update/true"
@@ -167,75 +143,79 @@
                            
                            <input type="number" 
                                     name="id_stu"
+                                    class="form-control"
                                     placeholder = "id estudiante"
                                     required/>
                             <div>
                             <br/>
                                 <label for="">Describe relacion paternal como:</label>    
                                 <select name = "w_fat" class="form-control"form = "addForm">
+                                    <option value="N/A">N/A</option>
                                     <option value="Exclente">Exclente</option>
                                     <option value="Buena">Buena</option>
                                     <option value="Regular">Regular</option>
                                     <option value="Deficiente">Deficiente</option>
-                                    <option value="N/A">N/A</option>
+                                    
                                 </select>    
                             </div>
                             <br/>
                             <div>
                                 <label for="">Describe relacion maternal como: </label>
                                 <select name = "w_mot" class="form-control"form = "addForm">
+                                    <option value="N/A">N/A</option>
                                     <option value="Exclente">Exclente</option>
                                     <option value="Buena">Buena</option>
                                     <option value="Regular">Regular</option>
                                     <option value="Deficiente">Deficiente</option>
-                                    <option value="N/A">N/A</option>
+                                    
                                 </select>    
                             </div>
                             <br/>
                             <div>
                                 <label for="">Describe relacion hermanos como: </label>
                                 <select name = "w_bro" class="form-control"form = "addForm">
+                                    <option value="N/A">N/A</option>
                                     <option value="Exclente">Exclente</option>
                                     <option value="Buena">Buena</option>
                                     <option value="Regular">Regular</option>
                                     <option value="Deficiente">Deficiente</option>
-                                    <option value="N/A">N/A</option>
+            
                                 </select>    
                             </div>
                             <br/>
                             <div>
                                 <label for="">Describe relacion padrasto como: </label>
                                 <select name = "w_step_par"class="form-control" form = "addForm">
+                                    <option value="N/A">N/A</option>
                                     <option value="Exclente">Exclente</option>
                                     <option value="Buena">Buena</option>
                                     <option value="Regular">Regular</option>
                                     <option value="Deficiente">Deficiente</option>
-                                    <option value="N/A">N/A</option>
+                                    
                                 </select>    
                             </div>
                             <br/>
                             <div>
-                                <input type="textarea" 
-                                        name="obv"
-                                        placeholder = "Observaciones"
-                                        style = "
-                                            width: 30%;
-                                            padding: 12px;
-                                            height:200px;
-                                            "
-                                        required/>
-                               <br/>        
-                               <input type="submit" 
+                                <label for="">Observaciones </label>
+                                    <textarea class="form-control" 
+                                    name="obv" 
+                                    rows="3"
+                                    placeholder="Observaciones"></textarea>
+                                
+                            </div>
+                                <div class="card card-loggin  mx-auto mt-5">
+                                    <input type="submit" 
                                         name="add"
+                                        class="btn btn-primary"
                                         value="Agregar"/>
                             </div>
-        
                     <?php } ?>
                 </form>
-                <a href="<?=base_url("index.php/Family_relationship")?>">Volver</a>
-
-            </div>
+        <div class="text-center">
+          <a href="<?=base_url("index.php/Family_relationship")?>">Volver</a>
         </div>
-        
-    </body>
-</html>
+      </div>
+    </div>
+  </div>
+
+    

@@ -1,37 +1,12 @@
-<!DOCTYPE HTML>
-<html lang="es">
-    <head>
-        <meta charset="UTF-8" />
-        <title>Registro psicologico</title>
-        <!-- Required meta tags -->
-        <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<?php 
+    echo modules::run("Home/getHead");
+    echo modules::run("Home/getNav");
+    echo modules::run("Home/getHeader");
+    ?>
+<h2 class="display-4"><?="Seguimiento psicologico"?></h2>
+    <div class="container">
 
-        <!-- Bootstrap CSS -->
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-
-    </head>
-    <style type="text/css">
-        .detail{
-            border-radius: 5px;
-            background-color: #f2f2f2;
-            padding: 5px;
-        }
-        .body{
-            width : 70%;
-            margin-left : auto;
-            margin-right : auto;
-            padding : 0px;
-        }
-    </style>
-    <body>
-        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-
-    <div class = "body">
         
-        <h2 class="display-4"><?="Seguimiento spicologico"?></h2>
          <hr class="my-4">
         <form action="<?=
             base_url(
@@ -40,11 +15,15 @@
             ?>"
             id ="addForm"
             method="post">
-        <a href="<?=base_url("index.php/Psicology_history")?>">Volver</a>
-        <h2><?="Identificacion del estudiante"?></h2>
-        <div class = "jumbotron">
-            
-            <label for="identificacionStudent">Numero de identificación</label>
+            <a href="<?=
+            base_url("index.php/Psicology_history")?>"
+            >
+            <i class="fa fa-arrow-left" aria-hidden="true"></i> Volver
+          </a>
+        <!-- agregar estudiante -->       
+        <div class="card card-register  mx-auto mt-10">
+         <div class="card-header">Agregar Estudiante</div>
+          <div class="card-body">  
             <input type="number" 
                     class="form-control" 
                     name="n_ide"
@@ -87,10 +66,12 @@
                     class="form-control" 
                     placeholder = "Email"
                     required/>
-
+          </div>
         </div>
-        <h2><?="Relacion familiar"?></h2>
-        <div class = "jumbotron">
+        <!-- Relacion familiar--> 
+        <div class="card card-register  mx-auto mt-5">
+         <div class="card-header">Relacion familiar</div>
+          <div class="card-body">  
             <br/>
             <div>
                 <label for="">Describe relacion paternal como:</label>    
@@ -146,10 +127,12 @@
                         /></textarea>
                <br/>        
             </div>
+          </div>
         </div>
-        <h2><?="Antecendente escolar"?></h2>
-        <div class = "jumbotron">
-            <label >Historial escolar</label>
+         <!-- Historial escolar-->      
+         <div class="card card-register  mx-auto mt-5">
+         <div class="card-header">Historial escolar</div>
+          <div class="card-body">  
             <input type="text" 
                 name="h_sch"
                 class="form-control" 
@@ -161,9 +144,12 @@
                 class="form-control" 
                 placeholder = "Dificultades y habilidades"
                 required/>
+          </div>
         </div>
-        <h2><?="Historia socioemocional"?></h2>
-        <div class="jumbotron">
+        <!-- Historial socioemocional--> 
+        <div class="card card-register  mx-auto mt-5">
+         <div class="card-header">Historia socioemocional</div>
+          <div class="card-body"> 
             <label >Tiempo libre</label>
             <input type="text" 
                     name="f_tim"
@@ -202,21 +188,26 @@
                     placeholder = "Antecedente psicologico"
                     required/>
            
-            
+           </div> 
         </div>
         
-        
+        <div class="card card-register  mx-auto mt-5">
         <input type="submit" 
                     name="add"
-                    class="btn btn-primary mb-2"
+                    class="btn btn-primary"
                     value="Agregar"/>
         </form>
-        <a href="<?=base_url("index.php/Psicology_history")?>">Volver</a>
         
-        
-        
+        </div> 
+    <a href="<?=
+            base_url("index.php/Psicology_history")?>"
+            >
+            <i class="fa fa-arrow-left" aria-hidden="true"></i> Volver
+          </a>
     </div>
            
           
-    </body>
-</html>
+<?php 
+    echo modules::run("Home/getFooter");
+?>
+      

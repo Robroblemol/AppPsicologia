@@ -1,6 +1,6 @@
 <?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
  
-class Family_relationship extends CI_Controller {
+class Family_relationship extends MX_Controller {
 
  
 function __construct()
@@ -19,7 +19,14 @@ function __construct()
 public function index(){
     //cargamos un array con el metodo a visualizar
      $datos ["get"]=$this -> Family_relationship_model->get(); 
+     $datos ["title"]="Acudientes";
+     $datos ["app"]="Seguimiento psicologico";
      $this ->load -> view("Family_relationship_view",$datos);
+    }
+public function getForm(){
+    //cargamos un array con el metodo a visualizar
+     $datos ["get"]=$this -> Family_relationship_model->get(); 
+     $this ->load -> view("table_family_relation",$datos);
     }
 public function findOne(){
         if($this ->input -> post('findOne')){
@@ -87,18 +94,25 @@ public function update($goto){//recibimos el id por la url
     }
 public function setForm($id){
         if(is_numeric($id)){
+            $data ["title"]= "Editar Registro Relacion familiar";
+            $this->load->view('/addForm/head_form',$data);
             $datos ["update"]= 
                 $this -> Family_relationship_model
                     ->getOne($id,
                             "family_relationship",
                             "id_relationship");
             $datos ["status"] = true;
+            $this->load->view('/addForm/body_family_form',$datos);
             //le enviamos los datos al formulario update
-            $this ->load ->view("FormFamilyRelation_view",$datos);
+            //$this ->load ->view("FormFamilyRelation_view",$datos);
+            $this->load->view('/addForm/footer_form');
         }else{
+            $data ["title"]= "Agregar Registro Relacion familiar";
+            $this->load->view('/addForm/head_form',$data);
            $datos ["status"] = false;
            $datos ["update"] = '';
-           $this ->load ->view("FormFamilyRelation_view",$datos);
+           $this->load->view('/addForm/body_family_form',$datos);
+           $this->load->view('/addForm/footer_form');
         }
     }
 

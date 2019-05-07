@@ -47,15 +47,16 @@
                     </a>
                 </td>
                 <td>
+                       
+                    <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      <i class="fa fa-trash"></i>
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="alertsDropdown">
+                        <a class="dropdown-item" href="<?=base_url("index.php/Psicology_history/delete/$row->id_student/true")?>">
+                             Eliminar</a>
+                    </div>
                         
-                            <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                              <i class="fa fa-trash"></i>
-                            </a>
-                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="alertsDropdown">
-                            <a href="<?=base_url("index.php/Psicology_history/delete/$row->id_student/true")?>">
-                               Eliminar</a>
-                        </div>
-                    </td>
+                </td>
                 
                 <?php } ?>
                 </tbody>
