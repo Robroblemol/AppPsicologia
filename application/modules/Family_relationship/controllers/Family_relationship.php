@@ -19,14 +19,14 @@ function __construct()
 public function index(){
     //cargamos un array con el metodo a visualizar
      $datos ["get"]=$this -> Family_relationship_model->get(); 
-     $datos ["title"]="Acudientes";
-     $datos ["app"]="Seguimiento psicologico";
+     $datos ["title"]="Relacion familiar";
+     $datos ["app"]="Relacion familiar";
      $this ->load -> view("Family_relationship_view",$datos);
     }
 public function getForm(){
     //cargamos un array con el metodo a visualizar
-     $datos ["get"]=$this -> Family_relationship_model->get(); 
-     $this ->load -> view("table_family_relation",$datos);
+     //$datos ["get"]=$this -> Family_relationship_model->get(); 
+     $this ->load -> view("table_family_relation");
     }
 public function findOne(){
         if($this ->input -> post('findOne')){

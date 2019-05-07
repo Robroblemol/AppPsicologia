@@ -31,8 +31,8 @@ public function get(){
 }
 public function getForm(){
     //cargamos un array con el metodo a visualizar
-     $datos ["get"]=$this -> Students_model->get(); 
-     $this ->load -> view("tabla_students_view",$datos);
+    // $datos ["get"]=$this -> Students_model->get(); 
+     $this ->load -> view("tabla_students_view");
     }
 public function get_one($id,$field='id_student'){
         $datos = $this -> Students_model

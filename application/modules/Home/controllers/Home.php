@@ -33,12 +33,12 @@ public function setApp($app){
     $this->app=$app;
 }
 public function getHead(){
-    $data ["title"]= $this->title;
-    $this->load->view('/home/head',$data);
+   // $data ["title"]= $this->title;
+    $this->load->view('/home/head');
 }
 public function getNav(){
-    $data ["app"]= $this->app;
-    $this->load->view('/home/nav',$data);
+    //$data ["app"]= $this->app;
+    $this->load->view('/home/nav');
     
     }
 public function getHeader(){
