@@ -68,6 +68,61 @@
                     required/>
           </div>
         </div>
+        <!-- agregar acudiente -->
+        <div class="card card-register  mx-auto mt-5">
+         <div class="card-header">Agregar Acudiente</div>
+          <div class="card-body"> 
+          <label>Nombre Acudiente</label>
+            <input type="text" 
+                    class="form-control" 
+                    name="nam_acu"
+                    placeholder = "Nombre acudiente"
+                    required/>
+           <label >Parentesco</label>
+           <input type="text" 
+                    name="typ"
+                    class="form-control" 
+                    placeholder = "Nombre estudiante"
+                    required/>
+            <label>Fecha de nacimiento</label>
+           <input type="date" 
+                    name="d_bir"
+                    class="form-control" 
+                    placeholder = "fecha de nacimiento"
+                    required/>
+           <label>Grado de escolaridad</label>
+           <input type="text" 
+                    name="grad"
+                    class="form-control" 
+                    placeholder = "Grado de escolaridad"
+                    required/>
+           <label>Profesión</label>
+           <input type="text" 
+                    name="pro"
+                    class="form-control" 
+                    placeholder = "Profesión"
+                    required/>
+           <label>Dirección</label>
+           <input type="text" 
+                    name="dir"
+                    class="form-control" 
+                    placeholder = "Dirección"
+                    required/>
+            <label>Teléfono</label>
+           <input type="number" 
+                    name="pho"
+                    class="form-control" 
+                    placeholder = "Profesión"
+                    required/>
+            <label for="emailStudent">Email</label>
+           <input type="email" 
+                    name="ema"
+                    class="form-control" 
+                    placeholder = "Email"
+                    required/>
+            </div>
+          </div>
+        </div>
         <!-- Relacion familiar--> 
         <div class="card card-register  mx-auto mt-5">
          <div class="card-header">Relacion familiar</div>

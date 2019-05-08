@@ -102,6 +102,19 @@ public function add($goto){
         if($addStudent&&$id_stu[0]!=null){
             $data = array(
                 'id_student' => $id_stu[0]['id_student'],
+                'name' => $this->input->post('nam_acu'),
+                'type' => $this->input->post('typ'),
+                'date_birth' => $this->input->post('d_bir'),
+                'grade' => $this->input->post('grad'),
+                'profession' => $this->input->post('pro'),
+                'adress' => $this->input->post('dir'),
+                'phone' => $this->input->post('pho'),
+                'email' => $this->input->post('ema'),
+                );
+            $addAttendants = $this->
+                Attendants_model->add($data);
+            $data = array(
+                'id_student' => $id_stu[0]['id_student'],
                 'with_father' => $this->input->post('w_fat'),
                 'with_mother' => $this->input->post('w_mot'),
                 'with_brothers' => $this->input->post('w_bro'),
@@ -131,7 +144,9 @@ public function add($goto){
             $addSocial = $this->
                 Social_economic_model->add($data);
                     
-            if($addStudent && $addFamily && $addSchool && $addSocial){
+            if($addStudent && $addFamily && 
+                $addSchool && $addSocial && 
+                $addAttendants){
                 //Sesion de una sola ejecucion
                 $this -> session -> set_flashdata('Ok','Registro creado correctamente');
             }else{
