@@ -1,7 +1,7 @@
 <?php 
-    echo modules::run("Home/getHead");
-    echo modules::run("Home/getNav");
-    echo modules::run("Home/getHeader");
+    echo modules::run("Home/get_head");
+    echo modules::run("Home/get_nav");
+    echo modules::run("Home/get_header");
     ?>
 <h2 class="display-4"><?="Seguimiento psicologico"?></h2>
     <div class="container">
@@ -208,6 +208,6 @@
            
           
 <?php 
-    echo modules::run("Home/getFooter");
+    echo modules::run("Home/get_footer");
 ?>
       

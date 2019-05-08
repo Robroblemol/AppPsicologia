@@ -26,8 +26,9 @@ function __construct()
 public function index(){
     //cargamos un array con el metodo a visualizar
      //$datos ["get"]=$this -> Students_model->get();
-     $datos =array('title'=>'Seguimiento psicologico', 
-        'app'=> 'Seguimiento estudiante');
+    $datos ["app"]="Seguimiento estudiantes";
+     $datos['title'] ="Seguimiento psicologico";
+
      $this ->load -> view("Psicology_histories_view",$datos);
     }
 public function get_table(){
@@ -36,6 +37,8 @@ public function get_table(){
     $this ->load -> view("Form_Psicology_histories_view",$datos);
 }
 public function get_detail($id){
+    $datos ["app"]="Detalle estudiantes";
+     $datos['title'] ="Seguimiento psicologico";
     
     $datos ["get"]=$this -> Students_model->getOne(
         $id,'students','id_student'
@@ -171,6 +174,9 @@ public function update($goto){//recibimos el id por la url
     }
 public function setForm($id){
         if(is_numeric($id)){
+            $datos ["title"]= "Editar Seguimiento psicologico";
+            $datos ["app"]="Agragar Seguimiento";
+            //$this->load->view('/addForm/head_form',$data);
             $datos ["update"]= 
                 $this -> Appointments_model
                     ->getOne($id,
@@ -180,6 +186,8 @@ public function setForm($id){
             //le enviamos los datos al formulario update
             $this ->load ->view("FormPsicology_view",$datos);
         }else{
+            $datos ["title"]= "Editar Seguimiento psicologico";
+            $datos ["app"]="Agragar Seguimiento";
            $datos ["status"] = false;
            $datos ["update"] = '';
            $this ->load ->view("FormPsicology_view",$datos);

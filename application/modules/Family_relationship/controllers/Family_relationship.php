@@ -107,7 +107,7 @@ public function setForm($id){
             //$this ->load ->view("FormFamilyRelation_view",$datos);
             $this->load->view('/addForm/footer_form');
         }else{
-            $data ["title"]= "Agregar Registro Relacion familiar";
+            $data ["title"]= "Agregar Registro familiar";
             $this->load->view('/addForm/head_form',$data);
            $datos ["status"] = false;
            $datos ["update"] = '';

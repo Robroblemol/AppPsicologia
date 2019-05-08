@@ -20,7 +20,7 @@ CREATE TABLE IF NOT EXISTS `students` (
 
 CREATE TABLE IF NOT EXISTS `relatives` (
     `id_relative` smallint(5) unsigned NOT NULL AUTO_INCREMENT,
-    `id_alum` smallint(5) unsigned NOT NULL,
+    `id_student` smallint(5) unsigned NOT NULL,
     `type` varchar(25),
     `name` varchar(25),
     `date_birth` date NOT NULL,
@@ -172,7 +172,7 @@ ADD FOREIGN KEY (`id_student`)
 REFERENCES `students`(`id_student`);
 
 
-CREATE TABLE IF NOT EXISTS `social_economic_histories` (
+CREATE TABLE IF NOT EXISTS `register_histories` (
     `id_social_economic` smallint(5) unsigned NOT NULL AUTO_INCREMENT,
     `id_student` smallint(5) unsigned NOT NULL,
     `free_time`varchar(1000),

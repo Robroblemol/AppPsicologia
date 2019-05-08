@@ -97,18 +97,26 @@ public function update($goto){//recibimos el id por la url
     }
 public function setForm($id){
         if(is_numeric($id)){
+            $data ["title"]= "Editar Registro Socioemocional";
+            $this->load->view('/addForm/head_form',$data);
             $datos ["update"]= 
                 $this -> Social_economic_model
                     ->getOne($id,
                             "social_economic_histories",
                             "id_social_economic");
             $datos ["status"] = true;
+            $this->load->view('/addForm/body_social_form',$datos);
             //le enviamos los datos al formulario update
-            $this ->load ->view("FormSocial_eco_view",$datos);
+            //$this ->load ->view("FormSocial_eco_view",$datos);
+            $this->load->view('/addForm/footer_form');
         }else{
+            $data ["title"]= "Agregar Registro Socioemocional";
+            $this->load->view('/addForm/head_form',$data);
            $datos ["status"] = false;
            $datos ["update"] = '';
-           $this ->load ->view("FormSocial_eco_view",$datos);
+           $this->load->view('/addForm/body_social_form',$datos);
+           //$this ->load ->view("FormSocial_eco_view",$datos);
+           $this->load->view('/addForm/footer_form');
         }
     }
 

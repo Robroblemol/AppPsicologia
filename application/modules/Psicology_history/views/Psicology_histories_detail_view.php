@@ -1,7 +1,7 @@
 <?php 
-    echo modules::run("Home/getHead");
-    echo modules::run("Home/getNav");
-    echo modules::run("Home/getHeader");
+    echo modules::run("Home/get_head");
+    echo modules::run("Home/get_nav");
+    echo modules::run("Home/get_header");
     ?>
     <a href="<?=
             base_url("index.php/Psicology_history")?>"
@@ -130,6 +130,6 @@
 
        
 <?php 
-    echo modules::run("Home/getFooter");
+    echo modules::run("Home/get_footer");
 ?>
         
