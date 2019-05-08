@@ -1,6 +1,6 @@
 <?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
  
-class Appointments extends CI_Controller {
+class Appointments extends MX_Controller {
 
  
 function __construct()
@@ -18,9 +18,14 @@ function __construct()
 //funcion por defecto del controlador muestra los estudiantes
 public function index(){
     //cargamos un array con el metodo a visualizar
+    $datos['title']="Citas";
+    $datos['app']="Citas";
      $datos ["get"]=$this -> Appointments_model->get(); 
      $this ->load -> view("Appointments_view",$datos);
     }
+public function get_table(){
+    $this ->load -> view("table_appointments_view");
+}
 public function findOne(){
         if($this ->input -> post('findOne')){
             $id = $this -> input ->post('id');
@@ -35,6 +40,8 @@ public function findOne(){
         
     }
 public function add($goto){
+    $this->Appointments_model->set_asign_date(
+        $this->input->post('a_app'), 1);
     $s_app;
     if($this ->input ->post('s_app')== null)
        $s_app = 0;
@@ -98,23 +105,41 @@ public function update($goto){//recibimos el id por la url
     }
 public function setForm($id){
         if(is_numeric($id)){
+            $data ["title"]= "Editar Cita";
+            $this->load->view('/addForm/head_form',$data);
             $datos ["update"]= 
                 $this -> Appointments_model
                     ->getOne($id,
                             "appointmets",
                             "id_appointmet");
             $datos ["status"] = true;
+            $this->load->view('/addForm/body_appointments_form',$datos);
             //le enviamos los datos al formulario update
-            $this ->load ->view("FormAppointments_view",$datos);
+            $this->load->view('/addForm/footer_form');
+            //$this ->load ->view("FormAppointments_view",$datos);
         }else{
+            $data ["title"]= "Agregar Cita";
+            $this->load->view('/addForm/head_form',$data);    
            $datos ["status"] = false;
            $datos ["update"] = '';
-           $this ->load ->view("FormAppointments_view",$datos);
+            $datos["checkApp"]=$this->Appointments_model->getOne(
+                0,'asing_date','state_appo'
+            );
+        
+           //$this ->load ->view("FormAppointments_view",$datos);
+           $this->load->view('/addForm/body_appointments_form',$datos);
+            //le enviamos los datos al formulario update
+            $this->load->view('/addForm/footer_form');
         }
     }
 
 public function delete($id,$goto){
         if(is_numeric($id)){
+            $data=$this->Appointments_model
+                ->getOne($id,'appointmets','id_appointmet','asing_appo');
+            $this->Appointments_model
+                ->set_asign_date($data[0]->asing_appo,0);
+            
             $delete=$this
                 ->Appointments_model
                 ->delete($id,"appointmets");

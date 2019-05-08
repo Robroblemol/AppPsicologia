@@ -203,3 +203,21 @@ CREATE TABLE IF NOT EXISTS `appointmets` (
 ALTER TABLE `appointmets`
 ADD FOREIGN KEY (`id_student`)
 REFERENCES `students`(`id_student`);
+
+CREATE TABLE IF NOT EXISTS `asing_date` (
+`id_asing_date` smallint(5) unsigned NOT NULL AUTO_INCREMENT,
+    `asing_appo`varchar(50),
+    `state_appo` smallint(5) unsigned,
+    PRIMARY KEY (`id_asing_date`)
+)  ENGINE=InnoDB  DEFAULT CHARSET=utf8;
+
+INSERT INTO asing_date (asing_appo,state_appo)
+VALUES ('lunes 8:15 am',0);
+INSERT INTO asing_date (asing_appo,state_appo)
+VALUES ('martes 8:15 am',0);
+INSERT INTO asing_date (asing_appo,state_appo)
+VALUES ('miercoles 8:15 am',0);
+INSERT INTO asing_date (asing_appo,state_appo)
+VALUES ('jueves 8:15 am',0);
+INSERT INTO asing_date (asing_appo,state_appo)
+VALUES ('viernes 8:15 am',0);
