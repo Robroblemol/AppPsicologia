@@ -39,7 +39,39 @@
                 </div>
             </div>
         <?php } ?>
-        
+        <?php foreach($getAttendant as $row){ ?>
+         
+            <div class = "card mb-3">
+                  <div class="card-header">
+                     <h2>Acudiente</h2>
+                 </div>
+                <div class="card-body">
+                    Nombre acudiente:   
+                    <?= $row->name?><br/>
+                    Parentesco: 
+                    <?= $row->type?><br/>
+                    Edad:
+                    <?= $row->date_birth?><br/>
+                    Grado de escolaridad:  
+                    <?= $row->grade?><br/>
+                    Profesion:   
+                    <?= $row->profession?><br/>
+                    Direccion:   
+                    <?= $row->adress?><br/>
+                    Telefono:   
+                    <?= $row->phone?><br/>
+                    Email:   
+                    <?= $row->email?><br/>
+                </div>
+                <div class="card-footer small text-muted">
+                 <a href="<?=
+                        base_url("index.php/Attendants/setForm/$row->id_relative")?>"
+                        >
+                        <i class="fa fa-edit"></i>Editar
+                    </a>
+                </div>
+            </div>
+        <?php } ?>
 
         <?php foreach($getFamily as $row){ ?>
          

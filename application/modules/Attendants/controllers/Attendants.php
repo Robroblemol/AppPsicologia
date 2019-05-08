@@ -115,13 +115,14 @@ public function setForm($id){
            //$this ->load ->view("formAttendant_view",$datos);
         }
     }
-public function findOne(){
-  if($id = $this -> input ->post('findOne')){
-    $id = $this -> input ->post('id');
-    $field = $this -> input ->post('field');
-    $datos ["get"]= $this -> Attendants_model
-    ->getOne($id,'relatives',$field);
-    $this ->load -> view("Attendants_view",$datos);
-  }else   redirect('/Attendant');
+public function find_one($id,$field='id_student'){
+  //if($id = $this -> input ->post('findOne')){
+    //$id = $this -> input ->post('id');
+   // $field = $this -> input ->post('field');
+    $datos = $this -> Attendants_model
+        ->getOne($id,'relatives',$field);
+    return $datos;
+    //$this ->load -> view("Attendants_view",$datos);
+ // }else   redirect('/Attendant');
     }
 }
