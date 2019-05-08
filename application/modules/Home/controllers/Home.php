@@ -20,7 +20,10 @@ public function index()
      $this->load->view('/home/head',$data);
      $data ["app"] = "Seguimiento psicologico";
      $this->load->view('/home/nav',$data);
-     $this->load->view('/home/header');
+     $datos['citas']=count(
+        modules::run("Appointments/get")['get']
+        );
+     $this->load->view('/home/header',$datos);
      $this->load->view('/home/content');
      $this->load->view('/home/footer');
      //$this ->load->view("home_view",$data);
@@ -42,7 +45,10 @@ public function get_nav(){
     
     }
 public function get_header(){
-    $this->load->view('/home/header');
+    $datos['citas']=count(
+        modules::run("Appointments/get")['get']
+        );
+    $this->load->view('/home/header',$datos);
 }
 public function get_footer(){
     $this->load->view('/home/footer');

@@ -26,6 +26,10 @@ public function index(){
 public function get_table(){
     $this ->load -> view("table_appointments_view");
 }
+public function get(){
+    $datos ["get"]=$this -> Appointments_model->get();
+    return $datos;
+}
 public function findOne(){
         if($this ->input -> post('findOne')){
             $id = $this -> input ->post('id');

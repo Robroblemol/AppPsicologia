@@ -92,7 +92,9 @@
                 <div class="card-body-icon">
                   <i class="fas fa-fw fa-list"></i>
                 </div>
-                <div class="mr-5">Citas</div>
+                <div class="mr-5">Citas agendadas <?=
+                  $citas;
+                ?></div>
               </div>
               <a class="card-footer text-white clearfix small z-1" 
                 href="<?=base_url('index.php/Appointments')?>">
