@@ -20,7 +20,7 @@ CREATE TABLE IF NOT EXISTS `students` (
 
 CREATE TABLE IF NOT EXISTS `relatives` (
     `id_relative` smallint(5) unsigned NOT NULL AUTO_INCREMENT,
-    `id_alum` smallint(5) unsigned NOT NULL,
+    `id_student` smallint(5) unsigned NOT NULL,
     `type` varchar(25),
     `name` varchar(25),
     `date_birth` date NOT NULL,
@@ -70,11 +70,11 @@ END;
 CREATE TABLE IF NOT EXISTS `family_relationship` (
     `id_relationship` smallint(5) unsigned NOT NULL AUTO_INCREMENT,
     `id_student` smallint(5) unsigned NOT NULL,
-    `with_father` varchar(25),
-    `with_mother` varchar(25),
-    `with_brothers` varchar(25),
-    `with_step_parents` varchar(25),
-    `observations` varchar(25),
+    `with_father` varchar(50),
+    `with_mother` varchar(50),
+    `with_brothers` varchar(50),
+    `with_step_parents` varchar(50),
+    `observations` varchar(1000),
     `date`timestamp DEFAULT CURRENT_TIMESTAMP,
     PRIMARY KEY (`id_relationship`)
 )  ENGINE=InnoDB  DEFAULT CHARSET=utf8 ;
@@ -85,19 +85,21 @@ CREATE TABLE IF NOT EXISTS `school_histories` (
     `id_student` smallint(5) unsigned NOT NULL,
     `histori_school` varchar(255),
     `skills_dificulties` varchar(255),
+    `date`timestamp DEFAULT CURRENT_TIMESTAMP,
     PRIMARY KEY (`id_school_histories`)
 )  ENGINE=InnoDB  DEFAULT CHARSET=utf8 ;
 
 
+/*
 CREATE TABLE IF NOT EXISTS `psychological_histories` (
     `id_psychological` smallint(5) unsigned NOT NULL AUTO_INCREMENT,
     `id_student` smallint(5) unsigned NOT NULL,
-    `id_ant_family`smallint(5) unsigned NOT NULL,
     `id_school_histories`smallint(5) unsigned NOT NULL,
     `id_relationship`smallint(5) unsigned NOT NULL,
     `date`timestamp DEFAULT CURRENT_TIMESTAMP,
     PRIMARY KEY (`id_psychological`)
 )  ENGINE=InnoDB  DEFAULT CHARSET=utf8 ;
+
 
 ALTER TABLE `psychological_histories`
 ADD FOREIGN KEY (`id_student`)
@@ -114,7 +116,7 @@ REFERENCES `school_histories`(`id_school_histories`);
 ALTER TABLE `psychological_histories`
 ADD FOREIGN KEY (`id_relationship`)
 REFERENCES `family_relationship`(`id_relationship`);
-
+*/
 
 ALTER TABLE `school_histories`
 ADD FOREIGN KEY (`id_student`)
@@ -125,15 +127,14 @@ ADD FOREIGN KEY (`id_student`)
 REFERENCES `students`(`id_student`);
 
 
-
+/*
 CREATE TABLE IF NOT EXISTS `psychological_histories` (
     `id_psychological` smallint(5) unsigned NOT NULL AUTO_INCREMENT,
     `id_student` smallint(5) unsigned NOT NULL,
     `date`timestamp DEFAULT CURRENT_TIMESTAMP,
     PRIMARY KEY (`id_remition`)
 )  ENGINE=InnoDB  DEFAULT CHARSET=utf8 ;
-
-
+*/
 
 
 
@@ -141,39 +142,52 @@ CREATE TABLE IF NOT EXISTS `psychological_histories` (
 CREATE TABLE IF NOT EXISTS `remtion_teacher` (
     `id_remition` smallint(5) unsigned NOT NULL AUTO_INCREMENT,
     `id_student` smallint(5) unsigned NOT NULL,
-    `reason` varchar(255) NOT NULL,
-    `description` varchar(255)NOT NULL,
-    `commtens` varchar(255),
-    `comp_teacher` varchar(255),
-    `comp_parents` varchar(255),
-    `conclutions` varchar(255),
+    `reason` varchar(500) NOT NULL,
+    `description` varchar(500)NOT NULL,
+    `commtens` varchar(500),
+    `comp_teacher` varchar(500),
+    `comp_parents` varchar(500),
+    `conclutions` varchar(500),
     `date`timestamp DEFAULT CURRENT_TIMESTAMP,
     PRIMARY KEY (`id_remition`)
 )  ENGINE=InnoDB  DEFAULT CHARSET=utf8 ;
+
+ALTER TABLE `remtion_teacher`
+ADD FOREIGN KEY (`id_student`)
+REFERENCES `students`(`id_student`);
+
 
 
 CREATE TABLE IF NOT EXISTS `psicology_asistan_register` (
     `id_register` smallint(5) unsigned NOT NULL AUTO_INCREMENT,
     `id_student` smallint(5) unsigned NOT NULL,
-    `reason`varchar(255)NOT NULL,
-    `funcionary`varchar(255)NOT NULL,
+    `reason`varchar(500)NOT NULL,
+    `funcionary`varchar(500)NOT NULL,
     `date` timestamp DEFAULT CURRENT_TIMESTAMP,
     PRIMARY KEY (`id_register`)
 )  ENGINE=InnoDB  DEFAULT CHARSET=utf8;
 
+ALTER TABLE `psicology_asistan_register`
+ADD FOREIGN KEY (`id_student`)
+REFERENCES `students`(`id_student`);
 
-CREATE TABLE IF NOT EXISTS `pedagogical_profile` (
-    `id_profile` smallint(5) unsigned NOT NULL AUTO_INCREMENT,
+
+CREATE TABLE IF NOT EXISTS `register_histories` (
+    `id_social_economic` smallint(5) unsigned NOT NULL AUTO_INCREMENT,
     `id_student` smallint(5) unsigned NOT NULL,
-    `cognit`varchar(255),
-    `comunication`varchar(50),
-    `moral_spirt` varchar(50),
-    `strengths` varchar(50),
-    `weakness` varchar(50),
-    `learnig_barries` varchar(50),
-    `strateg` varchar(50),
-    PRIMARY KEY (`id_profile`)
+    `free_time`varchar(1000),
+    `inter_persons`varchar(50),
+    `behavior_encouragement` varchar(50),
+    `life_proyect` varchar(1000),
+    `ant_health` varchar(500),
+    `ant_psicology` varchar(500),
+    `date` timestamp DEFAULT CURRENT_TIMESTAMP,
+    PRIMARY KEY (`id_social_economic`)
 )  ENGINE=InnoDB  DEFAULT CHARSET=utf8;
+
+ALTER TABLE `social_economic_histories`
+ADD FOREIGN KEY (`id_student`)
+REFERENCES `students`(`id_student`);
 
 CREATE TABLE IF NOT EXISTS `appointmets` (
     `id_appointmet` smallint(5) unsigned NOT NULL AUTO_INCREMENT,
@@ -181,5 +195,29 @@ CREATE TABLE IF NOT EXISTS `appointmets` (
     `description`varchar(255),
     `asing_appo`varchar(50),
     `state_appo` varchar(50),
+    `request_date`varchar(50),
+    `date`timestamp DEFAULT CURRENT_TIMESTAMP, 
     PRIMARY KEY (`id_appointmet`)
 )  ENGINE=InnoDB  DEFAULT CHARSET=utf8;
+
+ALTER TABLE `appointmets`
+ADD FOREIGN KEY (`id_student`)
+REFERENCES `students`(`id_student`);
+
+CREATE TABLE IF NOT EXISTS `asing_date` (
+`id_asing_date` smallint(5) unsigned NOT NULL AUTO_INCREMENT,
+    `asing_appo`varchar(50),
+    `state_appo` smallint(5) unsigned,
+    PRIMARY KEY (`id_asing_date`)
+)  ENGINE=InnoDB  DEFAULT CHARSET=utf8;
+
+INSERT INTO asing_date (asing_appo,state_appo)
+VALUES ('lunes 8:15 am',0);
+INSERT INTO asing_date (asing_appo,state_appo)
+VALUES ('martes 8:15 am',0);
+INSERT INTO asing_date (asing_appo,state_appo)
+VALUES ('miercoles 8:15 am',0);
+INSERT INTO asing_date (asing_appo,state_appo)
+VALUES ('jueves 8:15 am',0);
+INSERT INTO asing_date (asing_appo,state_appo)
+VALUES ('viernes 8:15 am',0);

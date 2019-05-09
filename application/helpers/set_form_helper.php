@@ -36,7 +36,7 @@ function fromSelectAcudiente($query,$id){
                 style="width: 300px; display: active;">';
     $endcombo = '</select>';
         
-    foreach($query -> result() as $row){
+        foreach($query -> result() as $row){
         if($row->id_alum == $id){
             $combo .='<option value="'.$row->id_relative.
                     '" selected="selected">'.$row->name.
@@ -49,4 +49,42 @@ function fromSelectAcudiente($query,$id){
         }
     }
     return $combo.$endcombo;
+}
+function FormAddRelatives($primary_key){
+    
+    $input = '<input name= "name" type= "text" style= "width: 300px;"/>';
+    return $input;
+    
+}
+function setTitleForm($index){
+    switch($index){
+        case 'acudiente':
+            return '<h3> Información Acudiente </h3>';
+            break;
+    }
+}
+function getFieldStudent($i){
+    $field = array(
+        "n_identification",
+        "name",
+        "hometown",
+        "date_birth",
+        "current_course",
+        "repet_course",
+        "email",
+        );
+    return $field[$i];
+}
+
+function getFieldPost($post,$i=7){
+    if($i >= 1){
+        $field =  getFieldStudent($i);
+        if($field == $post[$field]){
+            return $post[$field];
+        }else{
+            $i--;
+            getFieldPost($post,$i);
+        }
+    }else
+        return null;
 }

@@ -103,6 +103,12 @@ public function students(){
     $crud->display_as('current_course','Curso actual');
     $crud->display_as('repet_course','Repitente');
     
+                 
+    $crud->field_type('current_course','dropdown',
+            array(  '1' => 'primero',
+                    '2' => 'segundo',
+                    '3' => 'tercero'));
+    
     $crud->required_fields('n_identification','name_student',
                     'hometown','date_birth','current_course',
                     'repet_course');//campo obligatorio
