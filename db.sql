@@ -1,4 +1,4 @@
-DROP SCHEMA IF EXISTS c9; 
+DROP SCHEMA IF EXISTS c9;
 CREATE SCHEMA IF NOT EXISTS c9;
 
 use c9;
@@ -55,7 +55,7 @@ REFERENCES `relatives`(`id_relative`);
 CREATE  TRIGGER add_relative_to_student AFTER INSERT ON `relatives`
 FOR EACH ROW
 BEGIN
-    INSERT INTO `students_relatives` SET 
+    INSERT INTO `students_relatives` SET
         students_relatives.id_student = new.id_alum,
         students_relatives.id_relative = new.id_relative;
 
@@ -172,7 +172,7 @@ ADD FOREIGN KEY (`id_student`)
 REFERENCES `students`(`id_student`);
 
 
-CREATE TABLE IF NOT EXISTS `register_histories` (
+CREATE TABLE IF NOT EXISTS `social_economic_histories` (
     `id_social_economic` smallint(5) unsigned NOT NULL AUTO_INCREMENT,
     `id_student` smallint(5) unsigned NOT NULL,
     `free_time`varchar(1000),
@@ -196,7 +196,7 @@ CREATE TABLE IF NOT EXISTS `appointmets` (
     `asing_appo`varchar(50),
     `state_appo` varchar(50),
     `request_date`varchar(50),
-    `date`timestamp DEFAULT CURRENT_TIMESTAMP, 
+    `date`timestamp DEFAULT CURRENT_TIMESTAMP,
     PRIMARY KEY (`id_appointmet`)
 )  ENGINE=InnoDB  DEFAULT CHARSET=utf8;
 

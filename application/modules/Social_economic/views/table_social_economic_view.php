@@ -1,27 +1,27 @@
 <div class="card mb-3">
           <div class="card-header">
-            
+
             <form action="<?=base_url("index.php/Student/setForm/add");?>" method="post">
              <i class="fas fa-table"></i>
                 Registro socioemocional
             </form>
             </div>
-            
+
           <div class="card-body">
               <form action="<?=base_url("index.php/Social_economic/setForm/add");?>" method="post">
                  <td>
-                     <input type="submit" 
+                     <button type="submit"
                         name="add"
-                        class="btn btn-primary"
-                        value="Agregar"/>
+                        class="btn btn-primary"/>
+                      <i class="fa fa-plus"></i>  Agregar</button>
                 </td>
              </form>
                         <br/>
             <div class="table-responsive">
               <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                
+
                 <thead>
-                    
+
                     <tr>
                         <th>Editar/Eliminar</th>
                         <th>id_student</th>
@@ -32,7 +32,7 @@
                         <th>Antecedente de salud</th>
                         <th>Antecedente psicologico</th>
                         <th>Fecha</th>
-                        
+
                     </tr>
                 </thead>
                 <tfoot>
@@ -46,11 +46,11 @@
                         <th>Antecedente de salud</th>
                         <th>Antecedente psicologico</th>
                         <th>Fecha</th>
-                    
+
                     </tr>
                 </tfoot>
-                
-            
+
+
         <?php foreach($get as $row){ ?>
                     <tr>
                         <td>
@@ -89,7 +89,7 @@
                         <td>
                             <?=$row->date;?>
                         </td>
-                        
+
                     </tr>
                 <?php } ?>
 
@@ -99,14 +99,14 @@
             <br/>
             <form action="<?=base_url("index.php/Social_economic/setForm/add");?>" method="post">
                              <td>
-                                 <input type="submit" 
+                                 <button type="submit"
                                     name="add"
-                                    class="btn btn-primary"
-                                    value="Agregar"/>
+                                    class="btn btn-primary"/>
+                                    <i class="fa fa-plus"></i>  Agregar</button>
                             </td>
                         </form>
           </div>
           <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
         </div>
-    
+
     </div>
