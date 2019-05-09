@@ -3,7 +3,7 @@
 
             <form action="<?=base_url("index.php/Student/setForm/add");?>" method="post">
              <i class="fas fa-table"></i>
-                Registro socioemocional
+                Registro Socio-emocional
             </form>
             </div>
 
