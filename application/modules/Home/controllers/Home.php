@@ -16,13 +16,13 @@ function __construct()
  
 public function index()
     {
-     $data ["title"]= "Inicio";
-     $this->load->view('/home/head',$data);
-     $data ["app"] = "Seguimiento psicologico";
-     $this->load->view('/home/nav',$data);
-     $datos['citas']=count(
+     $datos["citas"]=count(
         modules::run("Appointments/get")['get']
         );
+     $datos ["title"]= "Inicio";
+     $this->load->view('/home/head',$datos);
+     $datos ["app"] = "Seguimiento psicologico";
+     $this->load->view('/home/nav',$datos);
      $this->load->view('/home/header',$datos);
      $this->load->view('/home/content');
      $this->load->view('/home/footer');
@@ -40,8 +40,10 @@ public function get_head(){
     $this->load->view('/home/head');
 }
 public function get_nav(){
-    //$data ["app"]= $this->app;
-    $this->load->view('/home/nav');
+    $datos['citas']=count(
+        modules::run("Appointments/get")['get']
+        );
+    $this->load->view('/home/nav',$datos);
     
     }
 public function get_header(){
