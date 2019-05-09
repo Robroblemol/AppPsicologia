@@ -21,7 +21,7 @@ function __construct()
 public function index(){
     //cargamos un array con el metodo a visualizar
      $datos ["get"]=$this -> Students_model->get();
-     $datos ["app"]="Registro estudiantes";
+     $datos ["app"]="estudiantes";
      $datos ["title"]="Estudiantes";
      $this ->load -> view("students_view",$datos);
     }

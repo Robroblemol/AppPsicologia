@@ -2,7 +2,7 @@
 
   <nav class="navbar navbar-expand navbar-dark bg-dark static-top">
 
-    <a class="navbar-brand mr-1" href="<?=base_url("index.php/Home")?>"><?= $app?></a>
+    <a class="navbar-brand mr-1" href="<?=base_url("index.php/Home")?>">Seguimiento Psicologico</a>
 
     <button class="btn btn-link btn-sm text-white order-1 order-sm-0" id="sidebarToggle" href="#">
       <i class="fas fa-bars"></i>

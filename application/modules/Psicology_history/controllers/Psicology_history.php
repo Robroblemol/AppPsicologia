@@ -27,7 +27,7 @@ function __construct()
 public function index(){
     //cargamos un array con el metodo a visualizar
      //$datos ["get"]=$this -> Students_model->get();
-    $datos ["app"]="Seguimiento estudiantes";
+    $datos ["app"]="seguimiento";
      $datos['title'] ="Seguimiento psicologico";
 
      $this ->load -> view("Psicology_histories_view",$datos);

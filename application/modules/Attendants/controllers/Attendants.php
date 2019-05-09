@@ -11,7 +11,7 @@ class Attendants extends MX_Controller {
     public function index(){
     //cargamos un array con el metodo a visualizar
     $datos['title']="Acudientes";
-    $datos['app']="Seguimiento psicológicos";
+    $datos['app']="acudientes";
     $datos ["get"]= $this -> Attendants_model->get();
     $this ->load -> view("attendant_view",$datos);
     

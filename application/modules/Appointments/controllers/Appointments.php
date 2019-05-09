@@ -19,7 +19,7 @@ function __construct()
 public function index(){
     //cargamos un array con el metodo a visualizar
     $datos['title']="Citas";
-    $datos['app']="Citas";
+    $datos['app']="citas";
      $datos ["get"]=$this -> Appointments_model->get(); 
      $this ->load -> view("Appointments_view",$datos);
     }

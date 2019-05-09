@@ -32,6 +32,8 @@
       <div class="container-fluid">
         
       <div class="row">
+        
+        <?php if($app != 'seguimiento'){?>
           <div class="col-xl-3 col-sm-6 mb-3">
             <div class="card text-white bg-primary o-hidden h-100">
               <div class="card-body">
@@ -49,7 +51,8 @@
               </a>
             </div>
           </div>
-          
+        <?php }?>  
+        <?php if($app != 'estudiantes'){?>
           <div class="col-xl-3 col-sm-6 mb-3">
             <div class="card text-white bg-warning o-hidden h-100">
               <div class="card-body">
@@ -67,7 +70,8 @@
               </a>
             </div>
           </div>
-          
+        <?php }?>  
+        <?php if($app != 'acudientes'){?>  
           <div class="col-xl-3 col-sm-6 mb-3">
             <div class="card text-white bg-success o-hidden h-100">
               <div class="card-body">
@@ -85,7 +89,8 @@
               </a>
             </div>
           </div>
-          
+        <?php }?> 
+        <?php if($app != 'citas'){?>
           <div class="col-xl-3 col-sm-6 mb-3">
             <div class="card text-white bg-danger o-hidden h-100">
               <div class="card-body">
@@ -105,6 +110,7 @@
               </a>
             </div>
           </div>
+        <?php }?>  
         </div>
 
         <?php 
