@@ -42,30 +42,36 @@
                 <tr>
 
                 <td>
-                    <a href="<?=base_url("index.php/Psicology_history/get_detail/$row->id_student")?>">
-                      <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <i class="fa fa-trash"></i>
-                      </a>
-                      <div class="dropdown-menu dropdown-menu-right" aria-labelledby="alertsDropdown">
-                          <a class="dropdown-item" href="<?=base_url("index.php/Psicology_history/delete/$row->id_student/true")?>">
-                               Eliminar</a>
-                      </div>
 
-                </td>
-                <td>
+                  <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  <i class="fa fa-trash"></i>
+                </a>
+                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="alertsDropdown">
+                    <a class="dropdown-item" href="<?=base_url("index.php/Psicology_history/delete/$row->id_student/true")?>">
+                         Eliminar</a>
+                </div>
+
+              </td>
+              <td>
+                    <a href="<?=base_url("index.php/Psicology_history/get_detail/$row->id_student")?>">
                     <?=$row->n_identification;?>
+                    </a>
                 </td>
                 <td>
-                    <?=$row->name;?>
+                    <a href="<?=base_url("index.php/Psicology_history/get_detail/$row->id_student")?>">
+                        <?=$row->name;?>
+                    </a>
                 </td>
+
+
 
               </tr>
                 <?php } ?>
                 </tbody>
               </table>
-          </div>
-          <br/>
-          <form action="<?=base_url("index.php/Psicology_history/setForm/add");?>" method="post">
+            </div>
+          </br>
+          <form action="<?=base_url("index.php//Psicology_history/setForm/add");?>" method="post">
                            <td>
                                <button type="submit"
                                   name="add"
@@ -73,7 +79,7 @@
                                   <i class="fa fa-plus"></i>  Agregar</button>
                           </td>
                       </form>
-        </div>
+          </div>
           <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
         </div>
 
