@@ -7,9 +7,7 @@ function __construct()
     {
         parent::__construct();
  
-        $this->load->database();
-        $this->load->helper('url');//este objeto permite cargar las url
-
+    
         $this->load->model('Appointments_model');
         $this->load->library('session');
  
