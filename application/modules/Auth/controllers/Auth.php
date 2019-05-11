@@ -910,5 +910,22 @@ class Auth extends MX_Controller
 			return $view_html;
 		}
 	}
+	/*
+	Para usar con HMVC
+	@param string $nombre de grupo
+	@return devuelve un bool si el 
+	usuario pretenese a un grupo
+	
+	*/
+public function logged_in(){
+		if (!$this->ion_auth->logged_in())
+		{
+			// redirect them to the login page
+			redirect('Auth/login', 'refresh');
+		}
+	}
+	public function in_group($group){
+		return $this->ion_auth->in_group($group);
+	} 
 
 }
