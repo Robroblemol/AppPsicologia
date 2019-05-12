@@ -30,7 +30,8 @@ class Auth extends MX_Controller
 		if (!$this->ion_auth->logged_in())
 		{
 			// redirect them to the login page
-			redirect('Auth/login', 'refresh');
+			$this->load_form_login();
+			//redirect('Auth/login', 'refresh');
 		}
 		else if (!$this->ion_auth->is_admin()) // remove this elseif if you want to enable this for non-admins
 		{
@@ -89,6 +90,8 @@ class Auth extends MX_Controller
 				// redirect them back to the login page
 				$this->session->set_flashdata('message', $this->ion_auth->errors());
 				redirect('Auth/login', 'refresh'); // use redirects instead of loading views for compatibility with MY_Controller libraries
+				//redirect('Auth', 'refresh');
+				//$this->load_form_login();
 			}
 		}
 		else
@@ -109,8 +112,8 @@ class Auth extends MX_Controller
 				'id' => 'password',
 				'type' => 'password',
 			];
-
-			$this->_render_page('auth' . DIRECTORY_SEPARATOR . 'login', $this->data);
+			$this->load_form_login();
+			//$this->_render_page('auth' . DIRECTORY_SEPARATOR . 'login', $this->data);
 		}
 	}
 
@@ -126,7 +129,8 @@ class Auth extends MX_Controller
 
 		// redirect them to the login page
 		$this->session->set_flashdata('message', $this->ion_auth->messages());
-		redirect('Auth/login', 'refresh');
+		//redirect('Auth/login', 'refresh');
+		$this->load_form_login();
 	}
 
 	/**
@@ -141,6 +145,8 @@ class Auth extends MX_Controller
 		if (!$this->ion_auth->logged_in())
 		{
 			redirect('Auth/login', 'refresh');
+			//redirect('Auth', 'refresh');
+			//$this->load_form_login();
 		}
 
 		$user = $this->ion_auth->user()->row();
@@ -267,7 +273,8 @@ class Auth extends MX_Controller
 			{
 				// if there were no errors
 				$this->session->set_flashdata('message', $this->ion_auth->messages());
-				redirect("auth/login", 'refresh'); //we should display a confirmation page here instead of the login page
+				//redirect("auth/login", 'refresh'); //we should display a confirmation page here instead of the login page
+				$this->load_form_login();
 			}
 			else
 			{
@@ -355,7 +362,8 @@ class Auth extends MX_Controller
 					{
 						// if the password was successfully changed
 						$this->session->set_flashdata('message', $this->ion_auth->messages());
-						redirect("auth/login", 'refresh');
+						//redirect("auth/login", 'refresh');
+						$this->load_form_login();
 					}
 					else
 					{
@@ -396,13 +404,15 @@ class Auth extends MX_Controller
 		{
 			// redirect them to the auth page
 			$this->session->set_flashdata('message', $this->ion_auth->messages());
-			redirect("auth", 'refresh');
+			//redirect("auth", 'refresh');
+			$this->load_form_login();
 		}
 		else
 		{
 			// redirect them to the forgot password page
 			$this->session->set_flashdata('message', $this->ion_auth->errors());
 			redirect("auth/forgot_password", 'refresh');
+			
 		}
 	}
 
@@ -452,7 +462,8 @@ class Auth extends MX_Controller
 			}
 
 			// redirect them back to the auth page
-			redirect('auth', 'refresh');
+			redirect('Auth', 'refresh');
+			//$this->load_form_login();
 		}
 	}
 
@@ -912,9 +923,8 @@ class Auth extends MX_Controller
 	}
 	/*
 	Para usar con HMVC
-	@param string $nombre de grupo
-	@return devuelve un bool si el 
-	usuario pretenese a un grupo
+	@return devuelve un bool 
+		el suario esta registrado
 	
 	*/
 public function logged_in(){
@@ -924,8 +934,22 @@ public function logged_in(){
 			redirect('Auth/login', 'refresh');
 		}
 	}
-	public function in_group($group){
-		return $this->ion_auth->in_group($group);
-	} 
+		/*
+	Para usar con HMVC
+	@return devuelve un bool si el 
+	usuario pretenese a un grupo
+	
+	*/
+public function is_student(){
+		return $this->ion_auth->in_group("students");
+	}
+private function load_form_login(){
+	//$viewdata = (empty($data)) ? $this->data : $data;
+	$data ["title"]= "Login!";
+    $this->load->view('/addForm/head_form',$data);
+    $this->load->view('/auth/body_form_login');
+    $this->load->view('/addForm/footer_form');
+
+}
 
 }
