@@ -26,7 +26,7 @@
      
     <div class="card card-login mx-auto mt-5">
       <div class="card-header" id="infoMessage">
-<h3><?php echo lang('forgot_password_heading');?></h3>
+      <h3><?php echo lang('forgot_password_heading');?></h3>
             <?php echo $message;?></div>
       <div class="card-body">
 
