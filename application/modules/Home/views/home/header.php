@@ -32,8 +32,9 @@
       <div class="container-fluid">
         
       <div class="row">
-        
-        <?php if($app != 'seguimiento'){?>
+        <?php if($app != 'seguimiento'&&
+          modules::run("Auth/is_admin")||
+          modules::run("Auth/is_psicology")){?>
           <div class="col-xl-3 col-sm-6 mb-3">
             <div class="card text-white bg-primary o-hidden h-100">
               <div class="card-body">
@@ -51,8 +52,11 @@
               </a>
             </div>
           </div>
-        <?php }?>  
-        <?php if($app != 'estudiantes'){?>
+        <?php }?>
+        
+        <?php if($app != 'estudiantes'&&
+          modules::run("Auth/is_admin")||
+          modules::run("Auth/is_psicology")){?>
           <div class="col-xl-3 col-sm-6 mb-3">
             <div class="card text-white bg-warning o-hidden h-100">
               <div class="card-body">
@@ -71,7 +75,9 @@
             </div>
           </div>
         <?php }?>  
-        <?php if($app != 'acudientes'){?>  
+        <?php if($app != 'acudientes'&&
+          modules::run("Auth/is_admin")||
+          modules::run("Auth/is_psicology")){?>  
           <div class="col-xl-3 col-sm-6 mb-3">
             <div class="card text-white bg-success o-hidden h-100">
               <div class="card-body">

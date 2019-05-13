@@ -943,6 +943,13 @@ public function logged_in(){
 public function is_student(){
 		return $this->ion_auth->in_group("students");
 	}
+public function is_psicology(){
+	return $this->ion_auth->in_group("psicologo");
+}
+
+public function is_admin(){
+	return $this->ion_auth->in_group("admin");
+}
 private function load_form_login(){
 	//$viewdata = (empty($data)) ? $this->data : $data;
 	$data ["title"]= "Login!";
