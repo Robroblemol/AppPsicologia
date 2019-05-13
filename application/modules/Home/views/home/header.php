@@ -8,17 +8,20 @@
           <span>Pages</span>
         </a>
         <div class="dropdown-menu" aria-labelledby="pagesDropdown">
-          <h6 class="dropdown-header">Login Screens:</h6>
-          <a class="dropdown-item" 
-            href="<?=base_url("index.php/Psicology_history")?>">Seguimiento psicologico</a>
-          <a class="dropdown-item" 
-            href="<?=base_url("index.php/Student")?>">Estudiantes</a>
-          <a class="dropdown-item" 
-            href="<?=base_url("index.php/Family_relationship")?>">Relación familiar</a>
-          <a class="dropdown-item" 
-            href="<?=base_url("index.php/Social_economic")?>">Socioemocional</a>
-          <a class="dropdown-item" 
-            href="<?=base_url("index.php/Attendants")?>">Acudientes</a>
+          <h6 class="dropdown-header">Modulos:</h6>
+          <?php if(modules::run("Auth/is_admin")||
+            modules::run("Auth/is_psicology")){?>
+              <a class="dropdown-item" 
+                href="<?=base_url("index.php/Psicology_history")?>">Seguimiento psicologico</a>
+              <a class="dropdown-item" 
+                href="<?=base_url("index.php/Student")?>">Estudiantes</a>
+              <a class="dropdown-item" 
+                href="<?=base_url("index.php/Family_relationship")?>">Relación familiar</a>
+              <a class="dropdown-item" 
+                href="<?=base_url("index.php/Social_economic")?>">Socioemocional</a>
+              <a class="dropdown-item" 
+                href="<?=base_url("index.php/Attendants")?>">Acudientes</a>
+            <?php }?>
           <div class="dropdown-divider"></div>
           <h6 class="dropdown-header">Citas:</h6>
           <a class="dropdown-item" 

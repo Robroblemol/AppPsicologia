@@ -14,7 +14,9 @@
       <li class="nav-item dropdown no-arrow mx-1">
         <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           <i class="fas fa-bell fa-fw"></i>
-          <?php if($citas > 0){?>
+          <?php if($citas > 0 
+            && modules::run("Auth/is_admin")||
+            modules::run("Auth/is_psicology")){?>
             <span class="badge badge-danger"><?= $citas?>+</span>
           <?php } ?>
         </a>
