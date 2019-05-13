@@ -800,7 +800,7 @@ class Auth extends MX_Controller
 				'value' => $this->form_validation->set_value('description'),
 			];
 
-			$this->_render_page('Auth/create_group', $this->data);
+			$this->_render_page('auth/create_group', $this->data);
 		}
 	}
 
