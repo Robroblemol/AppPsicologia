@@ -404,8 +404,8 @@ class Auth extends MX_Controller
 		{
 			// redirect them to the auth page
 			$this->session->set_flashdata('message', $this->ion_auth->messages());
-			//redirect("auth", 'refresh');
-			$this->load_form_login();
+			redirect("Auth", 'refresh');
+			//$this->load_form_login();
 		}
 		else
 		{
