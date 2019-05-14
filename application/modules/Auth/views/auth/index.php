@@ -21,7 +21,9 @@
 </head>
 
 <body class="bg-dark">
-
+<?php
+echo modules::run("Home/get_nav");
+?>
 
 <div class="container">
 
@@ -30,10 +32,15 @@
 		<h1><?php echo lang('index_heading');?></h1>
 		<p><?php echo lang('index_subheading');?></p>
 		
-		<div id="infoMessage"><?php echo $message;?></div>
 	
 	</div>
 	<div class="card-body">
+		<?php
+            if($message!=null){?>
+		<div class="alert alert-success" 
+			id="infoMessage"><?php echo $message;?>
+		</div>
+		<?php }?>
     	<div class="table-responsive">
 			<table class="table table-bordered">
 				<thead>
