@@ -25,13 +25,16 @@
                 <?php echo form_input($password);?>
               </p>
             
-              <p>
+              <div class="custom-control custom-checkbox">
+                <?php echo form_checkbox('remember',
+                    '1', FALSE, 'id="remember" class="custom-control-input"');?>
+                <label class="custom-control-label" for="remember">
                 <?php echo lang('login_remember_label', 'remember');?>
-                <?php echo form_checkbox('remember', '1', FALSE, 'id="remember"');?>
-              </p>
+                </label>
+              </div>
             
             
-              <p><?php echo form_submit('submit', lang('login_submit_btn'));?></p>
+              <p><?php echo form_submit('submit', lang('login_submit_btn'),'class ="btn btn-primary"');?></p>
 
         <?php echo form_close();?>
             <div>
