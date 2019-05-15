@@ -137,5 +137,13 @@
                     <?=$this ->session ->flashdata('Fallo');?>
                 </div>
             <?php }?>
+            <?php 
+            //si hay sessiones flashdata se muestran!
+            if($this ->session ->flashdata('message')){?>
+                <div class="alert alert-success" 
+                    role="alert">
+                    <?= $this ->session ->flashdata('message');?>
+                </div>
+           <?php }?>
 
      

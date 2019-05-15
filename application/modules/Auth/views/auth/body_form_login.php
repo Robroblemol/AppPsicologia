@@ -6,45 +6,34 @@
         </div>
         <div class="card-body">
             <?php
-            if($this ->session ->flashdata('message')){?>
+            if($message!=null){?>
 		        <div class="alert alert-info" 
-			        id="infoMessage">
-		            <?= $this ->session ->flashdata('message');?>
+			        id="infoMessage"><?php echo $message;?>
 		        </div>
 		    <?php }?>
             <p>Por favor inicie seccion
             con nombre de usuario o email</p>
             
-            <form action="<?=base_url(
-                    "index.php/Auth/login"
-                )
-                ?>" method="post">
-            <label for="identity">Email/Username:</label>
-            <input type="text" class="form-control"
-                name="identity" 
-                value="" id="identity"/>
-            <label for="password">Password:</label>    
-            <input type="password"class="form-control"
-                name="password" 
-                value="" id="password"/>
+        <?php echo form_open("Auth/login");?>
+              <p>
+                <?php echo lang('login_identity_label', 'identity');?>
+                <?php echo form_input($identity);?>
+              </p>
             
-            <div class="custom-control custom-checkbox">
-                <input type="checkbox" class="custom-control-input"
-                    id="remember"
-                    name="remember">
-                <label class="custom-control-label" for="remember">
-                    Recuerdame</label>
-            </div>
+              <p>
+                <?php echo lang('login_password_label', 'password');?>
+                <?php echo form_input($password);?>
+              </p>
             
-        
-            <div>
-            <input type="submit" name="submit" 
-                class="btn btn-primary"
-                value="Login"/>
-                
-            </div>   
-  
-            </form>
+              <p>
+                <?php echo lang('login_remember_label', 'remember');?>
+                <?php echo form_checkbox('remember', '1', FALSE, 'id="remember"');?>
+              </p>
+            
+            
+              <p><?php echo form_submit('submit', lang('login_submit_btn'));?></p>
+
+        <?php echo form_close();?>
             <div>
             <p><a href="forgot_password"><?php echo lang('login_forgot_password');?></a></p>
             

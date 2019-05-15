@@ -30,8 +30,7 @@ class Auth extends MX_Controller
 		if (!$this->ion_auth->logged_in())
 		{
 			// redirect them to the login page
-			$this->load_form_login();
-			//redirect('Auth/login', 'refresh');
+			redirect('Auth/login', 'refresh');
 		}
 		else if (!$this->ion_auth->is_admin()) // remove this elseif if you want to enable this for non-admins
 		{
@@ -43,7 +42,9 @@ class Auth extends MX_Controller
 			$this->data['title'] = $this->lang->line('index_heading');
 			
 			// set the flash data error message if there is one
-			$this->data['message'] = (validation_errors()) ? validation_errors() : $this->session->flashdata('message');
+			$this->data['message'] = (validation_errors()) ?
+				validation_errors() : 
+					$this->session->flashdata('message');
 
 			//list the users
 			$this->data['users'] = $this->ion_auth->users()->result();
@@ -70,14 +71,20 @@ class Auth extends MX_Controller
 		// validate form input
 		$this->form_validation->set_rules('identity', str_replace(':', '', $this->lang->line('login_identity_label')), 'required');
 		$this->form_validation->set_rules('password', str_replace(':', '', $this->lang->line('login_password_label')), 'required');
-
+		
+		if($this->ion_auth->logged_in()){
+			$this->session->set_flashdata('message', $this->ion_auth->messages());
+			redirect('/', 'refresh');
+		}
+		
 		if ($this->form_validation->run() === TRUE)
 		{
 			// check to see if the user is logging in
 			// check for "remember me"
 			$remember = (bool)$this->input->post('remember');
 
-			if ($this->ion_auth->login($this->input->post('identity'), $this->input->post('password'), $remember))
+			if ($this->ion_auth->login($this->input->post('identity'),
+				$this->input->post('password'), $remember))
 			{
 				//if the login is successful
 				//redirect them back to the home page
@@ -89,19 +96,23 @@ class Auth extends MX_Controller
 				// if the login was un-successful
 				// redirect them back to the login page
 				$this->session->set_flashdata('message', $this->ion_auth->errors());
-				redirect('Auth/login', 'refresh'); // use redirects instead of loading views for compatibility with MY_Controller libraries
-				//redirect('Auth', 'refresh');
-				//$this->load_form_login();
+				redirect('Auth/login', 'refresh'); 
+				// use redirects instead of loading views for compatibility with MY_Controller libraries
 			}
 		}
 		else
 		{
 			// the user is not logging in so display the login page
 			// set the flash data error message if there is one
-			$this->data['message'] = (validation_errors()) ? validation_errors() : $this->session->flashdata('message');
+			$this->data['message'] = 
+				(validation_errors()) ?
+					validation_errors() : 
+						$this->session->
+							flashdata('message');
 
 			$this->data['identity'] = [
 				'name' => 'identity',
+				'class'=>'form-control',
 				'id' => 'identity',
 				'type' => 'text',
 				'value' => $this->form_validation->set_value('identity'),
@@ -109,10 +120,11 @@ class Auth extends MX_Controller
 
 			$this->data['password'] = [
 				'name' => 'password',
+				'class'=>'form-control',
 				'id' => 'password',
 				'type' => 'password',
 			];
-			$this->load_form_login();
+			$this->load_form_login($this->data);
 			//$this->_render_page('auth' . DIRECTORY_SEPARATOR . 'login', $this->data);
 		}
 	}
@@ -129,8 +141,7 @@ class Auth extends MX_Controller
 
 		// redirect them to the login page
 		$this->session->set_flashdata('message', $this->ion_auth->messages());
-		//redirect('Auth/login', 'refresh');
-		$this->load_form_login();
+		redirect('Auth/login', 'refresh');
 	}
 
 	/**
@@ -950,7 +961,7 @@ public function is_psicology(){
 public function is_admin(){
 	return $this->ion_auth->in_group("admin");
 }
-private function load_form_login(){
+private function load_form_login($data=null){
 	//$viewdata = (empty($data)) ? $this->data : $data;
 	$data ["title"]= "Login!";
     $this->load->view('/addForm/head_form',$data);
