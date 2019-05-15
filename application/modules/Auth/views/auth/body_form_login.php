@@ -5,6 +5,13 @@
             Login
         </div>
         <div class="card-body">
+            <?php
+            if($this ->session ->flashdata('message')){?>
+		        <div class="alert alert-info" 
+			        id="infoMessage">
+		            <?= $this ->session ->flashdata('message');?>
+		        </div>
+		    <?php }?>
             <p>Por favor inicie seccion
             con nombre de usuario o email</p>
             
