@@ -21,13 +21,18 @@
 
 <body class="bg-dark">
 <div class="container">
-      <div class="card mb-3">
+      <div class="card card-login mx-auto mt-5">
       	<div class="card-header">
                   <h1><?php echo lang('create_user_heading');?></h1>
                   <p><?php echo lang('create_user_subheading');?></p>
-                  <div id="infoMessage"><?php echo $message;?></div>
             </div> 
             <div class="card-body">
+                    <?php
+                  if($message!=null){?>
+		        <div class="alert alert-info" 
+			        id="infoMessage"><?php echo $message;?>
+		        </div>
+		    <?php }?>
                   <?php echo form_open("Auth/create_user");?>
                   
                         <p>
@@ -77,7 +82,7 @@
                         </p>
                   
                   
-                        <p><?php echo form_submit('submit', lang('create_user_submit_btn'));?></p>
+                        <p><?php echo form_submit('submit', lang('create_user_submit_btn'),'class ="btn btn-primary"');?></p>
                   
                   <?php echo form_close();?>
              </div>

@@ -22,7 +22,7 @@
 <body class="bg-dark">
 <div class="container">
             
-      <div class="card mb-3">
+      <div class="card card-login mx-auto mt-5">
       	<div class="card-header">
       		<h1><?php echo lang('index_heading');?></h1>
       		<p><?php echo lang('index_subheading');?></p>
@@ -44,7 +44,7 @@
                         <?php echo form_input($group_description);?>
                   </p>
             
-                  <p><?php echo form_submit('submit', lang('edit_group_submit_btn'));?></p>
+                  <p><?php echo form_submit('submit', lang('edit_group_submit_btn'),'class ="btn btn-primary"');?></p>
             
             <?php echo form_close();?>
       </div>
@@ -52,7 +52,7 @@
 </div>
 <!-- Bootstrap core JavaScript-->
   <script src="<?= base_url('/template/')?>vendor/jquery/jquery.min.js"></script>
-  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="<?= base_url('/template/')?>vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
   <!-- Core plugin JavaScript-->
   <script src="<?= base_url('/template/')?>vendor/jquery-easing/jquery.easing.min.js"></script>
