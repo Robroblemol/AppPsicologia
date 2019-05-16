@@ -75,7 +75,10 @@ echo modules::run("Home/get_nav");
 			                <?php endforeach?>
 						</td>
 						<td><?php echo ($user->active) ? anchor("Auth/deactivate/".$user->id, lang('index_active_link')) : anchor("Auth/activate/". $user->id, lang('index_inactive_link'));?></td>
-						<td><?php echo anchor("Auth/edit_user/".$user->id, 'Edit') ;?></td>
+						<td>
+							<i class="fa fa-edit"></i>
+							<?php echo anchor("Auth/edit_user/".$user->id, 'Edit') ;?>
+						</td>
 					</tr>
 				<?php endforeach;?>
 			</table>
