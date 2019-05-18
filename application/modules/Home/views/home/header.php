@@ -33,6 +33,33 @@
     <div id="content-wrapper">
 
       <div class="container-fluid">
+      
+      <!-- flashdata -->
+      
+        <?php 
+            //si hay sessiones flashdata se muestran!
+            if($this ->session ->flashdata('Ok')){?>
+                <div class="alert alert-success" 
+                    role="alert">
+                    <?= $this ->session ->flashdata('Ok');?>
+                </div>
+           <?php }
+            if($this ->session ->flashdata('Fallo')){?>
+                <div class="alert alert-info" role="alert">
+                    <?=$this ->session ->flashdata('Fallo');?>
+                </div>
+            <?php }?>
+            <?php 
+            //si hay sessiones flashdata se muestran!
+            if($this ->session ->flashdata('message')){?>
+                <div class="alert alert-success" 
+                    role="alert">
+                    <?= $this ->session ->flashdata('message');?>
+                </div>
+           <?php }?>
+
+      
+      
         
       <div class="row">
         <?php if($app != 'seguimiento'&&
@@ -123,27 +150,5 @@
           </div>
         <?php }?>  
         </div>
-
-        <?php 
-            //si hay sessiones flashdata se muestran!
-            if($this ->session ->flashdata('Ok')){?>
-                <div class="alert alert-success" 
-                    role="alert">
-                    <?= $this ->session ->flashdata('Ok');?>
-                </div>
-           <?php }
-            if($this ->session ->flashdata('Fallo')){?>
-                <div class="alert alert-info" role="alert">
-                    <?=$this ->session ->flashdata('Fallo');?>
-                </div>
-            <?php }?>
-            <?php 
-            //si hay sessiones flashdata se muestran!
-            if($this ->session ->flashdata('message')){?>
-                <div class="alert alert-success" 
-                    role="alert">
-                    <?= $this ->session ->flashdata('message');?>
-                </div>
-           <?php }?>
 
      

@@ -532,7 +532,8 @@ class Auth extends MX_Controller
 				'phone' => $this->input->post('phone'),
 			];
 		}
-		if ($this->form_validation->run() === TRUE && $this->ion_auth->register($identity, $password, $email, $additional_data))
+		if ($this->form_validation->run() === TRUE && 
+			$this->ion_auth->register($identity, $password, $email, $additional_data))
 		{
 			// check to see if we are creating the user
 			// redirect them back to the admin page
