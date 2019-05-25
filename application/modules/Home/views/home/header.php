@@ -1,24 +1,27 @@
   <div id="wrapper">
 
     <!-- Sidebar -->
-    <ul class="sidebar navbar-nav">
+    <ul class="sidebar navbar-nav toggled">
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="pagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           <i class="fas fa-fw fa-folder"></i>
           <span>Pages</span>
         </a>
         <div class="dropdown-menu" aria-labelledby="pagesDropdown">
-          <h6 class="dropdown-header">Login Screens:</h6>
-          <a class="dropdown-item" 
-            href="<?=base_url("index.php/Psicology_history")?>">Seguimiento psicologico</a>
-          <a class="dropdown-item" 
-            href="<?=base_url("index.php/Student")?>">Estudiantes</a>
-          <a class="dropdown-item" 
-            href="<?=base_url("index.php/Family_relationship")?>">Relación familiar</a>
-          <a class="dropdown-item" 
-            href="<?=base_url("index.php/Social_economic")?>">Socioemocional</a>
-          <a class="dropdown-item" 
-            href="<?=base_url("index.php/Attendants")?>">Acudientes</a>
+          <h6 class="dropdown-header">Modulos:</h6>
+          <?php if(modules::run("Auth/is_admin")||
+            modules::run("Auth/is_psicology")){?>
+              <a class="dropdown-item" 
+                href="<?=base_url("index.php/Psicology_history")?>">Seguimiento psicologico</a>
+              <a class="dropdown-item" 
+                href="<?=base_url("index.php/Student")?>">Estudiantes</a>
+              <a class="dropdown-item" 
+                href="<?=base_url("index.php/Family_relationship")?>">Relación familiar</a>
+              <a class="dropdown-item" 
+                href="<?=base_url("index.php/Social_economic")?>">Socioemocional</a>
+              <a class="dropdown-item" 
+                href="<?=base_url("index.php/Attendants")?>">Acudientes</a>
+            <?php }?>
           <div class="dropdown-divider"></div>
           <h6 class="dropdown-header">Citas:</h6>
           <a class="dropdown-item" 
@@ -30,10 +33,38 @@
     <div id="content-wrapper">
 
       <div class="container-fluid">
+      
+      <!-- flashdata -->
+      
+        <?php 
+            //si hay sessiones flashdata se muestran!
+            if($this ->session ->flashdata('Ok')){?>
+                <div class="alert alert-success" 
+                    role="alert">
+                    <?= $this ->session ->flashdata('Ok');?>
+                </div>
+           <?php }
+            if($this ->session ->flashdata('Fallo')){?>
+                <div class="alert alert-info" role="alert">
+                    <?=$this ->session ->flashdata('Fallo');?>
+                </div>
+            <?php }?>
+            <?php 
+            //si hay sessiones flashdata se muestran!
+            if($this ->session ->flashdata('message')){?>
+                <div class="alert alert-success" 
+                    role="alert">
+                    <?= $this ->session ->flashdata('message');?>
+                </div>
+           <?php }?>
+
+      
+      
         
       <div class="row">
-        
-        <?php if($app != 'seguimiento'){?>
+        <?php if($app != 'seguimiento'&&
+          (modules::run("Auth/is_admin")||
+          modules::run("Auth/is_psicology"))){?>
           <div class="col-xl-3 col-sm-6 mb-3">
             <div class="card text-white bg-primary o-hidden h-100">
               <div class="card-body">
@@ -51,8 +82,11 @@
               </a>
             </div>
           </div>
-        <?php }?>  
-        <?php if($app != 'estudiantes'){?>
+        <?php }?>
+        
+        <?php if($app != 'estudiantes'&&
+          (modules::run("Auth/is_admin")||
+          modules::run("Auth/is_psicology"))){?>
           <div class="col-xl-3 col-sm-6 mb-3">
             <div class="card text-white bg-warning o-hidden h-100">
               <div class="card-body">
@@ -71,7 +105,9 @@
             </div>
           </div>
         <?php }?>  
-        <?php if($app != 'acudientes'){?>  
+        <?php if($app != 'acudientes'&&
+          (modules::run("Auth/is_admin")||
+          modules::run("Auth/is_psicology"))){?>  
           <div class="col-xl-3 col-sm-6 mb-3">
             <div class="card text-white bg-success o-hidden h-100">
               <div class="card-body">
@@ -90,7 +126,9 @@
             </div>
           </div>
         <?php }?> 
-        <?php if($app != 'citas'){?>
+        <?php if($app != 'citas'&&
+        (modules::run("Auth/is_admin")||
+          modules::run("Auth/is_psicology"))){?>
           <div class="col-xl-3 col-sm-6 mb-3">
             <div class="card text-white bg-danger o-hidden h-100">
               <div class="card-body">
@@ -112,19 +150,5 @@
           </div>
         <?php }?>  
         </div>
-
-        <?php 
-            //si hay sessiones flashdata se muestran!
-            if($this ->session ->flashdata('Ok')){?>
-                <div class="alert alert-success" 
-                    role="alert">
-                    <?= $this ->session ->flashdata('Ok');?>
-                </div>
-           <?php }
-            if($this ->session ->flashdata('Fallo')){?>
-                <div class="alert alert-info" role="alert">
-                    <?=$this ->session ->flashdata('Fallo');?>
-                </div>
-            <?php }?>
 
      

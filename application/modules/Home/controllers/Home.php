@@ -9,24 +9,32 @@ function __construct()
         $this->load->database();
         $this->load->helper('url');//este objeto permite cargar las url
         $this->load->library('session');
-        //$this->load->model('Students_model');
         $this->title="Seguimiento psicologico";
         $this->app="Seguimiento psicologico";
+        //verificamos si el usuario esta registrado
+        modules::run("Auth/logged_in");
+        
     }
  
 public function index()
     {
-     $datos["citas"]=count(
-        modules::run("Appointments/get")['get']
-        );
-     $datos ["title"]= "Inicio";
-     $this->load->view('/home/head',$datos);
-     $datos ["app"] = "Seguimiento psicologico";
-     $this->load->view('/home/nav',$datos);
-     $this->load->view('/home/header',$datos);
-     $this->load->view('/home/content');
-     $this->load->view('/home/footer');
-     //$this ->load->view("home_view",$data);
+        $group = 'students';
+        if(modules::run("Auth/is_student")){
+            redirect("Appointments");    
+        }else{
+            
+         $datos["citas"]=count(
+            modules::run("Appointments/get")['get']
+            );
+         $datos ["title"]= "Inicio";
+         $this->load->view('/home/head',$datos);
+         $datos ["app"] = "Seguimiento psicologico";
+         $this->load->view('/home/nav',$datos);
+         $this->load->view('/home/header',$datos);
+         $this->load->view('/home/content');
+         $this->load->view('/home/footer');
+         //$this ->load->view("home_view",$data);
+        }
      
     }
 public function setTitle($title){

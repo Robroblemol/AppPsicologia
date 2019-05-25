@@ -7,9 +7,7 @@ function __construct()
     {
         parent::__construct();
  
-        $this->load->database();
-        $this->load->helper('url');//este objeto permite cargar las url
-
+    
         $this->load->model('Appointments_model');
         $this->load->library('session');
  
@@ -20,7 +18,7 @@ public function index(){
     //cargamos un array con el metodo a visualizar
     $datos['title']="Citas";
     $datos['app']="citas";
-     $datos ["get"]=$this -> Appointments_model->get(); 
+     $datos ["get"]=$this -> Appointments_model->get();
      $this ->load -> view("Appointments_view",$datos);
     }
 public function get_table(){

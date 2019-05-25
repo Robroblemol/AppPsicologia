@@ -221,3 +221,19 @@ INSERT INTO asing_date (asing_appo,state_appo)
 VALUES ('jueves 8:15 am',0);
 INSERT INTO asing_date (asing_appo,state_appo)
 VALUES ('viernes 8:15 am',0);
+
+
+CREATE TABLE IF NOT EXISTS `users` (
+`id_user` smallint(5) unsigned NOT NULL AUTO_INCREMENT,
+    `name`varchar(50),
+    `last_name`varchar(50),
+    `email`varchar(50),
+    `username`varchar(50),
+    `password`varchar(50),
+    `role`varchar(50),
+    PRIMARY KEY (`id_user`)
+)  ENGINE=InnoDB  DEFAULT CHARSET=utf8;
+/*
+INSERT INTO users (name,last_name,email,username,password,role)
+VALUES ('root','root','root@email.com','root',81dc9bdb52d04dc20036dbd8313ed055,'admin');
+*/
