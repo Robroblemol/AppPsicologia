@@ -114,7 +114,7 @@
         </form>
 
         <div class="text-center">
-          <a href="<?=base_url("index.php/Attendants")?>">Volver</a>
+          <a href="<?=base_url("index.php/Appointments")?>">Volver</a>
         </div>
       </div>
     </div>

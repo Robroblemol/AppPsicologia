@@ -19,10 +19,6 @@ public function index(){
     $datos['title']="Citas";
     $datos['app']="citas";
      $datos ["get"]=$this -> Appointments_model->get();
-     //si soy estudiante me redirije a enviar cita.
-     if( modules::run("Auth/is_student"))
-        $this->setForm('add');
-     else //sino mostramos las sitas agendadas
      $this ->load -> view("Appointments_view",$datos);
     }
 public function get_table(){

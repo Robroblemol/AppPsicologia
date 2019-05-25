@@ -3,7 +3,7 @@
             
             <form action="<?=base_url("index.php/Appointments/setForm/add");?>" method="post">
              <i class="fas fa-table"></i>
-                Acudientes registrados
+                Citas agendadas
                  <button type="submit"
                         class="btn btn-primary"
                         name="add"
