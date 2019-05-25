@@ -66,7 +66,7 @@ public function index()
 ```
 La función index del modulo home simplemente nos devuelve la vista principal de la aplicación. Donde lo que tenemos son porciones de HTML que vamos construyendo utilizando la clase load. Si bien podriamos hacer esto mismo con un solo archivo de vista, gracias a HMVC podemos reutilizar todos estos archivos en otros modulo,hacemos esto de la siguiente manera:
 
-###  Creado funciones para reutilizar
+###  Creado funciones para reutilizar.
 En nuestro controlador Home hemos creado las siguientes funciones
  ```
   public function get_head(){
@@ -98,11 +98,11 @@ En nuestro controlador Home hemos creado las siguientes funciones
  ```
  Lo anterio corresponde a todo el codigo de la vista principal del modulo appointments ([Appointment_view.php](https://github.com/Robroblemol/AppPsicologia/blob/master/application/modules/Appointments/views/Appointments_view.php)). para aceder al modulo se hace atraves de ``` modules::run() ``` que recibe como parámetro el nombre del controlador y separado por un slash el nombre de la función a la que queremos acceder, esto se puede hacer incluso al mismo controlador a la que pertenece la vista! 
 
-### Llamando controladores desde otros controladores
+### Llamando controladores desde otros controladores.
 
- Bueno, para ser mas precisos lo que en verdad estamos haciendo es llamando modulos desde otros modulos, pero controladores desde otros controladores, nos recuerda el MVC y a su ves nos muestra lo poderoso del HMVC. En el ejemplo anterior se hace el llamado de los modulos desde una vista ahora haremos lo mismo desde el controlador Home.
+ Bueno, para ser mas precisos lo que en verdad se está haciendo es llamando modulos desde otros modulos, pero controladores desde otros controladores, recuerda el patron MVC y a su ves muestra lo poderoso el patron HMVC. En el ejemplo anterior se hace el llamado de los modulos desde una vista, ahora haremos lo mismo desde el controlador Home.
  
- En el nav se encuentran el icono de notificacion el cual se utilizará para notificar las citas que se han creado. pensemos un momento en como hariamos esto en patron MVC, tendriamos que instanciar el modelo de citas y crear en el controlador Home la función ``` get_appointments ``` la cual ya existe (o deberia existir) en el controlador appointments, estamos repitiendo codigo! no solo estamos repitiendo codigo sino que estamos asignando otra dependencia al controlador Home, una dependencia que no es la principal del controlador. por suerte utilizando HMVC podemos evitar esto.
+ En el nav se encuentran el icono de notificacion el cual se utilizará para notificar las citas que se han creado. Pensemos un momento en como hariamos esto en patron MVC, se tendria que instanciar el modelo de citas y crear en el controlador Home la función ``` get_appointments ``` la cual ya existe (o deberia existir) en el controlador appointments, se está repitiendo codigo! no solo se está repitiendo código sino que se esta asignando otra dependencia al controlador Home, una dependencia que no es la principal del controlador. por suerte utilizando HMVC podemos evitar esto.
  
  ```
  public function get_nav(){
@@ -120,6 +120,43 @@ public function get_header(){
 }
  
  ```
- Tanto para la función get_nav() y get_header() hemos agregado el codigo ``` $datos['citas']=count(modules::run("Appointments/get")['get']) ``` donde el modulo appointment nos de vuelve un arreglo de objetos llave valor con la informacion de las citas y lo que hacemos es contar cuantos items hay con la funcion count() y luego le pasamos estos datos a la vista, esto grarantiza la funcionalidad de las notificacion de las citas sin importar desde donde los llamemos 
+ Tanto para la función get_nav() y get_header() se ha agregado el codigo ``` $datos['citas']=count(modules::run("Appointments/get")['get']) ``` donde el modulo appointment nos de vuelve un arreglo de objetos llave valor con la informacion de las citas y lo que hacemos es contar cuantos items hay con la funcion count() y luego le pasamos estos datos a la vista, esto grarantiza la funcionalidad de las notificacion de las citas sin importar desde donde sea llamada.
  
+ ### Restringiendo acceso módulos.
+ El acceso a la aplicación se debe realizar con un login previo, para verificar esto en el constructor de Home se verificar si el usuario ya realizó el login, para esto se creo la funcion ``` logged_in() ``` en el controlador Auth el cual devolvera true o false. asi quedaria el constructor: 
+ 
+ ```
+ function __construct()
+    {
+        parent::__construct();
+ 
+        $this->load->database();
+        $this->load->helper('url');//este objeto permite cargar las url
+        $this->load->library('session');
+        //verificamos si el usuario esta registrado
+        modules::run("Auth/logged_in");
+        
+    }
+ 
+ ```
    
+Donde en la funcion ```logged_in()``` hace lo siguiente:
+```
+public function logged_in(){
+		if (!$this->ion_auth->logged_in())
+		{
+			// redirect them to the login page
+			redirect('Auth/login', 'refresh');
+		}
+	}
+```
+Como se ve esta funcion evalua si el usauario actual esta logeado si no es el caso lo redirige al login. Al estar este llamado de funcion en el constructur del Home es extencible a todos los modulos los cuales utilizan las vistas de home (get_head, get_nav, get_header y get_footer) lo que nos ahorra tener agregar mas lineas a los demas modulos.
+
+## Referencias
+
+* [Documantación codeigniter](https://www.codeigniter.com/user_guide/).
+* [HMVC: Una introducción y aplicación](https://code.tutsplus.com/es/tutorials/hmvc-an-introduction-and-application--net-11850).
+* [Ion_auth](http://benedmunds.com/ion_auth/).
+* [Manual php](https://www.php.net/manual/es/intro-whatis.php).
+* [Tutorial codeigniter #8 Plantillas de Bootstrap](https://www.youtube.com/watch?v=lDWo5pgcnZk&t)
+* [Una plantilla para hacer un buen README.md. Inspirado en el gist de @PurpleBooth](https://gist.github.com/Villanuevand/6386899f70346d4580c723232524d35a)
