@@ -7,6 +7,7 @@ class Attendants extends MX_Controller {
         $this->load->helper('url');//este objeto permite cargar las url
         $this->load->model('Attendants_model');
         $this->load->library('session');
+        modules::run("Auth/logged_in");
     }
     public function index(){
     //cargamos un array con el metodo a visualizar
