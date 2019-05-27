@@ -10,6 +10,7 @@ function __construct()
     
         $this->load->model('Appointments_model');
         $this->load->library('session');
+        modules::run("Auth/logged_in");
  
     }
 

@@ -12,6 +12,7 @@ function __construct()
 
         $this->load->model('Social_economic_model');
         $this->load->library('session');
+        modules::run("Auth/logged_in");
  
     }
 

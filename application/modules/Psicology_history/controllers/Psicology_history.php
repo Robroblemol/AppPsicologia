@@ -20,6 +20,7 @@ function __construct()
         
         
         $this->load->library('session');
+        modules::run("Auth/logged_in");
  
     }
 

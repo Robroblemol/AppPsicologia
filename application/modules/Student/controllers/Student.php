@@ -13,6 +13,7 @@ function __construct()
         $this->load->model('Students_model');
         $this->load->library('session');
         $this->load->helper('set_form');
+        modules::run("Auth/logged_in");
         
  
     }
@@ -120,13 +121,15 @@ public function setForm($id){
             
             $data ["title"]= "Editar estudiante";
             $this->load->view('/addForm/head_form',$data);
-
+            
+            
             $datos ["update"]= 
                 $this -> Students_model
                     ->getOne($id,"students","id_student");
             $datos ["status"] = true;
             $this->load->view('/addForm/body_form',$datos);
-            $this->load->view('/addForm/footer_form');
+            modules::run("Home/get_footer");
+            //$this->load->view('/addForm/footer_form');
     
         }else{
            $data ["title"]= "Editar estudiante";

@@ -27,8 +27,8 @@ public function index()
             modules::run("Appointments/get")['get']
             );
          $datos ["title"]= "Inicio";
-         $this->load->view('/home/head',$datos);
          $datos ["app"] = "Seguimiento psicologico";
+         $this->load->view('/home/head',$datos);
          $this->load->view('/home/nav',$datos);
          $this->load->view('/home/header',$datos);
          $this->load->view('/home/content');
